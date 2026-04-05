@@ -1,4 +1,4 @@
-// PongV1000 v0.001 — Classic Pong baseline
+// PongV1000 v0.002 — Classic Pong baseline
 // Autonomously evolved by PongV1000 agent. Do not edit manually.
 // https://happydadto5.github.io/pongv1000-live/
 
@@ -65,7 +65,7 @@
   // -------------------------------------------------------------------------
   // Game constants (functions to recalculate on resize)
   // -------------------------------------------------------------------------
-  var BALL_SPEED = 5;
+  var BALL_SPEED = 4; // Reduced ball speed for better control
   var PSPEED    = 6;
   var PAD_W     = 12;
 
@@ -200,25 +200,13 @@
     var bs = BALL_SIZE();
     var pm = PAD_MARGIN();
 
-    ctx.fillStyle = '#000';
-    ctx.fillRect(0, 0, w, h);
-
-    // Centre line
-    ctx.setLineDash([8, 8]);
-    ctx.strokeStyle = '#1a1a1a';
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    ctx.moveTo(w / 2, 0);
-    ctx.lineTo(w / 2, h);
-    ctx.stroke();
-    ctx.setLineDash([]);
+    ctx.clearRect(0, 0, w, h); // Clear the canvas before drawing
 
     // Scores
     ctx.fillStyle = '#fff';
-    ctx.font = 'bold ' + Math.floor(h * 0.09) + 'px monospace';
-    ctx.textAlign = 'center';
-    ctx.fillText(state.lp.score, w * 0.25, h * 0.12);
-    ctx.fillText(state.rp.score, w * 0.75, h * 0.12);
+    ctx.font = '24px Arial';
+    ctx.fillText(state.lp.score, w * 0.25, h * 0.1);
+    ctx.fillText(state.rp.score, w * 0.75, h * 0.1);
 
     // Paddles
     ctx.fillStyle = '#fff';

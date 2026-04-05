@@ -1,7 +1,6 @@
 {
-  "version": "0.001",
+  "version": "0.002",
   "title": "PongV1000",
-  "description": "Classic Pong — the beginning of a 1000-evolution journey",
-  "evolution_count": 0,
-  "game_url": "https://happydadto5.github.io/pongv1000-live/"
+  "description": "Classic Pong \u2014 the beginning of a 1000-evolution journey",
+  "evolution_count": 1
 }
