@@ -1,7 +1,7 @@
 {
   "agent_start_time": "2026-04-05T17:52:38.912886+00:00",
-  "last_evolution_time": "2026-04-05T20:51:24.582471+00:00",
-  "next_evolution_time": "2026-04-05T21:06:24.582339+00:00",
+  "last_evolution_time": "2026-04-05T22:35:48.298413+00:00",
+  "next_evolution_time": "2026-04-05T22:50:48+00:00",
   "evolution_interval_minutes": 15,
   "current_version": "0.002",
   "current_title": "PongV1000",
@@ -13,9 +13,23 @@
     "Next step 2"
   ],
   "teasers": [],
+  "last_focus_area": "",
   "long_term_steering": "",
+  "evolution_targets": {
+    "gameplay_improvements": 20,
+    "creative_evolution": 20,
+    "visuals_theme": 15,
+    "audio_feedback": 10,
+    "controls_accessibility": 10,
+    "stability_performance": 10,
+    "documentation_status": 10,
+    "roadmap_review_planning": 5
+  },
+  "balance_summary": {},
   "game_url": "index.html",
-  "consecutive_failures": 0,
+  "consecutive_failures": 1,
   "degraded": false,
-  "generated_at": "2026-04-05T20:51:24.582670+00:00"
+  "last_evolution_success": false,
+  "last_error": "Smoke test: Console errors: lp is not defined",
+  "generated_at": "2026-04-05T22:35:48.298746+00:00"
 }

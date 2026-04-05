@@ -5,26 +5,48 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>PongV1000 — Agent Status</title>
 <style>
-/* Seed design — agent will redesign this entirely over time */
+:root{
+  --bg:#09131b;
+  --bg2:#102331;
+  --panel:#112837;
+  --line:#2d5065;
+  --text:#eef7fb;
+  --muted:#b8ccd8;
+  --accent:#7ef0ff;
+  --accent2:#ffd166;
+  --good:#86efac;
+  --warn:#ff8f70;
+}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#000;color:#00ff88;font-family:'Courier New',monospace;min-height:100vh;padding:24px 20px}
-h1{font-size:1.1rem;letter-spacing:4px;margin-bottom:4px}
-.sub{color:#333;font-size:0.75rem;margin-bottom:24px}
+body{
+  background:radial-gradient(circle at top,#163347 0%,var(--bg) 46%,#050b10 100%);
+  color:var(--text);
+  font-family:'Courier New',monospace;
+  min-height:100vh;
+  padding:24px 20px 40px;
+}
+h1{font-size:1.15rem;letter-spacing:4px;margin-bottom:6px}
+.sub{color:#d8e7ef;font-size:0.95rem;margin-bottom:24px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:20px}
-.card{background:#080808;border:1px solid #1a1a1a;border-radius:4px;padding:14px}
-.card-label{color:#444;font-size:0.7rem;letter-spacing:2px;margin-bottom:6px;text-transform:uppercase}
-.card-value{font-size:1.05rem;color:#00ff88}
-.card-value.accent{color:#00ccff}
-.card-value.warn{color:#ff6b35}
+.card{background:rgba(17,40,55,.9);border:1px solid var(--line);border-radius:8px;padding:14px;box-shadow:0 10px 30px rgba(0,0,0,.18)}
+.card-label{color:#d9eaf3;font-size:0.88rem;letter-spacing:2px;margin-bottom:8px;text-transform:uppercase}
+.card-value{font-size:1.3rem;color:var(--text);line-height:1.3}
+.card-value.accent{color:var(--accent)}
+.card-value.warn{color:var(--warn)}
 .arc-list{margin:0;padding:0;list-style:none}
-.arc-list li{padding:5px 0;border-bottom:1px solid #0f0f0f;font-size:0.85rem;color:#888}
-.arc-list li::before{content:"→ ";color:#00ff88}
-.teaser{background:#080808;border-left:3px solid #ff8c00;padding:10px 14px;margin:8px 0;font-size:0.85rem;color:#ff8c00;border-radius:0 4px 4px 0}
-.degraded-banner{background:#1a0000;border:1px solid #ff3333;color:#ff3333;padding:12px 16px;margin-bottom:20px;border-radius:4px;font-size:0.85rem}
-.footer{margin-top:28px;padding-top:16px;border-top:1px solid #111;font-size:0.75rem;color:#222}
-.footer a{color:#333;text-decoration:none}
-.footer a:hover{color:#555}
-#countdown{color:#00ccff;font-size:1.4rem;letter-spacing:2px}
+.arc-list li{padding:7px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:0.92rem;color:var(--text)}
+.arc-list li::before{content:"→ ";color:var(--accent)}
+.teaser{background:rgba(255,209,102,.12);border-left:3px solid var(--accent2);padding:10px 14px;margin:8px 0;font-size:0.9rem;color:#fff3cd;border-radius:0 4px 4px 0}
+.degraded-banner{background:#3a120d;border:1px solid var(--warn);color:#ffe4da;padding:12px 16px;margin-bottom:20px;border-radius:8px;font-size:0.9rem}
+.footer{margin-top:28px;padding-top:16px;border-top:1px solid rgba(255,255,255,.08);font-size:0.82rem;color:var(--muted)}
+.footer a{color:var(--accent);text-decoration:none}
+.footer a:hover{color:#fff}
+#countdown{color:var(--accent);font-size:1.5rem;letter-spacing:2px}
+.balance-table{width:100%;border-collapse:collapse;font-size:0.86rem}
+.balance-table th,.balance-table td{padding:8px 10px;border-bottom:1px solid rgba(255,255,255,.08);text-align:left}
+.balance-table th{color:var(--muted);font-weight:normal}
+.pill{display:inline-block;padding:4px 8px;border-radius:999px;background:rgba(126,240,255,.12);color:var(--accent);font-size:0.78rem}
+.small{color:#d8e7ef;font-size:0.92rem}
 </style>
 </head>
 <body>
@@ -60,6 +82,14 @@ h1{font-size:1.1rem;letter-spacing:4px;margin-bottom:4px}
     <div class="card-label">Deploy Health</div>
     <div class="card-value" id="health">—</div>
   </div>
+  <div class="card">
+    <div class="card-label">Last Focus Area</div>
+    <div class="card-value" id="focus-area">—</div>
+  </div>
+  <div class="card">
+    <div class="card-label">Last Result</div>
+    <div class="card-value" id="last-result">—</div>
+  </div>
 </div>
 
 <div class="card" style="margin-bottom:16px">
@@ -71,6 +101,21 @@ h1{font-size:1.1rem;letter-spacing:4px;margin-bottom:4px}
 <div class="card" style="margin-bottom:16px">
   <div class="card-label">Planned Next Evolutions</div>
   <ul class="arc-list" id="arcs"></ul>
+</div>
+
+<div class="card" style="margin-bottom:16px">
+  <div class="card-label">Evolution Balance</div>
+  <div class="small" id="balance-summary" style="margin-bottom:10px">Tracking category balance...</div>
+  <table class="balance-table">
+    <thead>
+      <tr>
+        <th>Focus Area</th>
+        <th>Target</th>
+        <th>Done</th>
+      </tr>
+    </thead>
+    <tbody id="balance-body"></tbody>
+  </table>
 </div>
 
 <div id="teasers-section"></div>
@@ -104,6 +149,16 @@ function fmtAgo(iso) {
 var _nextTime  = null;
 var _startTime = null;
 var _lastEvo   = null;
+var CATEGORY_LABELS = {
+  gameplay_improvements:'Gameplay Improvements',
+  creative_evolution:'Creative Evolution',
+  visuals_theme:'Visuals & Theme',
+  audio_feedback:'Audio & Feedback',
+  controls_accessibility:'Controls & Accessibility',
+  stability_performance:'Stability & Performance',
+  documentation_status:'Documentation & Status',
+  roadmap_review_planning:'Roadmap Review & Planning'
+};
 
 function tick() {
   var now = Date.now();
@@ -128,6 +183,14 @@ async function load() {
     document.getElementById('title').textContent       = d.current_title || '—';
     document.getElementById('description').textContent = d.current_description || '—';
     document.getElementById('total-evo').textContent   = d.total_evolutions || '0';
+    document.getElementById('focus-area').textContent =
+      CATEGORY_LABELS[d.last_focus_area] || d.last_focus_area || '—';
+    document.getElementById('last-result').textContent =
+      d.last_evolution_success === false
+        ? ('Failed: ' + (d.last_error || 'unknown error'))
+        : 'Last deploy succeeded';
+    document.getElementById('last-result').className =
+      'card-value ' + (d.last_evolution_success === false ? 'warn' : '');
     document.getElementById('generated-at').textContent =
       d.generated_at !== 'pending'
         ? 'Last updated: ' + new Date(d.generated_at).toLocaleString()
@@ -150,6 +213,25 @@ async function load() {
       li.textContent = a;
       ul.appendChild(li);
     });
+
+    var balanceBody = document.getElementById('balance-body');
+    var balanceSummary = document.getElementById('balance-summary');
+    balanceBody.innerHTML = '';
+    var balance = d.balance_summary || {};
+    var counts = balance.counts || {};
+    var targets = balance.targets || d.evolution_targets || {};
+    Object.keys(CATEGORY_LABELS).forEach(function(key) {
+      var tr = document.createElement('tr');
+      tr.innerHTML =
+        '<td>' + CATEGORY_LABELS[key] + '</td>' +
+        '<td><span class="pill">' + (targets[key] || 0) + '%</span></td>' +
+        '<td>' + (counts[key] || 0) + '</td>';
+      balanceBody.appendChild(tr);
+    });
+    var preferred = (balance.preferred_next || []).map(function(k){ return CATEGORY_LABELS[k] || k; });
+    balanceSummary.textContent = preferred.length
+      ? 'Next attention areas: ' + preferred.join(', ')
+      : 'Balance targets active.';
 
     // Teasers
     var ts = document.getElementById('teasers-section');
