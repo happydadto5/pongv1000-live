@@ -1,0 +1,19 @@
+{
+  "agent_start_time": "pending",
+  "last_evolution_time": "pending",
+  "next_evolution_time": "pending",
+  "current_version": "0.001",
+  "current_title": "PongV1000",
+  "current_description": "Classic Pong — the beginning of a 1000-evolution journey",
+  "total_evolutions": 0,
+  "planned_arcs": [
+    "Add procedural bounce sound effects",
+    "Add particle burst on score",
+    "Add subtle ball trail"
+  ],
+  "teasers": [],
+  "game_url": "index.html",
+  "consecutive_failures": 0,
+  "degraded": false,
+  "generated_at": "pending"
+}

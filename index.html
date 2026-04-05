@@ -1,1 +1,22 @@
-<html><body style="background:#000;color:#00ff88;font-family:monospace;display:flex;align-items:center;justify-content:center;height:100vh;margin:0"><h1>PongV1000 loading...</h1></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>PongV1000</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#000;display:flex;align-items:center;justify-content:center;height:100vh;overflow:hidden}
+canvas{display:block}
+#ver{color:#1a1a1a;font:10px monospace;position:fixed;bottom:4px;right:6px;pointer-events:none}
+#status-link{color:#1a1a1a;font:10px monospace;position:fixed;bottom:4px;left:6px;text-decoration:none}
+#status-link:hover{color:#333}
+</style>
+</head>
+<body>
+<canvas id="gameCanvas"></canvas>
+<div id="ver">v0.001</div>
+<a id="status-link" href="status.html">◈ agent status</a>
+<script src="game.js"></script>
+</body>
+</html>
