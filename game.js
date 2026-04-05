@@ -1,4 +1,4 @@
-// PongV1000 v0.002 — Classic Pong baseline
+// PongV1000 v0.003 — Classic Pong with enhanced gameplay
 // Autonomously evolved by PongV1000 agent. Do not edit manually.
 // https://happydadto5.github.io/pongv1000-live/
 
@@ -65,7 +65,7 @@
   // -------------------------------------------------------------------------
   // Game constants (functions to recalculate on resize)
   // -------------------------------------------------------------------------
-  var BALL_SPEED = 4; // Reduced ball speed for better control
+  var BALL_SPEED = 5; // Increased ball speed for better challenge
   var PSPEED    = 6;
   var PAD_W     = 12;
 
@@ -172,21 +172,9 @@
     // Right paddle collision
     if (b.x + bs >= canvas.width - pm - PAD_W &&
         b.y + bs >= rp.y && b.y <= rp.y + ph) {
-      b.vx = -Math.abs(b.vx) * 1.04;
+      b.vx = Math.abs(b.vx) * 1.04;
       b.x  = canvas.width - pm - PAD_W - bs - 1;
       playBlip(440, 0.08);
-    }
-
-    // Score
-    if (b.x < 0) {
-      rp.score++;
-      playBlip(180, 0.25);
-      reset();
-    }
-    if (b.x > canvas.width) {
-      lp.score++;
-      playBlip(660, 0.2);
-      reset();
     }
   }
 
@@ -225,5 +213,4 @@
     draw();
     requestAnimationFrame(loop);
   })();
-
 })();
