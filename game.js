@@ -22,6 +22,20 @@
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
+    // Particle system
+    const particles = [];
+    function createParticles(x, y) {
+        for (let i = 0; i < 10; i++) {
+            particles.push({
+                x: x,
+                y: y,
+                vx: (Math.random() - 0.5) * 6,
+                vy: (Math.random() - 0.5) * 6,
+                life: 60
+            });
+        }
+    }
+
     // Game variables
     const paddleWidth = 10;
     const paddleHeight = 100;
@@ -41,6 +55,16 @@
     }
 
     function update() {
+        // Update particles
+        for (let i = particles.length - 1; i >= 0; i--) {
+            particles[i].x += particles[i].vx;
+            particles[i].y += particles[i].vy;
+            particles[i].life--;
+            if (particles[i].life <= 0) {
+                particles.splice(i, 1);
+            }
+        }
+
         // Move ball
         ballX += ballSpeedX;
         ballY += ballSpeedY;
@@ -48,13 +72,16 @@
         // Ball collision with top/bottom
         if (ballY <= 0 || ballY >= canvas.height - ballRadius) {
             ballSpeedY = -ballSpeedY;
+            createParticles(ballX, ballY);
         }
 
         // Ball collision with paddles
         if (ballX <= paddleWidth && ballY > leftPaddleY && ballY < leftPaddleY + paddleHeight) {
             ballSpeedX = -ballSpeedX;
+            createParticles(ballX, ballY);
         } else if (ballX >= canvas.width - paddleWidth - ballRadius && ballY > rightPaddleY && ballY < rightPaddleY + paddleHeight) {
             ballSpeedX = -ballSpeedX;
+            createParticles(ballX, ballY);
         }
 
         // Ball out of bounds
@@ -70,6 +97,14 @@
     function draw() {
         // Clear canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Draw particles
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+        for (const p of particles) {
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+            ctx.fill();
+        }
 
         // Draw paddles
         ctx.fillStyle = '#fff';
