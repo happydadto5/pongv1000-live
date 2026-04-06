@@ -1,6 +1,6 @@
 {
-  "version": "0.008",
+  "version": "0.009",
   "title": "PongV1000",
   "description": "Pong with enhanced visuals, gradient background, and improved gameplay balance",
-  "evolution_count": 7
+  "evolution_count": 8
 }

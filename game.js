@@ -155,28 +155,24 @@
     if (state.ball.x <= lp.x + PAD_W && state.ball.y > lp.y && state.ball.y < lp.y + paddleHeight) {
       state.ball.vx *= -1;
       state.ball.x = lp.x + PAD_W;
-      playBlip(320, 0.05);
+      playBlip(320, 5);
     }
     // Right paddle collision
-    if (state.ball.x + BALL_SIZE() >= rp.x && state.ball.y > rp.y && state.ball.y < rp.y + paddleHeight) {
+    if (state.ball.x >= rp.x - PAD_W && state.ball.y > rp.y && state.ball.y < rp.y + paddleHeight) {
       state.ball.vx *= -1;
-      state.ball.x = rp.x - BALL_SIZE();
-      playBlip(420, 0.05);
+      state.ball.x = rp.x - PAD_W;
+      playBlip(320, 5);
     }
 
-    // Collision with left/right walls
-    if (state.ball.x <= 0 || state.ball.x >= canvas.width) {
-      // Reset ball
+    // Scoring logic
+    if (state.ball.x <= 0) {
+      state.rp.score++;
       resetBall();
-      // Reset paddles
-      state.lp.y = state.rp.y = canvas.height / 2 - paddleHeight / 2;
-      playBlip(180, 0.12);
     }
-
-    // Smooth AI tracking with damping for right paddle
-    const targetY = state.ball.y - paddleHeight / 2;
-    state.rp.y += (targetY - state.rp.y) * 0.1;
-    state.rp.y = Math.max(0, Math.min(maxY, state.rp.y));
+    if (state.ball.x >= canvas.width) {
+      state.lp.score++;
+      resetBall();
+    }
   }
 
   function draw() {
@@ -190,16 +186,26 @@
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Draw paddles
+    // Draw paddles with shadow
     ctx.fillStyle = 'white';
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
+    ctx.shadowBlur = 4;
     ctx.fillRect(state.lp.x, state.lp.y, PAD_W, PAD_H());
     ctx.fillRect(state.rp.x, state.rp.y, PAD_W, PAD_H());
+    ctx.shadowColor = 'transparent';
+    ctx.shadowBlur = 0;
 
     // Draw ball
     ctx.beginPath();
     ctx.arc(state.ball.x, state.ball.y, BALL_SIZE(), 0, Math.PI * 2);
     ctx.fillStyle = 'white';
     ctx.fill();
+
+    // Draw scores
+    ctx.font = '30px Arial';
+    ctx.fillStyle = 'white';
+    ctx.fillText(state.lp.score, canvas.width / 4, 50);
+    ctx.fillText(state.rp.score, 3 * canvas.width / 4, 50);
   }
 
   function gameLoop() {
@@ -207,7 +213,5 @@
     draw();
     requestAnimationFrame(gameLoop);
   }
-
   gameLoop();
-
 })();
