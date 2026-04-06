@@ -1,9 +1,9 @@
 {
   "agent_start_time": "2026-04-05T17:52:38.912886+00:00",
-  "last_evolution_time": "2026-04-06T01:13:39.507095+00:00",
-  "last_evolution_started_time": "2026-04-06T01:27:45.082354+00:00",
-  "last_evolution_finished_time": "2026-04-06T01:13:39.507095+00:00",
-  "next_evolution_time": "2026-04-06T01:45:45.972047+00:00",
+  "last_evolution_time": "2026-04-06T01:30:45.974761+00:00",
+  "last_evolution_started_time": "2026-04-06T01:46:01.170078+00:00",
+  "last_evolution_finished_time": "2026-04-06T01:30:45.974761+00:00",
+  "next_evolution_time": "2026-04-06T02:01:30.043372+00:00",
   "evolution_interval_minutes": 15,
   "daytime_interval_minutes": 15,
   "nighttime_interval_minutes": 15,
@@ -64,5 +64,5 @@
   "degraded": false,
   "last_evolution_success": true,
   "last_error": "",
-  "generated_at": "2026-04-06T01:30:45.973090+00:00"
+  "generated_at": "2026-04-06T01:46:30.045001+00:00"
 }

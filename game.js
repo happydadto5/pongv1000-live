@@ -73,8 +73,8 @@
   // Game state
   // -------------------------------------------------------------------------
   var state = {
-    lp:   { y: 0, score: 0, up: false, dn: false },
-    rp:   { y: 0, score: 0 },
+    lp:   { x: 0, y: 0, score: 0, up: false, dn: false },
+    rp:   { x: 0, y: 0, score: 0 },
     ball: { x: 0, y: 0, vx: BALL_SPEED, vy: BALL_SPEED * 0.7 },
     phase: 'playing', // 'playing'
   };
@@ -87,6 +87,8 @@
   }
 
   function reset() {
+    state.lp.x = PAD_MARGIN();
+    state.rp.x = canvas.width - PAD_MARGIN() - PAD_W;
     state.lp.y = state.rp.y = canvas.height / 2 - PAD_H() / 2;
     resetBall();
   }
@@ -122,6 +124,18 @@
   // Game loop
   // -------------------------------------------------------------------------
   function update() {
+    var paddleHeight = PAD_H();
+    var maxY = canvas.height - paddleHeight;
+
+    if (state.lp.up) state.lp.y -= PSPEED;
+    if (state.lp.dn) state.lp.y += PSPEED;
+    state.lp.y = Math.max(0, Math.min(maxY, state.lp.y));
+
+    // Keep paddle anchors aligned to the current canvas size after resize.
+    state.lp.x = PAD_MARGIN();
+    state.rp.x = canvas.width - PAD_MARGIN() - PAD_W;
+    state.rp.y = Math.max(0, Math.min(maxY, state.ball.y - paddleHeight / 2));
+
     // Update ball position
     state.ball.x += state.ball.vx;
     state.ball.y += state.ball.vy;
@@ -129,6 +143,7 @@
     // Collision with top/bottom walls
     if (state.ball.y <= 0 || state.ball.y >= canvas.height) {
       state.ball.vy *= -1;
+      state.ball.y = Math.max(0, Math.min(canvas.height, state.ball.y));
     }
 
     // Collision with paddles
@@ -137,12 +152,16 @@
     const rp = state.rp;
 
     // Left paddle collision
-    if (state.ball.x <= PAD_W + pm && state.ball.y > lp.y && state.ball.y < lp.y + PAD_H()) {
+    if (state.ball.x <= lp.x + PAD_W && state.ball.y > lp.y && state.ball.y < lp.y + paddleHeight) {
       state.ball.vx *= -1;
+      state.ball.x = lp.x + PAD_W;
+      playBlip(320, 0.05);
     }
     // Right paddle collision
-    if (state.ball.x >= canvas.width - PAD_W - pm && state.ball.y > rp.y && state.ball.y < rp.y + PAD_H()) {
+    if (state.ball.x + BALL_SIZE() >= rp.x && state.ball.y > rp.y && state.ball.y < rp.y + paddleHeight) {
       state.ball.vx *= -1;
+      state.ball.x = rp.x - BALL_SIZE();
+      playBlip(420, 0.05);
     }
 
     // Collision with left/right walls
@@ -150,7 +169,8 @@
       // Reset ball
       resetBall();
       // Reset paddles
-      state.lp.y = state.rp.y = canvas.height / 2 - PAD_H() / 2;
+      state.lp.y = state.rp.y = canvas.height / 2 - paddleHeight / 2;
+      playBlip(180, 0.12);
     }
   }
 
