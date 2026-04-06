@@ -1,7 +1,9 @@
 {
   "agent_start_time": "2026-04-05T17:52:38.912886+00:00",
-  "last_evolution_time": "2026-04-05T23:09:26.255629+00:00",
-  "next_evolution_time": "2026-04-05T23:24:26.255149+00:00",
+  "last_evolution_time": "2026-04-05T23:42:52.788045+00:00",
+  "last_evolution_started_time": "",
+  "last_evolution_finished_time": "2026-04-05T23:42:52.788045+00:00",
+  "next_evolution_time": "2026-04-06T00:34:20.270254+00:00",
   "evolution_interval_minutes": 15,
   "daytime_interval_minutes": 15,
   "nighttime_interval_minutes": 15,
@@ -60,9 +62,9 @@
     ]
   },
   "game_url": "index.html",
-  "consecutive_failures": 0,
+  "consecutive_failures": 2,
   "degraded": false,
   "last_evolution_success": false,
-  "last_error": "Smoke test: Console errors: lp is not defined",
-  "generated_at": "2026-04-05T23:09:26.256125+00:00"
+  "last_error": "Parse failure \u2014 repair pass also failed",
+  "generated_at": "2026-04-06T00:19:20.271737+00:00"
 }
