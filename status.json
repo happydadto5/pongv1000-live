@@ -1,21 +1,32 @@
 {
   "agent_start_time": "2026-04-05T17:52:38.912886+00:00",
-  "last_evolution_time": "2026-04-06T03:39:27.121879+00:00",
-  "last_evolution_started_time": "2026-04-06T03:54:42.246763+00:00",
-  "last_evolution_finished_time": "2026-04-06T03:39:27.121879+00:00",
-  "next_evolution_time": "2026-04-06T04:12:01.713951+00:00",
+  "last_evolution_time": "2026-04-06T07:23:22.496103+00:00",
+  "last_evolution_started_time": "2026-04-06T07:38:32.098320+00:00",
+  "last_evolution_finished_time": "2026-04-06T07:23:22.496103+00:00",
+  "next_evolution_time": "2026-04-06T07:55:45.625360+00:00",
   "evolution_interval_minutes": 15,
   "daytime_interval_minutes": 15,
   "nighttime_interval_minutes": 15,
   "time_period": "nighttime",
-  "current_version": "0.011",
-  "current_title": "PongV1000",
-  "current_description": "Pong with improved mobile controls and gradient visuals",
-  "total_evolutions": 10,
+  "current_version": "0.012",
+  "current_title": "Pong with Enhanced Mobile Controls",
+  "current_description": "Classic Pong game with touch controls for both paddles on mobile devices",
+  "total_evolutions": 11,
   "planned_arcs": [
-    "Implement touch controls for right paddle on mobile"
+    "Implement dynamic difficulty scaling for AI opponent",
+    "Add particle effects for paddle collisions",
+    "Introduce a retro pixel-art visual theme"
   ],
-  "teasers": [],
+  "teasers": [
+    {
+      "message": "Dual-touch Pong coming soon!",
+      "eta_days": 3
+    },
+    {
+      "message": "Feel the game in your hands",
+      "eta_days": 5
+    }
+  ],
   "last_focus_area": "controls_accessibility",
   "long_term_steering": "",
   "evolution_targets": {
@@ -44,16 +55,16 @@
       "creative_evolution": 1,
       "visuals_theme": 2,
       "audio_feedback": 1,
-      "controls_accessibility": 1,
+      "controls_accessibility": 2,
       "stability_performance": 1,
       "documentation_status": 0,
       "roadmap_review_planning": 0
     },
-    "total": 11,
+    "total": 12,
     "preferred_next": [
-      "documentation_status",
       "creative_evolution",
-      "controls_accessibility"
+      "documentation_status",
+      "roadmap_review_planning"
     ],
     "overrepresented": [
       "gameplay_improvements"
@@ -62,7 +73,7 @@
   "game_url": "index.html",
   "consecutive_failures": 0,
   "degraded": false,
-  "last_evolution_success": true,
-  "last_error": "",
-  "generated_at": "2026-04-06T03:57:01.715140+00:00"
+  "last_evolution_success": false,
+  "last_error": "Smoke test: Paddles not visibly rendered on canvas",
+  "generated_at": "2026-04-06T07:40:45.626424+00:00"
 }

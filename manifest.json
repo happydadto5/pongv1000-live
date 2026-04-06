@@ -1,6 +1,6 @@
 {
-  "version": "0.011",
-  "title": "PongV1000",
-  "description": "Pong with improved mobile controls and gradient visuals",
-  "evolution_count": 10
+  "version": "0.012",
+  "title": "Pong with Enhanced Mobile Controls",
+  "description": "Classic Pong game with touch controls for both paddles on mobile devices",
+  "evolution_count": 11
 }
