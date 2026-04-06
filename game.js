@@ -107,70 +107,73 @@
   // Touch: drag left half of screen to move left paddle
   canvas.addEventListener('touchmove', function (e) {
     e.preventDefault();
-    var t = e.touches[0];
-    var r = canvas.getBoundingClientRect();
-    var ty = (t.clientY - r.top) * (canvas.height / r.height);
-    if (t.clientX - r.left < r.width / 2) {
-      state.lp.y = ty - PAD_H() / 2;
+    if (e.touches.length === 1) {
+      const touch = e.touches[0];
+      const rect = canvas.getBoundingClientRect();
+      const y = touch.clientY - rect.top;
+      const paddleHeight = PAD_H();
+      const minY = canvas.height / 2 - paddleHeight / 2;
+      const maxY = canvas.height / 2 + paddleHeight / 2;
+      state.lp.y = Math.max(minY, Math.min(maxY, y));
     }
   }, { passive: false });
 
   // -------------------------------------------------------------------------
-  // Update
+  // Game loop
   // -------------------------------------------------------------------------
-  function clamp(pad) {
-    pad.y = Math.max(0, Math.min(canvas.height - PAD_H(), pad.y));
-  }
-
   function update() {
-    var b  = state.ball;
-    var lp = state.lp;
-    var rp = state.rp;
-    var ph = PAD_H();
-    var bs = BALL_SIZE();
-    var pm = PAD_MARGIN();
+    // Update ball position
+    state.ball.x += state.ball.vx;
+    state.ball.y += state.ball.vy;
 
-    // Player paddle
-    if (lp.up) lp.y -= PSPEED;
-    if (lp.dn) lp.y += PSPEED;
-    clamp(lp);
-
-    // AI paddle (tracks ball with slight lag)
-    var aiCenter = rp.y + ph / 2;
-    if (aiCenter < b.y - 2) rp.y += PSPEED * 0.82; // Reduced threshold from 4 to 2
-    if (aiCenter > b.y + 2) rp.y -= PSPEED * 0.82; // Reduced threshold from 4 to 2
-
-    // Ball movement
-    b.x += b.vx;
-    b.y += b.vy;
-
-    // Collision detection with walls
-    if (b.y <= 0 || b.y >= canvas.height - bs) {
-      b.vy = -b.vy;
+    // Collision with top/bottom walls
+    if (state.ball.y <= 0 || state.ball.y >= canvas.height) {
+      state.ball.vy *= -1;
     }
 
-    // Collision detection with paddles
-    if (b.x <= PAD_W + pm && lp.up && state.ball.y > lp.y && state.ball.y < lp.y + PAD_H()) {
-      b.vx = -b.vx;
-    } else if (b.x >= canvas.width - PAD_W - pm && rp.up && state.ball.y > rp.y && state.ball.y < rp.y + PAD_H()) {
-      b.vx = -b.vx;
+    // Collision with paddles
+    const pm = PAD_MARGIN();
+    const lp = state.lp;
+    const rp = state.rp;
+
+    // Left paddle collision
+    if (state.ball.x <= PAD_W + pm && state.ball.y > lp.y && state.ball.y < lp.y + PAD_H()) {
+      state.ball.vx *= -1;
+    }
+    // Right paddle collision
+    if (state.ball.x >= canvas.width - PAD_W - pm && state.ball.y > rp.y && state.ball.y < rp.y + PAD_H()) {
+      state.ball.vx *= -1;
     }
 
-    // Scoring
-    if (b.x <= 0) {
-      state.rp.score++;
+    // Collision with left/right walls
+    if (state.ball.x <= 0 || state.ball.x >= canvas.width) {
+      // Reset ball
       resetBall();
-    } else if (b.x >= canvas.width) {
-      state.lp.score++;
-      resetBall();
+      // Reset paddles
+      state.lp.y = state.rp.y = canvas.height / 2 - PAD_H() / 2;
     }
   }
 
-  // -------------------------------------------------------------------------
-  // Game logic
-  // -------------------------------------------------------------------------
-  (function gameLoop() {
+  function draw() {
+    // Clear canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Draw paddles
+    ctx.fillStyle = 'white';
+    ctx.fillRect(state.lp.x, state.lp.y, PAD_W, PAD_H());
+    ctx.fillRect(state.rp.x, state.rp.y, PAD_W, PAD_H());
+
+    // Draw ball
+    ctx.beginPath();
+    ctx.arc(state.ball.x, state.ball.y, BALL_SIZE() / 2, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  function loop() {
     update();
-    requestAnimationFrame(gameLoop);
-  })();
+    draw();
+    requestAnimationFrame(loop);
+  }
+
+  loop();
 })();
