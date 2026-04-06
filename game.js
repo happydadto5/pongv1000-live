@@ -16,22 +16,16 @@
         const oscillator = context.createOscillator();
         const gainNode = context.createGain();
         
-        oscillator.connect(gainNode);
-        gainNode.connect(context.destination);
+        oscillator.type = type === 'powerup' ? 'sawtooth' : 'square';
+        oscillator.frequency.setValueAtTime(880, context.currentTime);
+        oscillator.frequency.exponentialRampToValueAtTime(440, context.currentTime + 1);
         
-        // Set parameters based on sound type
-        if (type === 'collision') {
-            oscillator.type = 'square';
-            oscillator.frequency.setValueAtTime(880, context.currentTime); // A note
-            gainNode.gain.setValueAtTime(0.5, context.currentTime);
-        } else if (type === 'score') {
-            oscillator.type = 'sawtooth';
-            oscillator.frequency.setValueAtTime(440, context.currentTime); // A note
-            gainNode.gain.setValueAtTime(0.8, context.currentTime);
-        }
+        gainNode.gain.setValueAtTime(0.1, context.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.001, context.currentTime + 1);
         
+        oscillator.connect(gainNode).connect(context.destination);
         oscillator.start();
-        oscillator.stop(context.currentTime + 0.2);
+        oscillator.stop(context.currentTime + 1);
     }
 
     // Game setup
