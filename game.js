@@ -10,6 +10,30 @@
         return audioContext;
     }
 
+    // Sound effect functions
+    function playSound(type) {
+        const context = getAudioContext();
+        const oscillator = context.createOscillator();
+        const gainNode = context.createGain();
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(context.destination);
+        
+        // Set parameters based on sound type
+        if (type === 'collision') {
+            oscillator.type = 'square';
+            oscillator.frequency.setValueAtTime(880, context.currentTime); // A note
+            gainNode.gain.setValueAtTime(0.5, context.currentTime);
+        } else if (type === 'score') {
+            oscillator.type = 'sawtooth';
+            oscillator.frequency.setValueAtTime(440, context.currentTime); // A note
+            gainNode.gain.setValueAtTime(0.8, context.currentTime);
+        }
+        
+        oscillator.start();
+        oscillator.stop(context.currentTime + 0.2);
+    }
+
     // Game setup
     const canvas = document.getElementById('gameCanvas');
     const ctx = canvas.getContext('2d');
@@ -90,6 +114,7 @@
         if (ballY - ballRadius < 0 || ballY + ballRadius > canvas.height) {
             ballSpeedY = -ballSpeedY;
             createParticles(ballX, ballY);
+            playSound('collision');
         }
 
         // Ball collision with paddles
@@ -98,20 +123,24 @@
             ballY < leftPaddleY + paddleHeight) {
             ballSpeedX = -ballSpeedX;
             createParticles(ballX, ballY);
+            playSound('collision');
         } else if (ballX + ballRadius > canvas.width - paddleWidth && 
                    ballY > rightPaddleY && 
                    ballY < rightPaddleY + paddleHeight) {
             ballSpeedX = -ballSpeedX;
             createParticles(ballX, ballY);
+            playSound('collision');
         }
 
         // Score tracking
         if (ballX < 0) {
             aiScore++;
             resetBall();
+            playSound('score');
         } else if (ballX > canvas.width) {
             playerScore++;
             resetBall();
+            playSound('score');
         }
     }
 
