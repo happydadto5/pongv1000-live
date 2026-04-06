@@ -183,15 +183,23 @@
     // Clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+    // Set background color
+    ctx.fillStyle = '#000';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
     // Draw paddles
     ctx.fillStyle = 'white';
     ctx.fillRect(state.lp.x, state.lp.y, PAD_W, PAD_H());
     ctx.fillRect(state.rp.x, state.rp.y, PAD_W, PAD_H());
 
-    // Draw ball
+    // Draw ball with shadow
+    ctx.save();
+    ctx.shadowColor = '#fff';
+    ctx.shadowBlur = 10;
     ctx.beginPath();
     ctx.arc(state.ball.x, state.ball.y, BALL_SIZE(), 0, Math.PI * 2);
     ctx.fill();
+    ctx.restore();
   }
 
   function loop() {
@@ -199,6 +207,5 @@
     draw();
     requestAnimationFrame(loop);
   }
-
-  loop();
+  requestAnimationFrame(loop);
 })();
