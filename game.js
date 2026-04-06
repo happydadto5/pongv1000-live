@@ -172,6 +172,11 @@
       state.lp.y = state.rp.y = canvas.height / 2 - paddleHeight / 2;
       playBlip(180, 0.12);
     }
+
+    // Smooth AI tracking with damping for right paddle
+    const targetY = state.ball.y - paddleHeight / 2;
+    state.rp.y += (targetY - state.rp.y) * 0.1;
+    state.rp.y = Math.max(0, Math.min(maxY, state.rp.y));
   }
 
   function draw() {
@@ -185,7 +190,7 @@
 
     // Draw ball
     ctx.beginPath();
-    ctx.arc(state.ball.x, state.ball.y, BALL_SIZE() / 2, 0, Math.PI * 2);
+    ctx.arc(state.ball.x, state.ball.y, BALL_SIZE(), 0, Math.PI * 2);
     ctx.fill();
   }
 
