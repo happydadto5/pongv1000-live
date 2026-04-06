@@ -1,7 +1,3 @@
-// PongV1000 v0.003 — Classic Pong with enhanced gameplay
-// Autonomously evolved by PongV1000 agent. Do not edit manually.
-// https://happydadto5.github.io/pongv1000-live/
-
 (function () {
   'use strict';
 
@@ -141,76 +137,40 @@
 
     // AI paddle (tracks ball with slight lag)
     var aiCenter = rp.y + ph / 2;
-    if (aiCenter < b.y - 4) rp.y += PSPEED * 0.82;
-    if (aiCenter > b.y + 4) rp.y -= PSPEED * 0.82;
-    clamp(rp);
+    if (aiCenter < b.y - 2) rp.y += PSPEED * 0.82; // Reduced threshold from 4 to 2
+    if (aiCenter > b.y + 2) rp.y -= PSPEED * 0.82; // Reduced threshold from 4 to 2
 
     // Ball movement
     b.x += b.vx;
     b.y += b.vy;
 
-    // Wall bounce (top/bottom)
-    if (b.y <= 0) {
-      b.y = 0;
-      b.vy = Math.abs(b.vy);
-      playBlip(220, 0.06);
-    }
-    if (b.y + bs >= canvas.height) {
-      b.y = canvas.height - bs;
-      b.vy = -Math.abs(b.vy);
-      playBlip(220, 0.06);
+    // Collision detection with walls
+    if (b.y <= 0 || b.y >= canvas.height - bs) {
+      b.vy = -b.vy;
     }
 
-    // Left paddle collision
-    if (b.x <= pm + PAD_W &&
-        b.y + bs >= lp.y && b.y <= lp.y + ph) {
-      b.vx = Math.abs(b.vx) * 1.04;
-      b.x  = pm + PAD_W + 1;
-      playBlip(440, 0.08);
+    // Collision detection with paddles
+    if (b.x <= PAD_W + pm && lp.up && state.ball.y > lp.y && state.ball.y < lp.y + PAD_H()) {
+      b.vx = -b.vx;
+    } else if (b.x >= canvas.width - PAD_W - pm && rp.up && state.ball.y > rp.y && state.ball.y < rp.y + PAD_H()) {
+      b.vx = -b.vx;
     }
 
-    // Right paddle collision
-    if (b.x + bs >= canvas.width - pm - PAD_W &&
-        b.y + bs >= rp.y && b.y <= rp.y + ph) {
-      b.vx = Math.abs(b.vx) * 1.04;
-      b.x  = canvas.width - pm - PAD_W - bs - 1;
-      playBlip(440, 0.08);
+    // Scoring
+    if (b.x <= 0) {
+      state.rp.score++;
+      resetBall();
+    } else if (b.x >= canvas.width) {
+      state.lp.score++;
+      resetBall();
     }
   }
 
   // -------------------------------------------------------------------------
-  // Draw
+  // Game logic
   // -------------------------------------------------------------------------
-  function draw() {
-    var w  = canvas.width;
-    var h  = canvas.height;
-    var ph = PAD_H();
-    var bs = BALL_SIZE();
-    var pm = PAD_MARGIN();
-
-    ctx.clearRect(0, 0, w, h); // Clear the canvas before drawing
-
-    // Scores
-    ctx.fillStyle = '#fff';
-    ctx.font = '24px Arial';
-    ctx.fillText(state.lp.score, w * 0.25, h * 0.1);
-    ctx.fillText(state.rp.score, w * 0.75, h * 0.1);
-
-    // Paddles
-    ctx.fillStyle = '#fff';
-    ctx.fillRect(pm,             state.lp.y, PAD_W, ph);
-    ctx.fillRect(w - pm - PAD_W, state.rp.y, PAD_W, ph);
-
-    // Ball
-    ctx.fillRect(state.ball.x, state.ball.y, bs, bs);
-  }
-
-  // -------------------------------------------------------------------------
-  // Game loop
-  // -------------------------------------------------------------------------
-  (function loop() {
+  (function gameLoop() {
     update();
-    draw();
-    requestAnimationFrame(loop);
+    requestAnimationFrame(gameLoop);
   })();
 })();

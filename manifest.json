@@ -1,6 +1,6 @@
 {
-  "version": "0.003",
+  "version": "0.004",
   "title": "PongV1000",
-  "description": "Enhanced gameplay with increased ball speed.",
-  "evolution_count": 2
+  "description": "Classic Pong with enhanced gameplay and precise AI control",
+  "evolution_count": 3
 }
