@@ -1,5 +1,3 @@
-// Complete updated game.js file goes here — ENTIRE file, not a diff
-
 (function () {
     'use strict';
 
