@@ -109,15 +109,13 @@
   // Touch: drag left half of screen to move left paddle
   canvas.addEventListener('touchmove', function (e) {
     e.preventDefault();
-    if (e.touches.length === 1) {
-      const touch = e.touches[0];
-      const rect = canvas.getBoundingClientRect();
-      const y = touch.clientY - rect.top;
-      const paddleHeight = PAD_H();
-      const minY = canvas.height / 2 - paddleHeight / 2;
-      const maxY = canvas.height / 2 + paddleHeight / 2;
-      state.lp.y = Math.max(minY, Math.min(maxY, y));
-    }
+    const touch = e.touches[0];
+    const rect = canvas.getBoundingClientRect();
+    const touchY = touch.clientY - rect.top;
+    const minY = 0;
+    const maxY = canvas.height - PAD_H();
+    // Smooth interpolation between current and target position
+    state.lp.y = Math.max(minY, Math.min(maxY, state.lp.y * 0.8 + touchY * 0.2));
   }, { passive: false });
 
   // -------------------------------------------------------------------------
@@ -192,19 +190,21 @@
     ctx.fillStyle = 'white';
     ctx.shadowColor = 'black';
     ctx.shadowBlur = 5;
+    ctx.shadowOffsetX = 2;
+    ctx.shadowOffsetY = 2;
     ctx.fillRect(state.lp.x, state.lp.y, PAD_W, PAD_H);
     ctx.fillRect(state.rp.x, state.rp.y, PAD_W, PAD_H);
 
     // Draw ball
+    ctx.fillStyle = 'white';
     ctx.beginPath();
-    ctx.arc(state.ball.x, state.ball.y, BALL_SIZE / 2, 0, Math.PI * 2);
+    ctx.arc(state.ball.x, state.ball.y, BALL_SIZE() / 2, 0, Math.PI * 2);
     ctx.fill();
 
     // Draw scores
-    ctx.font = '30px Arial';
-    ctx.fillStyle = 'white';
-    ctx.fillText('Player 1: ' + state.lp.score, 50, 50);
-    ctx.fillText('Player 2: ' + state.rp.score, canvas.width - 200, 50);
+    ctx.font = '24px Arial';
+    ctx.fillText('Player: ' + state.lp.score, 10, 30);
+    ctx.fillText('Computer: ' + state.rp.score, canvas.width - 150, 30);
   }
 
   function gameLoop() {
