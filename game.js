@@ -183,8 +183,11 @@
     // Clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Set background color
-    ctx.fillStyle = '#000';
+    // Set background color with gradient
+    const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+    gradient.addColorStop(0, '#111');
+    gradient.addColorStop(1, '#333');
+    ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     // Draw paddles
@@ -192,20 +195,19 @@
     ctx.fillRect(state.lp.x, state.lp.y, PAD_W, PAD_H());
     ctx.fillRect(state.rp.x, state.rp.y, PAD_W, PAD_H());
 
-    // Draw ball with shadow
-    ctx.save();
-    ctx.shadowColor = '#fff';
-    ctx.shadowBlur = 10;
+    // Draw ball
     ctx.beginPath();
     ctx.arc(state.ball.x, state.ball.y, BALL_SIZE(), 0, Math.PI * 2);
+    ctx.fillStyle = 'white';
     ctx.fill();
-    ctx.restore();
   }
 
-  function loop() {
+  function gameLoop() {
     update();
     draw();
-    requestAnimationFrame(loop);
+    requestAnimationFrame(gameLoop);
   }
-  requestAnimationFrame(loop);
+
+  gameLoop();
+
 })();
