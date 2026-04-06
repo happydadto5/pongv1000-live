@@ -150,6 +150,24 @@ function fmtAgo(iso) {
   return fmtDuration(diff) + ' ago';
 }
 
+function fmtEastern(iso) {
+  try {
+    return new Intl.DateTimeFormat('en-US', {
+      timeZone: 'America/New_York',
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: true,
+      timeZoneName: 'short'
+    }).format(new Date(iso));
+  } catch (e) {
+    return new Date(iso).toLocaleString();
+  }
+}
+
 var _nextTime  = null;
 var _startTime = null;
 var _lastStarted = null;
@@ -201,7 +219,7 @@ async function load() {
       'card-value ' + (d.last_evolution_success === false ? 'warn' : '');
     document.getElementById('generated-at').textContent =
       d.generated_at !== 'pending'
-        ? 'Last updated: ' + new Date(d.generated_at).toLocaleString()
+        ? 'Last updated: ' + fmtEastern(d.generated_at)
         : 'Agent not yet started';
 
     // Health

@@ -29,82 +29,104 @@
             particles.push({
                 x: x,
                 y: y,
-                vx: (Math.random() - 0.5) * 6,
-                vy: (Math.random() - 0.5) * 6,
-                life: 60
+                vx: (Math.random() - 0.5) * 4,
+                vy: (Math.random() - 0.5) * 4,
+                alpha: 1
             });
         }
     }
 
-    // Game variables
-    const paddleWidth = 10;
-    const paddleHeight = 100;
-    const ballRadius = 10;
-    let leftPaddleY = (canvas.height - paddleHeight) / 2;
-    let rightPaddleY = (canvas.height - paddleHeight) / 2;
+    // Score system
+    let playerScore = 0;
+    let aiScore = 0;
+
+    // Game state
+    let leftPaddleY = canvas.height / 2 - 50;
+    let rightPaddleY = canvas.height / 2 - 50;
     let ballX = canvas.width / 2;
     let ballY = canvas.height / 2;
     let ballSpeedX = 5;
-    let ballSpeedY = 5;
+    let ballSpeedY = 3;
+    const paddleHeight = 100;
+    const paddleWidth = 10;
+    const ballRadius = 10;
 
-    // Game loop
-    function gameLoop() {
-        update();
-        draw();
-        requestAnimationFrame(gameLoop);
+    // Keyboard controls
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'w' || e.key === 'ArrowUp') {
+            leftPaddleY -= 10;
+        } else if (e.key === 's' || e.key === 'ArrowDown') {
+            leftPaddleY += 10;
+        }
+    });
+
+    // AI movement
+    function updateAI() {
+        const aiTargetY = ballY - paddleHeight / 2;
+        if (rightPaddleY < aiTargetY) {
+            rightPaddleY += 5;
+        } else if (rightPaddleY > aiTargetY) {
+            rightPaddleY -= 5;
+        }
     }
 
+    // Clamp paddle positions
+    function clampPaddles() {
+        leftPaddleY = Math.max(0, Math.min(canvas.height - paddleHeight, leftPaddleY));
+        rightPaddleY = Math.max(0, Math.min(canvas.height - paddleHeight, rightPaddleY));
+    }
+
+    // Update game state
     function update() {
-        // Update particles
-        for (let i = particles.length - 1; i >= 0; i--) {
-            particles[i].x += particles[i].vx;
-            particles[i].y += particles[i].vy;
-            particles[i].life--;
-            if (particles[i].life <= 0) {
-                particles.splice(i, 1);
-            }
-        }
+        // Move paddles
+        clampPaddles();
+        updateAI();
 
         // Move ball
         ballX += ballSpeedX;
         ballY += ballSpeedY;
 
         // Ball collision with top/bottom
-        if (ballY <= 0 || ballY >= canvas.height - ballRadius) {
+        if (ballY - ballRadius < 0 || ballY + ballRadius > canvas.height) {
             ballSpeedY = -ballSpeedY;
             createParticles(ballX, ballY);
         }
 
         // Ball collision with paddles
-        if (ballX <= paddleWidth && ballY > leftPaddleY && ballY < leftPaddleY + paddleHeight) {
+        if (ballX - ballRadius < paddleWidth && 
+            ballY > leftPaddleY && 
+            ballY < leftPaddleY + paddleHeight) {
             ballSpeedX = -ballSpeedX;
             createParticles(ballX, ballY);
-        } else if (ballX >= canvas.width - paddleWidth - ballRadius && ballY > rightPaddleY && ballY < rightPaddleY + paddleHeight) {
+        } else if (ballX + ballRadius > canvas.width - paddleWidth && 
+                   ballY > rightPaddleY && 
+                   ballY < rightPaddleY + paddleHeight) {
             ballSpeedX = -ballSpeedX;
             createParticles(ballX, ballY);
         }
 
-        // Ball out of bounds
-        if (ballX < 0 || ballX > canvas.width) {
-            // Reset ball
-            ballX = canvas.width / 2;
-            ballY = canvas.height / 2;
-            ballSpeedX = -ballSpeedX;
-            ballSpeedY = Math.random() * 10 - 5;
+        // Score tracking
+        if (ballX < 0) {
+            aiScore++;
+            resetBall();
+        } else if (ballX > canvas.width) {
+            playerScore++;
+            resetBall();
         }
     }
 
+    function resetBall() {
+        ballX = canvas.width / 2;
+        ballY = canvas.height / 2;
+        ballSpeedX = -ballSpeedX;
+        ballSpeedY = (Math.random() - 0.5) * 4;
+    }
+
+    // Draw game
     function draw() {
         // Clear canvas
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        // Draw particles
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
-        for (const p of particles) {
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
-            ctx.fill();
-        }
+        ctx.fillStyle = '#000';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
 
         // Draw paddles
         ctx.fillStyle = '#fff';
@@ -117,29 +139,31 @@
         ctx.fillStyle = '#fff';
         ctx.fill();
         ctx.closePath();
-    }
 
-    // Touch controls
-    canvas.addEventListener('touchstart', handleTouch);
-    canvas.addEventListener('touchmove', handleTouch);
-
-    function handleTouch(e) {
-        e.preventDefault();
-        const rect = canvas.getBoundingClientRect();
-        const touch = e.touches[0];
-        const x = touch.clientX - rect.left;
-        const y = touch.clientY - rect.top;
-
-        // Left paddle control (left half of screen)
-        if (x < canvas.width / 2) {
-            leftPaddleY = y - paddleHeight / 2;
-        } 
-        // Right paddle control (right half of screen)
-        else {
-            rightPaddleY = y - paddleHeight / 2;
+        // Draw particles
+        for (let i = particles.length - 1; i >= 0; i--) {
+            const p = particles[i];
+            ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha})`;
+            ctx.fillRect(p.x, p.y, 5, 5);
+            p.alpha -= 0.02;
+            if (p.alpha <= 0) {
+                particles.splice(i, 1);
+            }
         }
+
+        // Draw score
+        ctx.fillStyle = '#fff';
+        ctx.font = '30px Arial';
+        ctx.fillText(playerScore, canvas.width / 4, 50);
+        ctx.fillText(aiScore, 3 * canvas.width / 4, 50);
     }
 
-    // Start game
+    // Game loop
+    function gameLoop() {
+        update();
+        draw();
+        requestAnimationFrame(gameLoop);
+    }
+
     gameLoop();
 })();
