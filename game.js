@@ -75,7 +75,7 @@
     const paddleWidth = 10;
     const ballRadius = 10;
 
-    // Keyboard controls
+    // Keyboard and mouse controls
     document.addEventListener('keydown', (e) => {
         if (e.key === 'w' || e.key === 'ArrowUp') {
             leftPaddleY -= 10;
@@ -84,15 +84,11 @@
         }
     });
 
-    // AI movement
-    function updateAI() {
-        const aiTargetY = ballY - paddleHeight / 2;
-        if (rightPaddleY < aiTargetY) {
-            rightPaddleY += 5;
-        } else if (rightPaddleY > aiTargetY) {
-            rightPaddleY -= 5;
-        }
-    }
+    document.addEventListener('mousemove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        const mouseY = e.clientY - rect.top;
+        rightPaddleY = Math.max(0, Math.min(mouseY - paddleHeight / 2, canvas.height - paddleHeight));
+    });
 
     // Clamp paddle positions
     function clampPaddles() {
@@ -104,7 +100,6 @@
     function update() {
         // Move paddles
         clampPaddles();
-        updateAI();
 
         // Move ball
         ballX += ballSpeedX;
