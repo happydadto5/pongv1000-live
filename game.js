@@ -167,10 +167,12 @@
     // Scoring logic
     if (state.ball.x <= 0) {
       state.rp.score++;
+      playBlip(200, 100); // New score sound
       resetBall();
     }
     if (state.ball.x >= canvas.width) {
       state.lp.score++;
+      playBlip(200, 100); // New score sound
       resetBall();
     }
   }
@@ -188,24 +190,21 @@
 
     // Draw paddles with shadow
     ctx.fillStyle = 'white';
-    ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
-    ctx.shadowBlur = 4;
-    ctx.fillRect(state.lp.x, state.lp.y, PAD_W, PAD_H());
-    ctx.fillRect(state.rp.x, state.rp.y, PAD_W, PAD_H());
-    ctx.shadowColor = 'transparent';
-    ctx.shadowBlur = 0;
+    ctx.shadowColor = 'black';
+    ctx.shadowBlur = 5;
+    ctx.fillRect(state.lp.x, state.lp.y, PAD_W, PAD_H);
+    ctx.fillRect(state.rp.x, state.rp.y, PAD_W, PAD_H);
 
     // Draw ball
     ctx.beginPath();
-    ctx.arc(state.ball.x, state.ball.y, BALL_SIZE(), 0, Math.PI * 2);
-    ctx.fillStyle = 'white';
+    ctx.arc(state.ball.x, state.ball.y, BALL_SIZE / 2, 0, Math.PI * 2);
     ctx.fill();
 
     // Draw scores
     ctx.font = '30px Arial';
     ctx.fillStyle = 'white';
-    ctx.fillText(state.lp.score, canvas.width / 4, 50);
-    ctx.fillText(state.rp.score, 3 * canvas.width / 4, 50);
+    ctx.fillText('Player 1: ' + state.lp.score, 50, 50);
+    ctx.fillText('Player 2: ' + state.rp.score, canvas.width - 200, 50);
   }
 
   function gameLoop() {
@@ -213,5 +212,6 @@
     draw();
     requestAnimationFrame(gameLoop);
   }
+  
   gameLoop();
 })();
