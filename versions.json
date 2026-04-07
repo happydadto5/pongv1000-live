@@ -1,15 +1,6 @@
 {
   "versions": [
     {
-      "version": "v0.045",
-      "label": "Apr 07, 2026",
-      "captured_at": "2026-04-07T14:24:00+00:00",
-      "url": "history/v0.045/index.html",
-      "title": "PongV1000 \u2014 Living Roadmap",
-      "description": "Enhanced particle effects based on event type and refined audio feedback.",
-      "is_current": false
-    },
-    {
       "version": "v0.046",
       "label": "Apr 07, 2026",
       "captured_at": "2026-04-07T14:34:00+00:00",
@@ -74,11 +65,20 @@
     },
     {
       "version": "v0.053",
-      "label": "Live now",
-      "captured_at": "2026-04-07T21:04:52.429684+00:00",
-      "url": "index.html",
+      "label": "Apr 07, 2026",
+      "captured_at": "2026-04-07T17:24:00+00:00",
+      "url": "history/v0.053/index.html",
       "title": "Pong v0.053",
       "description": "Added dynamic particle effects based on event type.",
+      "is_current": false
+    },
+    {
+      "version": "v0.054",
+      "label": "Live now",
+      "captured_at": "2026-04-07T21:24:26.087512+00:00",
+      "url": "index.html",
+      "title": "PongV1000",
+      "description": "Enhanced visual effects based on event type.",
       "is_current": true
     }
   ]
