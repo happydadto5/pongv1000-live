@@ -1,15 +1,6 @@
 {
   "versions": [
     {
-      "version": "v0.018",
-      "label": "Apr 06, 2026",
-      "captured_at": "2026-04-06T19:29:00+00:00",
-      "url": "history/v0.018/index.html",
-      "title": "Neon Pong",
-      "description": "A retro arcade game with modern accessibility features",
-      "is_current": false
-    },
-    {
       "version": "v0.019",
       "label": "Apr 06, 2026",
       "captured_at": "2026-04-06T20:58:00+00:00",
@@ -74,11 +65,20 @@
     },
     {
       "version": "v0.026",
-      "label": "Live now",
-      "captured_at": "2026-04-07T03:48:30.543654+00:00",
-      "url": "index.html",
+      "label": "Apr 06, 2026",
+      "captured_at": "2026-04-07T00:09:00+00:00",
+      "url": "history/v0.026/index.html",
       "title": "Enhanced Pong with AI Obstacles, Refined Particles, and Leaderboard",
       "description": "Leaderboard added and UI improved for a better user experience.",
+      "is_current": false
+    },
+    {
+      "version": "v0.027",
+      "label": "Live now",
+      "captured_at": "2026-04-07T04:09:36.181710+00:00",
+      "url": "index.html",
+      "title": "PongV1000",
+      "description": "Power-up mechanics added to enhance player experience.",
       "is_current": true
     }
   ]
