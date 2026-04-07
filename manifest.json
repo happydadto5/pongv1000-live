@@ -1,6 +1,6 @@
 {
-  "version": "0.038",
-  "title": "PongV1000",
-  "description": "Enhanced Pong with dynamic particles and improved gameplay.",
-  "evolution_count": 37
+  "version": "0.039",
+  "title": "Enhanced Pong with Dynamic Particles and Improved Gameplay",
+  "description": "Particles react based on event type, enhancing gameplay visuals.",
+  "evolution_count": 38
 }

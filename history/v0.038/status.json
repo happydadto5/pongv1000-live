@@ -3,15 +3,15 @@
   "last_evolution_time": "2026-04-07T14:04:22.066745+00:00",
   "last_evolution_started_time": "2026-04-07T14:13:24.596873+00:00",
   "last_evolution_finished_time": "2026-04-07T14:04:22.066745+00:00",
-  "next_evolution_time": "2026-04-07T14:24:22.581025+00:00",
+  "next_evolution_time": "2026-04-07T14:13:11.728278+00:00",
   "evolution_interval_minutes": 10,
   "daytime_interval_minutes": 10,
   "nighttime_interval_minutes": 10,
   "time_period": "daytime",
-  "current_version": "0.039",
-  "current_title": "Enhanced Pong with Dynamic Particles and Improved Gameplay",
-  "current_description": "Particles react based on event type, enhancing gameplay visuals.",
-  "total_evolutions": 38,
+  "current_version": "0.038",
+  "current_title": "PongV1000",
+  "current_description": "Enhanced Pong with dynamic particles and improved gameplay.",
+  "total_evolutions": 37,
   "planned_arcs": [
     "Refine AI difficulty further to maintain an optimal challenge level for players.",
     "Enhance user interface elements for better player experience.",
@@ -19,19 +19,15 @@
   ],
   "teasers": [
     {
-      "message": "Dynamic particle effects add a new layer of visual interest!",
-      "eta_days": 1
-    },
-    {
-      "message": "Enhancing user interface for a smoother experience",
-      "eta_days": 2
-    },
-    {
-      "message": "Stability improvements coming soon!",
+      "message": "Exciting new particle effects incoming!",
       "eta_days": 3
+    },
+    {
+      "message": "AI gets smarter this week!",
+      "eta_days": 2
     }
   ],
-  "last_focus_area": "creative_evolution",
+  "last_focus_area": "gameplay_improvements",
   "long_term_steering": "",
   "evolution_targets": {
     "gameplay_improvements": 20,
@@ -56,7 +52,7 @@
     },
     "counts": {
       "gameplay_improvements": 13,
-      "creative_evolution": 8,
+      "creative_evolution": 7,
       "visuals_theme": 6,
       "audio_feedback": 2,
       "controls_accessibility": 8,
@@ -64,7 +60,7 @@
       "documentation_status": 1,
       "roadmap_review_planning": 0
     },
-    "total": 39,
+    "total": 38,
     "preferred_next": [
       "stability_performance",
       "documentation_status",
@@ -80,6 +76,6 @@
   "degraded": false,
   "last_evolution_success": true,
   "last_error": "",
-  "generated_at": "2026-04-07T14:14:22.582438+00:00",
+  "generated_at": "2026-04-07T14:13:24.598302+00:00",
   "cooldown_until": ""
 }
