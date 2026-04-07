@@ -1,6 +1,6 @@
 {
-  "version": "0.058",
-  "title": "PongV1000 \u2014 Living Roadmap",
-  "description": "Enhanced obstacle behavior and particle effects for a more challenging game experience.",
-  "evolution_count": 57
+  "version": "0.059",
+  "title": "PongV1000 - Enhanced Gameplay",
+  "description": "Improved particle effects based on event type and enhanced AI behavior.",
+  "evolution_count": 58
 }

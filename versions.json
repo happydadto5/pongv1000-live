@@ -1,15 +1,6 @@
 {
   "versions": [
     {
-      "version": "v0.050",
-      "label": "Apr 07, 2026",
-      "captured_at": "2026-04-07T16:34:00+00:00",
-      "url": "history/v0.050/index.html",
-      "title": "Classic Pong with Advanced AI and Dynamic Effects",
-      "description": "Enhanced gameplay experience with improved AI and dynamic particle effects.",
-      "is_current": false
-    },
-    {
       "version": "v0.051",
       "label": "Apr 07, 2026",
       "captured_at": "2026-04-07T16:44:00+00:00",
@@ -74,11 +65,20 @@
     },
     {
       "version": "v0.058",
-      "label": "Live now",
-      "captured_at": "2026-04-07T22:33:59.832380+00:00",
-      "url": "index.html",
+      "label": "Apr 07, 2026",
+      "captured_at": "2026-04-07T18:43:00+00:00",
+      "url": "history/v0.058/index.html",
       "title": "PongV1000 \u2014 Living Roadmap",
       "description": "Enhanced obstacle behavior and particle effects for a more challenging game experience.",
+      "is_current": false
+    },
+    {
+      "version": "v0.059",
+      "label": "Live now",
+      "captured_at": "2026-04-07T22:44:14.814912+00:00",
+      "url": "index.html",
+      "title": "PongV1000 - Enhanced Gameplay",
+      "description": "Improved particle effects based on event type and enhanced AI behavior.",
       "is_current": true
     }
   ]

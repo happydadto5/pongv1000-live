@@ -144,10 +144,9 @@
         ctx.fillRect(50, (canvas.height - paddleHeight) / 2, paddleWidth, paddleHeight);
 
         // Right paddle
-        ctx.fillRect(canvas.width - 50 - paddleWidth, (canvas.height - paddleHeight) / 2, paddleWidth, paddleHeight);
+        ctx.fillRect(canvas.width - paddleWidth - 50, (canvas.height - paddleHeight) / 2, paddleWidth, paddleHeight);
     }
 
-    // Initialize game state
-    createObstacles();
+    // Initialize game
     gameLoop();
 })();
