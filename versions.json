@@ -1,15 +1,6 @@
 {
   "versions": [
     {
-      "version": "v0.037",
-      "label": "Apr 07, 2026",
-      "captured_at": "2026-04-07T10:04:00+00:00",
-      "url": "history/v0.037/index.html",
-      "title": "Game Title Here",
-      "description": "Added dynamic particle effect colors and sizes based on type.",
-      "is_current": false
-    },
-    {
       "version": "v0.038",
       "label": "Apr 07, 2026",
       "captured_at": "2026-04-07T10:14:00+00:00",
@@ -74,11 +65,20 @@
     },
     {
       "version": "v0.045",
-      "label": "Live now",
-      "captured_at": "2026-04-07T17:55:23.099748+00:00",
-      "url": "index.html",
+      "label": "Apr 07, 2026",
+      "captured_at": "2026-04-07T14:24:00+00:00",
+      "url": "history/v0.045/index.html",
       "title": "PongV1000 \u2014 Living Roadmap",
       "description": "Enhanced particle effects based on event type and refined audio feedback.",
+      "is_current": false
+    },
+    {
+      "version": "v0.046",
+      "label": "Live now",
+      "captured_at": "2026-04-07T18:24:59.673433+00:00",
+      "url": "index.html",
+      "title": "Game Title Here",
+      "description": "Game with dynamic particle effects based on event type.",
       "is_current": true
     }
   ]

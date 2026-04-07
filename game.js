@@ -171,27 +171,29 @@
 
         return () => {
             if (keys['ArrowUp'] && player.paddle.y > 0) {
-                player.paddle.vy = -player.speed;
-            } else if (keys['ArrowDown'] && player.paddle.y < canvas.height - player.paddle.height) {
-                player.paddle.vy = player.speed;
-            } else {
-                player.paddle.vy = 0;
+                player.paddle.y -= player.paddle.speed;
+            }
+            if (keys['ArrowDown'] && player.paddle.y < canvas.height - paddleHeight) {
+                player.paddle.y += player.paddle.speed;
             }
         };
     }
 
     const updateInput = handleInput();
-    setInterval(updateInput, 16);
+    setInterval(updateInput, 16.67);
 
-    // Main game loop
-    function gameLoop() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // Event listeners
+    document.addEventListener('click', (event) => {
+        const rect = canvas.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
 
-        drawParticles();
-        drawObstacles();
-        drawPaddles();
-
-        requestAnimationFrame(gameLoop);
-    }
-    gameLoop();
+        if (Math.random() > 0.5) {
+            createParticles(x, y, 'powerup');
+            playSound('powerup');
+        } else {
+            createParticles(x, y, 'default');
+            playSound('default');
+        }
+    });
 })();

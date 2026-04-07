@@ -59,7 +59,8 @@
         particles.forEach((particle, index) => {
             ctx.save();
             ctx.globalAlpha = particle.alpha;
-            ctx.fillStyle = particle.type === 'powerup' ? '#ff6f61' : '#800';
+            const color = particle.type === 'powerup' ? '#ff6f61' : '#800';
+            ctx.fillStyle = color;
             ctx.beginPath();
             ctx.arc(particle.x, particle.y, Math.random() * 5 + 2, 0, Math.PI * 2);
             ctx.fill();
@@ -121,25 +122,78 @@
 
     // Game loop
     function gameLoop() {
+        const startTime = performance.now();
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         drawParticles();
         drawObstacles();
         drawPaddles();
+
         requestAnimationFrame(gameLoop);
+
+        const elapsedTime = performance.now() - startTime;
+        if (elapsedTime < 16.67) {
+            setTimeout(() => gameLoop(), 16.67 - elapsedTime);
+        }
     }
 
     // Initialize paddles and ball
-    const paddleWidth = 14;
+    const paddleWidth = 20;
     const paddleHeight = 100;
     const leftPaddle = {x: paddleMargin, y: canvas.height / 2 - paddleHeight / 2};
     const rightPaddle = {x: canvas.width - paddleMargin - paddleWidth, y: canvas.height / 2 - paddleHeight / 2};
 
+    // Draw paddles
     function drawPaddles() {
-        ctx.fillStyle = '#ffffff';
+        ctx.fillStyle = '#ffffff'; // Corrected fillStyle color
         ctx.fillRect(leftPaddle.x, leftPaddle.y, paddleWidth, paddleHeight);
         ctx.fillRect(rightPaddle.x, rightPaddle.y, paddleWidth, paddleHeight);
     }
 
     gameLoop();
 
+    // Player setup
+    const player = {
+        paddle: {
+            width: 20,
+            height: 100,
+            x: canvas.width / 2 - 10,
+            y: canvas.height / 2 - 50,
+            vy: 0,
+            speed: 8
+        }
+    };
+
+    // Input handling
+    function handleInput() {
+        const keys = {};
+        window.addEventListener('keydown', (e) => keys[e.key] = true);
+        window.addEventListener('keyup', (e) => delete keys[e.key]);
+
+        return () => {
+            if (keys['ArrowUp'] && player.paddle.y > 0) {
+                player.paddle.y -= player.paddle.speed;
+            }
+            if (keys['ArrowDown'] && player.paddle.y < canvas.height - paddleHeight) {
+                player.paddle.y += player.paddle.speed;
+            }
+        };
+    }
+
+    const updateInput = handleInput();
+    setInterval(updateInput, 16.67);
+
+    // Event listeners
+    document.addEventListener('click', (event) => {
+        const rect = canvas.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+
+        if (Math.random() > 0.5) {
+            createParticles(x, y, 'powerup');
+            playSound('powerup');
+        } else {
+            createParticles(x, y, 'default');
+            playSound('default');
+        }
+    });
 })();
