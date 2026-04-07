@@ -3,31 +3,30 @@
   "last_evolution_time": "2026-04-07T13:54:23.513646+00:00",
   "last_evolution_started_time": "2026-04-07T14:03:24.611741+00:00",
   "last_evolution_finished_time": "2026-04-07T13:54:23.513646+00:00",
-  "next_evolution_time": "2026-04-07T14:14:22.063742+00:00",
+  "next_evolution_time": "2026-04-07T14:03:11.727758+00:00",
   "evolution_interval_minutes": 10,
   "daytime_interval_minutes": 10,
   "nighttime_interval_minutes": 10,
   "time_period": "daytime",
-  "current_version": "0.038",
-  "current_title": "PongV1000",
-  "current_description": "Enhanced Pong with dynamic particles and improved gameplay.",
-  "total_evolutions": 37,
+  "current_version": "0.037",
+  "current_title": "Game Title Here",
+  "current_description": "Added dynamic particle effect colors and sizes based on type.",
+  "total_evolutions": 36,
   "planned_arcs": [
     "Refine AI difficulty further to maintain an optimal challenge level for players.",
-    "Enhance user interface elements for better player experience.",
-    "Polish performance and stability issues."
+    "Enhance user interface elements for better player experience."
   ],
   "teasers": [
     {
-      "message": "Exciting new particle effects incoming!",
-      "eta_days": 3
+      "message": "Enhanced visual effects coming soon!",
+      "eta_days": 1
     },
     {
-      "message": "AI gets smarter this week!",
-      "eta_days": 2
+      "message": "New UI updates to improve your gameplay experience",
+      "eta_days": 3
     }
   ],
-  "last_focus_area": "gameplay_improvements",
+  "last_focus_area": "visuals_theme",
   "long_term_steering": "",
   "evolution_targets": {
     "gameplay_improvements": 20,
@@ -51,7 +50,7 @@
       "roadmap_review_planning": 5
     },
     "counts": {
-      "gameplay_improvements": 13,
+      "gameplay_improvements": 12,
       "creative_evolution": 7,
       "visuals_theme": 6,
       "audio_feedback": 2,
@@ -60,7 +59,7 @@
       "documentation_status": 1,
       "roadmap_review_planning": 0
     },
-    "total": 38,
+    "total": 37,
     "preferred_next": [
       "stability_performance",
       "documentation_status",
@@ -72,10 +71,10 @@
     ]
   },
   "game_url": "index.html",
-  "consecutive_failures": 0,
+  "consecutive_failures": 1,
   "degraded": false,
   "last_evolution_success": false,
   "last_error": "Smoke test: Paddles not visibly rendered on canvas",
-  "generated_at": "2026-04-07T14:04:22.065096+00:00",
+  "generated_at": "2026-04-07T14:03:24.613242+00:00",
   "cooldown_until": ""
 }
