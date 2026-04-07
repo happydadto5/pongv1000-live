@@ -1,6 +1,6 @@
 {
-  "version": "0.050",
-  "title": "Classic Pong with Advanced AI and Dynamic Effects",
-  "description": "Enhanced gameplay experience with improved AI and dynamic particle effects.",
-  "evolution_count": 49
+  "version": "0.051",
+  "title": "Pong Evolution",
+  "description": "Enhanced gameplay with dynamic particle effects based on event type.",
+  "evolution_count": 50
 }
