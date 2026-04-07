@@ -16,22 +16,16 @@
         const oscillator = context.createOscillator();
         const gainNode = context.createGain();
         
-        oscillator.connect(gainNode);
-        gainNode.connect(context.destination);
+        oscillator.type = type === 'powerup' ? 'sawtooth' : 'square';
+        oscillator.frequency.setValueAtTime(880, context.currentTime);
+        oscillator.frequency.exponentialRampToValueAtTime(440, context.currentTime + 1);
         
-        // Set parameters based on sound type
-        if (type === 'collision') {
-            oscillator.type = 'square';
-            oscillator.frequency.setValueAtTime(880, context.currentTime); // A note
-            gainNode.gain.setValueAtTime(0.5, context.currentTime);
-        } else if (type === 'score') {
-            oscillator.type = 'sawtooth';
-            oscillator.frequency.setValueAtTime(440, context.currentTime); // A note
-            gainNode.gain.setValueAtTime(0.8, context.currentTime);
-        }
+        gainNode.gain.setValueAtTime(0.1, context.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.001, context.currentTime + 1);
         
+        oscillator.connect(gainNode).connect(context.destination);
         oscillator.start();
-        oscillator.stop(context.currentTime + 0.2);
+        oscillator.stop(context.currentTime + 1);
     }
 
     // Game setup
@@ -60,6 +54,20 @@
         }
     }
 
+    // Power-up system
+    let powerUpActive = false;
+    let powerUpTimer;
+
+    function activatePowerUp() {
+        powerUpActive = true;
+        aiSpeedMultiplier = 2;
+        playSound('powerup');
+        powerUpTimer = setTimeout(() => {
+            powerUpActive = false;
+            aiSpeedMultiplier = 1;
+        }, 5000);
+    }
+
     // Score system
     let playerScore = 0;
     let aiScore = 0;
@@ -75,24 +83,23 @@
     const paddleWidth = 10;
     const ballRadius = 10;
 
-    // Keyboard controls
+    // AI difficulty
+    let aiSpeedMultiplier = 1;
+
+    // Keyboard and mouse controls
     document.addEventListener('keydown', (e) => {
         if (e.key === 'w' || e.key === 'ArrowUp') {
-            leftPaddleY -= 10;
+            leftPaddleY -= 5;
         } else if (e.key === 's' || e.key === 'ArrowDown') {
-            leftPaddleY += 10;
+            leftPaddleY += 5;
         }
     });
 
-    // AI movement
-    function updateAI() {
-        const aiTargetY = ballY - paddleHeight / 2;
-        if (rightPaddleY < aiTargetY) {
-            rightPaddleY += 5;
-        } else if (rightPaddleY > aiTargetY) {
-            rightPaddleY -= 5;
-        }
-    }
+    document.addEventListener('mousemove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        const mouseY = e.clientY - rect.top;
+        rightPaddleY = Math.max(0, Math.min(mouseY - paddleHeight / 2, canvas.height - paddleHeight));
+    });
 
     // Clamp paddle positions
     function clampPaddles() {
@@ -104,10 +111,9 @@
     function update() {
         // Move paddles
         clampPaddles();
-        updateAI();
 
         // Move ball
-        ballX += ballSpeedX;
+        ballX += ballSpeedX * aiSpeedMultiplier;
         ballY += ballSpeedY;
 
         // Ball collision with top/bottom
@@ -132,65 +138,58 @@
             playSound('collision');
         }
 
-        // Score tracking
-        if (ballX < 0) {
-            aiScore++;
+        // Ball out of bounds
+        if (ballX + ballRadius < 0 || ballX - ballRadius > canvas.width) {
             resetBall();
-            playSound('score');
-        } else if (ballX > canvas.width) {
-            playerScore++;
-            resetBall();
-            playSound('score');
         }
     }
 
     function resetBall() {
         ballX = canvas.width / 2;
         ballY = canvas.height / 2;
-        ballSpeedX = -ballSpeedX;
-        ballSpeedY = (Math.random() - 0.5) * 4;
+        ballSpeedX = Math.random() < 0.5 ? -5 : 5 * aiSpeedMultiplier;
+        ballSpeedY = Math.random() * 10 - 5;
     }
 
-    // Draw game
-    function draw() {
-        // Clear canvas
-        ctx.fillStyle = '#000';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+    // Render game
+    function render() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // Draw paddles
-        ctx.fillStyle = '#fff';
+        // Draw paddles and ball
+        ctx.fillStyle = 'white';
         ctx.fillRect(0, leftPaddleY, paddleWidth, paddleHeight);
         ctx.fillRect(canvas.width - paddleWidth, rightPaddleY, paddleWidth, paddleHeight);
-
-        // Draw ball
         ctx.beginPath();
         ctx.arc(ballX, ballY, ballRadius, 0, Math.PI * 2);
-        ctx.fillStyle = '#fff';
         ctx.fill();
-        ctx.closePath();
 
-        // Draw particles
-        for (let i = particles.length - 1; i >= 0; i--) {
-            const p = particles[i];
-            ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha})`;
-            ctx.fillRect(p.x, p.y, 5, 5);
-            p.alpha -= 0.02;
-            if (p.alpha <= 0) {
-                particles.splice(i, 1);
-            }
+        // Draw power-up indicator
+        if (powerUpActive) {
+            ctx.fillStyle = 'red';
+            ctx.fillRect(canvas.width - 50, canvas.height / 2 - 10, 40, 20);
         }
 
-        // Draw score
-        ctx.fillStyle = '#fff';
-        ctx.font = '30px Arial';
-        ctx.fillText(playerScore, canvas.width / 4, 50);
-        ctx.fillText(aiScore, 3 * canvas.width / 4, 50);
+        // Update particles
+        for (let i = particles.length - 1; i >= 0; i--) {
+            const particle = particles[i];
+            particle.x += particle.vx;
+            particle.y += particle.vy;
+            particle.alpha -= 0.05;
+            ctx.globalAlpha = particle.alpha;
+            ctx.fillRect(particle.x, particle.y, 2, 2);
+        }
+
+        // Reset global alpha
+        ctx.globalAlpha = 1;
+
+        requestAnimationFrame(render);
     }
+
+    render();
 
     // Game loop
     function gameLoop() {
         update();
-        draw();
         requestAnimationFrame(gameLoop);
     }
 

@@ -1,6 +1,6 @@
 {
-  "version": "0.023",
-  "title": "PongV1000 \u2014 Living Roadmap",
-  "description": "Enhanced gameplay with dynamic AI difficulty and scoring effects, including a countdown timer on the status page.",
-  "evolution_count": 22
+  "version": "0.024",
+  "title": "Pong V1000",
+  "description": "Enhanced gameplay with dynamic AI difficulty, power-ups, and particle effects.",
+  "evolution_count": 23
 }

@@ -54,6 +54,20 @@
         }
     }
 
+    // Power-up system
+    let powerUpActive = false;
+    let powerUpTimer;
+
+    function activatePowerUp() {
+        powerUpActive = true;
+        aiSpeedMultiplier = 2;
+        playSound('powerup');
+        powerUpTimer = setTimeout(() => {
+            powerUpActive = false;
+            aiSpeedMultiplier = 1;
+        }, 5000);
+    }
+
     // Score system
     let playerScore = 0;
     let aiScore = 0;
@@ -68,6 +82,9 @@
     const paddleHeight = 100;
     const paddleWidth = 10;
     const ballRadius = 10;
+
+    // AI difficulty
+    let aiSpeedMultiplier = 1;
 
     // Keyboard and mouse controls
     document.addEventListener('keydown', (e) => {
@@ -96,7 +113,7 @@
         clampPaddles();
 
         // Move ball
-        ballX += ballSpeedX;
+        ballX += ballSpeedX * aiSpeedMultiplier;
         ballY += ballSpeedY;
 
         // Ball collision with top/bottom
@@ -130,14 +147,14 @@
     function resetBall() {
         ballX = canvas.width / 2;
         ballY = canvas.height / 2;
-        ballSpeedX = Math.random() < 0.5 ? -5 : 5;
+        ballSpeedX = Math.random() < 0.5 ? -5 : 5 * aiSpeedMultiplier;
         ballSpeedY = Math.random() * 10 - 5;
     }
 
     // Render game
     function render() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
+
         // Draw paddles and ball
         ctx.fillStyle = 'white';
         ctx.fillRect(0, leftPaddleY, paddleWidth, paddleHeight);
@@ -146,14 +163,35 @@
         ctx.arc(ballX, ballY, ballRadius, 0, Math.PI * 2);
         ctx.fill();
 
-        // Draw scores
-        ctx.font = '30px Arial';
-        ctx.fillText(playerScore, canvas.width / 4, 50);
-        ctx.fillText(aiScore, canvas.width * 3 / 4, 50);
+        // Draw power-up indicator
+        if (powerUpActive) {
+            ctx.fillStyle = 'red';
+            ctx.fillRect(canvas.width - 50, canvas.height / 2 - 10, 40, 20);
+        }
+
+        // Update particles
+        for (let i = particles.length - 1; i >= 0; i--) {
+            const particle = particles[i];
+            particle.x += particle.vx;
+            particle.y += particle.vy;
+            particle.alpha -= 0.05;
+            ctx.globalAlpha = particle.alpha;
+            ctx.fillRect(particle.x, particle.y, 2, 2);
+        }
+
+        // Reset global alpha
+        ctx.globalAlpha = 1;
 
         requestAnimationFrame(render);
     }
 
-    // Start game loop
     render();
+
+    // Game loop
+    function gameLoop() {
+        update();
+        requestAnimationFrame(gameLoop);
+    }
+
+    gameLoop();
 })();

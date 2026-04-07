@@ -1,15 +1,6 @@
 {
   "versions": [
     {
-      "version": "v0.015",
-      "label": "Apr 06, 2026",
-      "captured_at": "2026-04-06T13:11:00+00:00",
-      "url": "history/v0.015/index.html",
-      "title": "Retro Pong Reborn",
-      "description": "Classic Pong with vibrant particles, retro audio, and modern controls",
-      "is_current": false
-    },
-    {
       "version": "v0.016",
       "label": "Apr 06, 2026",
       "captured_at": "2026-04-06T17:45:00+00:00",
@@ -74,11 +65,20 @@
     },
     {
       "version": "v0.023",
-      "label": "Live now",
-      "captured_at": "2026-04-07T02:16:41.806160+00:00",
-      "url": "index.html",
+      "label": "Apr 06, 2026",
+      "captured_at": "2026-04-06T22:18:00+00:00",
+      "url": "history/v0.023/index.html",
       "title": "PongV1000 \u2014 Living Roadmap",
       "description": "Enhanced gameplay with dynamic AI difficulty and scoring effects, including a countdown timer on the status page.",
+      "is_current": false
+    },
+    {
+      "version": "v0.024",
+      "label": "Live now",
+      "captured_at": "2026-04-07T02:20:03.943528+00:00",
+      "url": "index.html",
+      "title": "Pong V1000",
+      "description": "Enhanced gameplay with dynamic AI difficulty, power-ups, and particle effects.",
       "is_current": true
     }
   ]
