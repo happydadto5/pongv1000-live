@@ -1,6 +1,6 @@
 {
-  "version": "0.028",
-  "title": "Power-up Pong",
-  "description": "Enhanced obstacles and gameplay mechanics.",
-  "evolution_count": 27
+  "version": "0.029",
+  "title": "PongV1000",
+  "description": "Enhanced obstacles, gameplay mechanics, and AI difficulty.",
+  "evolution_count": 28
 }
