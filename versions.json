@@ -1,15 +1,6 @@
 {
   "versions": [
     {
-      "version": "v0.041",
-      "label": "Apr 07, 2026",
-      "captured_at": "2026-04-07T12:24:00+00:00",
-      "url": "history/v0.041/index.html",
-      "title": "Stable and Polished Pong Experience with Enhanced AI and Dynamic Effects",
-      "description": "Enhanced gameplay experience with dynamic particle effects and refined AI difficulty.",
-      "is_current": false
-    },
-    {
       "version": "v0.042",
       "label": "Apr 07, 2026",
       "captured_at": "2026-04-07T12:35:00+00:00",
@@ -74,11 +65,20 @@
     },
     {
       "version": "v0.049",
-      "label": "Live now",
-      "captured_at": "2026-04-07T19:14:57.306463+00:00",
-      "url": "index.html",
+      "label": "Apr 07, 2026",
+      "captured_at": "2026-04-07T16:24:00+00:00",
+      "url": "history/v0.049/index.html",
       "title": "PongV1000 - Classic Pong with Dynamic Particles",
       "description": "Classic Pong with procedurally generated dynamic particle effects based on game events.",
+      "is_current": false
+    },
+    {
+      "version": "v0.050",
+      "label": "Live now",
+      "captured_at": "2026-04-07T20:25:23.214869+00:00",
+      "url": "index.html",
+      "title": "Classic Pong with Advanced AI and Dynamic Effects",
+      "description": "Enhanced gameplay experience with improved AI and dynamic particle effects.",
       "is_current": true
     }
   ]

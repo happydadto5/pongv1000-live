@@ -98,9 +98,13 @@
     }
 
     function drawObstacles() {
-        obstacles.forEach((obstacle) => {
+        obstacles.forEach((obstacle, index) => {
             ctx.fillStyle = '#ff0000';
             ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
+            obstacle.x += obstacle.speedX;
+            if (obstacle.x + obstacle.width < 0 || obstacle.x > canvas.width) {
+                obstacles.splice(index, 1);
+            }
         });
     }
 
@@ -126,7 +130,7 @@
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         drawParticles();
         drawObstacles();
-        drawPaddles();
+        drawPaddles(); // Draw paddles in the game loop
 
         requestAnimationFrame(gameLoop);
 
@@ -159,35 +163,18 @@
             x: canvas.width / 2 - 10,
             y: canvas.height / 2 - 50,
             vy: 0,
-            speed: 8
+            speed: 6
         }
     };
 
-    // Input handling
-    function handleInput() {
-        const keys = {};
-        window.addEventListener('keydown', (e) => keys[e.key] = true);
-        window.addEventListener('keyup', (e) => delete keys[e.key]);
-        return () => keys;
-    }
-
-    const isKeyPressed = handleInput();
-
-    requestAnimationFrame(() => {
-        if (isKeyPressed().ArrowLeft || isKeyPressed().A) {
-            player.paddle.x -= 5;
-        }
-        if (isKeyPressed().ArrowRight || isKeyPressed().D) {
-            player.paddle.x += 5;
-        }
-        gameLoop();
-    });
-
-    // Handle clicks to create particles and obstacles
+    // Event listeners for particle creation and obstacle spawning
     canvas.addEventListener('click', (event) => {
         const rect = canvas.getBoundingClientRect();
         const x = event.clientX - rect.left;
-        const y = event.clientY;
+        const y = event.clientY - rect.top;
         createParticles(x, y, 'powerup');
+        playSound('powerup');
     });
+
+    setInterval(createObstacles, 2000);
 })();

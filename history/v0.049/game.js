@@ -59,7 +59,8 @@
         particles.forEach((particle, index) => {
             ctx.save();
             ctx.globalAlpha = particle.alpha;
-            ctx.fillStyle = particle.type === 'powerup' ? '#ff6f61' : '#800';
+            const color = particle.type === 'powerup' ? '#ff6f61' : '#800';
+            ctx.fillStyle = color;
             ctx.beginPath();
             ctx.arc(particle.x, particle.y, Math.random() * 5 + 2, 0, Math.PI * 2);
             ctx.fill();
@@ -91,15 +92,19 @@
                 width: 20,
                 height: 20,
                 speedX: Math.random() - 0.5,
-                type: 'default'
+                type: 'obstacle'
             });
         });
     }
 
     function drawObstacles() {
-        obstacles.forEach((obstacle) => {
-            ctx.fillStyle = obstacle.type === 'powerup' ? '#ff6f61' : '#800';
+        obstacles.forEach((obstacle, index) => {
+            ctx.fillStyle = '#ff0000';
             ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
+            obstacle.x += obstacle.speedX;
+            if (obstacle.x + obstacle.width < 0 || obstacle.x > canvas.width) {
+                obstacles.splice(index, 1);
+            }
         });
     }
 
@@ -125,7 +130,7 @@
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         drawParticles();
         drawObstacles();
-        drawPaddles();
+        drawPaddles(); // Draw paddles in the game loop
 
         requestAnimationFrame(gameLoop);
 
@@ -136,7 +141,7 @@
     }
 
     // Initialize paddles and ball
-    const paddleWidth = 14;
+    const paddleWidth = 20;
     const paddleHeight = 100;
     const leftPaddle = {x: paddleMargin, y: canvas.height / 2 - paddleHeight / 2};
     const rightPaddle = {x: canvas.width - paddleMargin - paddleWidth, y: canvas.height / 2 - paddleHeight / 2};
@@ -149,4 +154,27 @@
     }
 
     gameLoop();
+
+    // Player setup
+    const player = {
+        paddle: {
+            width: 20,
+            height: 100,
+            x: canvas.width / 2 - 10,
+            y: canvas.height / 2 - 50,
+            vy: 0,
+            speed: 6
+        }
+    };
+
+    // Event listeners for particle creation and obstacle spawning
+    canvas.addEventListener('click', (event) => {
+        const rect = canvas.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        createParticles(x, y, 'powerup');
+        playSound('powerup');
+    });
+
+    setInterval(createObstacles, 2000);
 })();
