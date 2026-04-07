@@ -1,24 +1,23 @@
 {
   "agent_start_time": "2026-04-05T17:52:38.912886+00:00",
-  "last_evolution_time": "2026-04-07T12:14:09.067197+00:00",
-  "last_evolution_started_time": "2026-04-07T12:23:24.588491+00:00",
-  "last_evolution_finished_time": "2026-04-07T12:14:09.067197+00:00",
-  "next_evolution_time": "2026-04-07T12:34:25.082806+00:00",
+  "last_evolution_time": "2026-04-07T12:44:21.686866+00:00",
+  "last_evolution_started_time": "2026-04-07T12:53:24.537321+00:00",
+  "last_evolution_finished_time": "2026-04-07T12:44:21.686866+00:00",
+  "next_evolution_time": "2026-04-07T13:04:28.221487+00:00",
   "evolution_interval_minutes": 10,
   "daytime_interval_minutes": 10,
   "nighttime_interval_minutes": 10,
   "time_period": "daytime",
-  "current_version": "0.035",
-  "current_title": "PongV1000",
-  "current_description": "Classic Pong with high-score leaderboard, enhanced AI, and more.",
-  "total_evolutions": 34,
+  "current_version": "0.036",
+  "current_title": "Pong Evolution",
+  "current_description": "High-score leaderboard and enhanced particle effects.",
+  "total_evolutions": 35,
   "planned_arcs": [
-    "Refine AI difficulty further to maintain an optimal challenge level for players.",
-    "Implement a high-score leaderboard system to track top performers.",
-    "Enhance particle effects by adding different colors and sizes based on type."
+    "Enhance particle effects by adding different colors and sizes based on type.",
+    "Refine AI difficulty further to maintain an optimal challenge level for players."
   ],
   "teasers": [],
-  "last_focus_area": "creative_evolution",
+  "last_focus_area": "gameplay_improvements",
   "long_term_steering": "",
   "evolution_targets": {
     "gameplay_improvements": 20,
@@ -42,7 +41,7 @@
       "roadmap_review_planning": 5
     },
     "counts": {
-      "gameplay_improvements": 11,
+      "gameplay_improvements": 12,
       "creative_evolution": 7,
       "visuals_theme": 5,
       "audio_feedback": 2,
@@ -51,7 +50,7 @@
       "documentation_status": 1,
       "roadmap_review_planning": 0
     },
-    "total": 35,
+    "total": 36,
     "preferred_next": [
       "stability_performance",
       "documentation_status",
@@ -66,7 +65,7 @@
   "consecutive_failures": 0,
   "degraded": false,
   "last_evolution_success": false,
-  "last_error": "Smoke test: Console errors: player is not defined; player is not defined; player is not defined",
-  "generated_at": "2026-04-07T12:24:25.084140+00:00",
+  "last_error": "Smoke test: Console errors: drawPaddles is not defined",
+  "generated_at": "2026-04-07T12:54:28.222821+00:00",
   "cooldown_until": ""
 }

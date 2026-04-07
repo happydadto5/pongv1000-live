@@ -1,15 +1,6 @@
 {
   "versions": [
     {
-      "version": "v0.027",
-      "label": "Apr 06, 2026",
-      "captured_at": "2026-04-07T00:27:00+00:00",
-      "url": "history/v0.027/index.html",
-      "title": "PongV1000",
-      "description": "Power-up mechanics added to enhance player experience.",
-      "is_current": false
-    },
-    {
       "version": "v0.028",
       "label": "Apr 06, 2026",
       "captured_at": "2026-04-07T01:37:00+00:00",
@@ -74,11 +65,20 @@
     },
     {
       "version": "v0.035",
-      "label": "Live now",
-      "captured_at": "2026-04-07T12:25:05.224209+00:00",
-      "url": "index.html",
+      "label": "Apr 07, 2026",
+      "captured_at": "2026-04-07T08:54:00+00:00",
+      "url": "history/v0.035/index.html",
       "title": "PongV1000",
       "description": "Classic Pong with high-score leaderboard, enhanced AI, and more.",
+      "is_current": false
+    },
+    {
+      "version": "v0.036",
+      "label": "Live now",
+      "captured_at": "2026-04-07T12:55:31.593864+00:00",
+      "url": "index.html",
+      "title": "Pong Evolution",
+      "description": "High-score leaderboard and enhanced particle effects.",
       "is_current": true
     }
   ]
