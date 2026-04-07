@@ -92,15 +92,19 @@
                 width: 20,
                 height: 20,
                 speedX: Math.random() - 0.5,
-                type: 'default'
+                type: 'obstacle'
             });
         });
     }
 
     function drawObstacles() {
-        obstacles.forEach((obstacle) => {
-            ctx.fillStyle = obstacle.type === 'powerup' ? '#ff6f61' : '#800';
+        obstacles.forEach((obstacle, index) => {
+            ctx.fillStyle = '#ff0000';
             ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
+            obstacle.x += obstacle.speedX;
+            if (obstacle.x + obstacle.width < 0 || obstacle.x > canvas.width) {
+                obstacles.splice(index, 1);
+            }
         });
     }
 
@@ -120,23 +124,16 @@
     canvas.addEventListener('touchmove', movePaddle);
     document.addEventListener('mousemove', movePaddle);
 
-    // Game loop
-    function gameLoop() {
-        const startTime = performance.now();
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        drawParticles();
-        drawObstacles();
-        drawPaddles();
-
-        requestAnimationFrame(gameLoop);
-
-        const elapsedTime = performance.now() - startTime;
-        if (elapsedTime < 16.67) {
-            setTimeout(() => gameLoop(), 16.67 - elapsedTime);
-        }
+    // Event handling
+    function handleEvent(type) {
+        createParticles(event.clientX, event.clientY, type);
+        playSound(type);
     }
 
-    // Initialize paddles and ball
+    window.addEventListener('click', () => handleEvent('normal'));
+    window.addEventListener('mouseover', () => handleEvent('powerup'));
+
+    // Player setup
     const paddleWidth = 20;
     const paddleHeight = 100;
     const leftPaddle = {x: paddleMargin, y: canvas.height / 2 - paddleHeight / 2};
@@ -151,51 +148,36 @@
 
     gameLoop();
 
-    // Player setup
-    const player = {
-        paddle: {
-            width: 20,
-            height: 100,
-            x: canvas.width / 2 - 10,
-            y: canvas.height / 2 - 50,
-            vy: 0,
-            speed: 8
-        }
-    };
-
-    // Input handling
-    function handleInput() {
-        const keys = {};
-        window.addEventListener('keydown', (e) => keys[e.key] = true);
-        window.addEventListener('keyup', (e) => delete keys[e.key]);
-
-        return () => {
-            if (keys['ArrowUp'] && player.paddle.y > 0) {
-                player.paddle.vy = -player.speed;
-            } else if (keys['ArrowDown'] && player.paddle.y < canvas.height - player.paddle.height) {
-                player.paddle.vy = player.speed;
-            } else {
-                player.paddle.vy = 0;
-            }
-
-            // Update paddle position based on input
-            player.paddle.y += player.paddle.vy;
-        };
-    }
-
-    const updatePaddleInput = handleInput();
-    setInterval(updatePaddleInput, 16); // Approximately 60 FPS
-
-    // Main game loop
+    // Game loop
     function gameLoop() {
+        const startTime = performance.now();
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-
         drawParticles();
         drawObstacles();
-        drawPaddles();
+        drawPaddles(); // Draw paddles in the game loop
 
         requestAnimationFrame(gameLoop);
+
+        const elapsedTime = performance.now() - startTime;
+        if (elapsedTime < 16.67) {
+            setTimeout(() => gameLoop(), 16.67 - elapsedTime);
+        }
     }
 
-    gameLoop();
+    // Initialize paddles and ball
+    const player = {
+        paddle: document.getElementById('paddle')
+    };
+
+    // Player input handling
+    function movePaddle(event) {
+        if (event.key === 'ArrowLeft') {
+            player.paddle.style.left = `${parseInt(player.paddle.style.left, 10) - 10}px`;
+        } else if (event.key === 'ArrowRight') {
+            player.paddle.style.left = `${parseInt(player.paddle.style.left, 10) + 10}px`;
+        }
+    }
+
+    document.addEventListener('keydown', movePaddle);
+
 })();

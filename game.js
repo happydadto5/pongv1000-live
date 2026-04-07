@@ -124,13 +124,14 @@
     canvas.addEventListener('touchmove', movePaddle);
     document.addEventListener('mousemove', movePaddle);
 
-    // Event handling for particle effects
-    function handleEvent(eventType) {
-        createParticles(eventType === 'powerup' ? event.clientX : event.clientX, event.clientY, eventType);
+    // Event handling
+    function handleEvent(type) {
+        createParticles(event.clientX, event.clientY, type);
+        playSound(type);
     }
 
-    document.addEventListener('click', (event) => handleEvent(event.type));
-    document.addEventListener('keydown', (event) => handleEvent(event.type));
+    window.addEventListener('click', () => handleEvent('normal'));
+    window.addEventListener('mouseover', () => handleEvent('powerup'));
 
     // Player setup
     const paddleWidth = 20;

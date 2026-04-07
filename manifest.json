@@ -1,6 +1,6 @@
 {
-  "version": "0.051",
-  "title": "Pong Evolution",
-  "description": "Enhanced gameplay with dynamic particle effects based on event type.",
-  "evolution_count": 50
+  "version": "0.052",
+  "title": "Game Title Here",
+  "description": "Added dynamic particle effect sizes and colors based on event type.",
+  "evolution_count": 51
 }
