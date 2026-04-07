@@ -177,14 +177,11 @@
             } else {
                 player.paddle.vy = 0;
             }
-
-            // Update paddle position based on input
-            player.paddle.y += player.paddle.vy;
         };
     }
 
-    const updatePaddleInput = handleInput();
-    setInterval(updatePaddleInput, 16); // Approximately 60 FPS
+    const updateInput = handleInput();
+    setInterval(updateInput, 16);
 
     // Main game loop
     function gameLoop() {
@@ -196,6 +193,5 @@
 
         requestAnimationFrame(gameLoop);
     }
-
     gameLoop();
 })();
