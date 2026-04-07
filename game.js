@@ -127,34 +127,26 @@
     // Main game loop
     function gameLoop() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        drawParticles();
         drawObstacles();
+        drawParticles();
         drawPaddles(); // Draw paddles in the game loop
 
         requestAnimationFrame(gameLoop);
     }
 
-    // Handle events
-    function handleEvent(event) {
-        const rect = canvas.getBoundingClientRect();
-        let mouseY = event.clientY - rect.top;
-
-        if (event.type === 'mousedown' || event.type === 'touchstart') {
-            // Left paddle control
-            if (mouseY > 0 && mouseY < canvas.height) {
-                // Adjust logic as needed based on actual game mechanics
-            }
-        } else if (event.type === 'mouseup' || event.type === 'touchend') {
-            // Reset paddle position or other logic
+    // Handle particle effects based on event type
+    function handleEvent(eventType) {
+        if (eventType === 'powerup') {
+            createParticles(event.x, event.y, 'powerup');
+        } else {
+            createParticles(event.x, event.y, 'default');
         }
     }
 
-    canvas.addEventListener('mousedown', handleEvent);
-    canvas.addEventListener('mousemove', handleEvent);
-    canvas.addEventListener('mouseup', handleEvent);
-    canvas.addEventListener('touchstart', handleEvent);
-    canvas.addEventListener('touchmove', handleEvent);
-    canvas.addEventListener('touchend', handleEvent);
+    // Event listeners for dynamic particle effects
+    document.addEventListener('customEvent', function(event) {
+        handleEvent(event.detail.type);
+    });
 
     // Initialize game
     createObstacles();

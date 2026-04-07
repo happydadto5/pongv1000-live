@@ -1,15 +1,6 @@
 {
   "versions": [
     {
-      "version": "v0.052",
-      "label": "Apr 07, 2026",
-      "captured_at": "2026-04-07T17:04:00+00:00",
-      "url": "history/v0.052/index.html",
-      "title": "Game Title Here",
-      "description": "Added dynamic particle effect sizes and colors based on event type.",
-      "is_current": false
-    },
-    {
       "version": "v0.053",
       "label": "Apr 07, 2026",
       "captured_at": "2026-04-07T17:24:00+00:00",
@@ -74,11 +65,20 @@
     },
     {
       "version": "v0.060",
-      "label": "Live now",
-      "captured_at": "2026-04-07T23:14:24.003271+00:00",
-      "url": "index.html",
+      "label": "Apr 07, 2026",
+      "captured_at": "2026-04-07T19:24:00+00:00",
+      "url": "history/v0.060/index.html",
       "title": "PongV1000 \u2014 Living Roadmap",
       "description": "Enhanced gameplay with dynamic paddles and more to come.",
+      "is_current": false
+    },
+    {
+      "version": "v0.061",
+      "label": "Live now",
+      "captured_at": "2026-04-07T23:24:56.707520+00:00",
+      "url": "index.html",
+      "title": "PongV1000",
+      "description": "Classic Pong with dynamic particle effects and enhanced gameplay.",
       "is_current": true
     }
   ]
