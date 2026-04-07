@@ -113,87 +113,69 @@
     document.addEventListener('mousemove', (e) => {
         const rect = canvas.getBoundingClientRect();
         const mouseY = e.clientY - rect.top;
-        rightPaddleY = Math.max(0, Math.min(mouseY - paddleHeight / 2, canvas.height - paddleHeight));
+        rightPaddleY = Math.max(0, Math.min(canvas.height - paddleHeight, mouseY - paddleHeight / 2));
     });
 
-    // Clamp paddle positions
-    function clampPaddles() {
-        leftPaddleY = Math.max(0, Math.min(canvas.height - paddleHeight, leftPaddleY));
-        rightPaddleY = Math.max(0, Math.min(canvas.height - paddleHeight, rightPaddleY));
+    // Ball speed ramping
+    let direction = 1; // 1 for increase, -1 for decrease
+    function adjustBallSpeed() {
+        if (ballSpeedX > 5) {
+            direction = -1;
+        } else if (ballSpeedX < 3) {
+            direction = 1;
+        }
+        ballSpeedX += direction * 0.1 * Math.random();
+        ballSpeedY += direction * 0.1 * Math.random();
     }
 
     // Update game state
     function update() {
-        clampPaddles();
+        adjustBallSpeed();
 
-        ballX += ballSpeedX;
-        ballY += ballSpeedY;
-
-        obstacles.forEach((obstacle) => {
-            obstacle.x += obstacle.speedX;
-            if (obstacle.x < 0 || obstacle.x > canvas.width) obstacle.speedX *= -1;
-        });
-
-        if (ballX + ballRadius > canvas.width || ballX - ballRadius < 0) ballSpeedX *= -1;
-        if (ballY + ballRadius > canvas.height || ballY - ballRadius < 0) {
-            ballSpeedY *= -1;
-            if (ballY < 0) aiScore++;
-            else playerScore++;
-        }
-
-        if (obstacles.some((obstacle) => {
-            return Math.abs(ballX - obstacle.x) < 25 && Math.abs(ballY - obstacle.y) < 25;
-        })) ballSpeedX *= -1;
-
-        if (Math.abs(ballX - rightPaddleX) < 10 && Math.abs(ballY - rightPaddleY) < paddleHeight / 2) ballSpeedX *= -1;
-        if (Math.abs(ballX - leftPaddleX) < 10 && Math.abs(ballY - leftPaddleY) < paddleHeight / 2) ballSpeedX *= -1;
-
-        if (playerScore >= 5 || aiScore >= 5) {
-            resetGame();
-        }
-    }
-
-    function resetGame() {
-        ballX = canvas.width / 2;
-        ballY = canvas.height / 2;
-        ballSpeedX = 5;
-        ballSpeedY = 3;
-        playerScore = 0;
-        aiScore = 0;
-    }
-
-    function draw() {
+        // Clear canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Draw paddles and ball
         ctx.fillStyle = 'white';
-        ctx.fillRect(leftPaddleX, leftPaddleY, paddleWidth, paddleHeight);
-        ctx.fillRect(rightPaddleX, rightPaddleY, paddleWidth, paddleHeight);
+        ctx.fillRect(0, leftPaddleY, paddleWidth, paddleHeight);
+        ctx.fillRect(canvas.width - paddleWidth, rightPaddleY, paddleWidth, paddleHeight);
         ctx.beginPath();
         ctx.arc(ballX, ballY, ballRadius, 0, Math.PI * 2);
         ctx.fill();
-        obstacles.forEach((obstacle) => {
-            ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
-        });
-        ctx.fillStyle = 'black';
+
+        // Move ball
+        ballX += ballSpeedX;
+        ballY += ballSpeedY;
+
+        // Ball collision with walls and paddles
+        if (ballY - ballRadius < 0 || ballY + ballRadius > canvas.height) {
+            ballSpeedY = -ballSpeedY;
+        }
+        if (ballX - ballRadius < paddleWidth && leftPaddleY < ballY && ballY < leftPaddleY + paddleHeight) {
+            ballSpeedX = -ballSpeedX;
+        } else if (ballX + ballRadius > canvas.width - paddleWidth && rightPaddleY < ballY && ballY < rightPaddleY + paddleHeight) {
+            ballSpeedX = -ballSpeedX;
+        }
+
+        // Ball out of bounds
+        if (ballX - ballRadius < 0 || ballX + ballRadius > canvas.width) {
+            if (ballX - ballRadius < 0) {
+                aiScore++;
+            } else {
+                playerScore++;
+            }
+            ballX = canvas.width / 2;
+            ballY = canvas.height / 2;
+        }
+
+        // Draw score
+        ctx.fillStyle = 'white';
         ctx.font = '30px Arial';
-        ctx.fillText('Player: ' + playerScore, 10, canvas.height - 10);
-        ctx.fillText('AI: ' + aiScore, canvas.width - 80, canvas.height - 10);
+        ctx.fillText(playerScore, canvas.width / 4, 50);
+        ctx.fillText(aiScore, (canvas.width * 3) / 4, 50);
+
+        requestAnimationFrame(update);
     }
 
-    function gameLoop() {
-        update();
-        draw();
-        requestAnimationFrame(gameLoop);
-    }
-
-    let leftPaddleX = 50;
-    let rightPaddleX = canvas.width - paddleWidth - 50;
-
-    setInterval(createObstacles, 2000);
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowUp') leftPaddleY -= 10;
-        if (e.key === 'ArrowDown') leftPaddleY += 10;
-    });
-
-    gameLoop();
+    update();
 })();

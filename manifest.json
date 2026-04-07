@@ -1,6 +1,6 @@
 {
-  "version": "0.030",
-  "title": "PongV1000 \u2014 Classic Pong with Obstacles and Improved AI",
-  "description": "Enhanced gameplay with obstacle patterns and dynamic AI difficulty.",
-  "evolution_count": 29
+  "version": "0.031",
+  "title": "PongV1000 \u2014 Living Roadmap",
+  "description": "Enhanced gameplay with smoother ball speed, power-ups, richer visuals, and dynamic AI difficulty.",
+  "evolution_count": 30
 }
