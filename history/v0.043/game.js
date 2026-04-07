@@ -55,6 +55,28 @@
         }
     }
 
+    function drawParticles() {
+        particles.forEach((particle, index) => {
+            ctx.save();
+            ctx.globalAlpha = particle.alpha;
+            const color = particle.type === 'powerup' ? '#ff6f61' : '#800';
+            ctx.fillStyle = color;
+            ctx.beginPath();
+            ctx.arc(particle.x, particle.y, Math.random() * 5 + 2, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+
+            // Update particle properties
+            particle.alpha -= 0.1;
+            particle.x += particle.vx;
+            particle.y += particle.vy;
+
+            if (particle.alpha <= 0) {
+                particles.splice(index, 1);
+            }
+        });
+    }
+
     // Obstacle system
     let obstacles = [];
     function createObstacles() {
@@ -85,102 +107,95 @@
     // Paddle movement
     const paddleMargin = 16;
     function movePaddle(event) {
-        if (event.cancelable) {
-            event.preventDefault();
-        }
         const rect = canvas.getBoundingClientRect();
-        const pointerY = event.touches
-            ? event.touches[0].clientY - rect.top
-            : event.clientY - rect.top;
-        leftPaddle.y = Math.max(0, Math.min(canvas.height - paddleHeight, pointerY - paddleHeight / 2));
+        if (event.type === 'touchstart' || event.type === 'touchmove') {
+            const touchX = event.touches[0].clientX - rect.left;
+            player.paddle.x = Math.max(paddleMargin, Math.min(canvas.width - paddleWidth - paddleMargin, touchX));
+        } else if (event.type === 'mousemove') {
+            player.paddle.x = Math.max(paddleMargin, Math.min(canvas.width - paddleWidth - paddleMargin, event.clientX - rect.left));
+        }
     }
 
     canvas.addEventListener('touchstart', movePaddle);
     canvas.addEventListener('touchmove', movePaddle);
-    canvas.addEventListener('mousedown', movePaddle);
-    canvas.addEventListener('mousemove', movePaddle);
-
-    // Previous version button fix
-    const prevVersionButton = document.getElementById('prev-version-button');
-    if (prevVersionButton) {
-        prevVersionButton.addEventListener('click', function() {
-            window.location.href = 'index.html';
-        });
-    }
+    document.addEventListener('mousemove', movePaddle);
 
     // Game loop
     function gameLoop() {
-        ctx.fillStyle = '#050b16';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        const startTime = performance.now();
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawParticles();
+        drawObstacles();
         drawPaddles();
-        drawBall();
-        moveBall();
-        detectCollisions();
-        createParticles(ball.x, ball.y, 'ball');
+
         requestAnimationFrame(gameLoop);
+
+        const elapsedTime = performance.now() - startTime;
+        if (elapsedTime < 16.67) {
+            setTimeout(() => gameLoop(), 16.67 - elapsedTime);
+        }
     }
 
     // Initialize paddles and ball
-    const paddleWidth = 14;
+    const paddleWidth = 20;
     const paddleHeight = 100;
     const leftPaddle = {x: paddleMargin, y: canvas.height / 2 - paddleHeight / 2};
     const rightPaddle = {x: canvas.width - paddleMargin - paddleWidth, y: canvas.height / 2 - paddleHeight / 2};
-    const ball = {x: canvas.width / 2, y: canvas.height / 2, vx: 5, vy: 5};
 
-    function syncLayout() {
-        leftPaddle.x = paddleMargin;
-        rightPaddle.x = canvas.width - paddleMargin - paddleWidth;
-        leftPaddle.y = Math.max(0, Math.min(canvas.height - paddleHeight, leftPaddle.y));
-        rightPaddle.y = Math.max(0, Math.min(canvas.height - paddleHeight, rightPaddle.y));
-    }
-    syncLayout();
-
-    // Draw paddles, ball
+    // Draw paddles
     function drawPaddles() {
-        ctx.fillStyle = '#ffffff';
+        ctx.fillStyle = '#ffffff'; // Corrected fillStyle color
         ctx.fillRect(leftPaddle.x, leftPaddle.y, paddleWidth, paddleHeight);
         ctx.fillRect(rightPaddle.x, rightPaddle.y, paddleWidth, paddleHeight);
     }
 
-    function drawBall() {
-        ctx.beginPath();
-        ctx.arc(ball.x, ball.y, 10, 0, Math.PI * 2);
-        ctx.fillStyle = '#ffffff';
-        ctx.fill();
+    gameLoop();
+
+    // Player setup
+    const player = {
+        paddle: {
+            width: 20,
+            height: 100,
+            x: canvas.width / 2 - 10,
+            y: canvas.height / 2 - 50,
+            vy: 0,
+            speed: 8
+        }
+    };
+
+    // Input handling
+    function handleInput() {
+        const keys = {};
+        window.addEventListener('keydown', (e) => keys[e.key] = true);
+        window.addEventListener('keyup', (e) => delete keys[e.key]);
+
+        return () => {
+            if (keys['ArrowUp'] && player.paddle.y > 0) {
+                player.paddle.vy = -player.speed;
+            } else if (keys['ArrowDown'] && player.paddle.y < canvas.height - player.paddle.height) {
+                player.paddle.vy = player.speed;
+            } else {
+                player.paddle.vy = 0;
+            }
+
+            // Update paddle position based on input
+            player.paddle.y += player.paddle.vy;
+        };
     }
 
-    function moveBall() {
-        ball.x += ball.vx;
-        ball.y += ball.vy;
+    const updatePaddleInput = handleInput();
+    setInterval(updatePaddleInput, 16); // Approximately 60 FPS
 
-        // Ball collision with top and bottom walls
-        if (ball.y <= 0 || ball.y >= canvas.height) {
-            ball.vy = -ball.vy;
-        }
+    // Main game loop
+    function gameLoop() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // Ball collision with paddles
-        if (ball.x <= leftPaddle.x + paddleWidth && ball.y > leftPaddle.y && ball.y < leftPaddle.y + paddleHeight) {
-            ball.vx = -ball.vx;
-        } else if (ball.x >= rightPaddle.x - paddleWidth && ball.y > rightPaddle.y && ball.y < rightPaddle.y + paddleHeight) {
-            ball.vx = -ball.vx;
-        }
+        drawParticles();
+        drawObstacles();
+        drawPaddles();
 
-        // Ball out of bounds
-        if (ball.x <= 0 || ball.x >= canvas.width) {
-            resetBall();
-        }
-    }
-
-    function detectCollisions() {
-        // Check for collisions with paddles and update score
-    }
-
-    function resetBall() {
-        ball.x = canvas.width / 2;
-        ball.y = canvas.height / 2;
-        ball.vx = -ball.vx;
+        requestAnimationFrame(gameLoop);
     }
 
     gameLoop();
-
 })();

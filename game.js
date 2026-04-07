@@ -178,17 +178,24 @@
                 player.paddle.vy = 0;
             }
 
+            // Update paddle position based on input
             player.paddle.y += player.paddle.vy;
         };
     }
 
-    const updateInput = handleInput();
-    setInterval(updateInput, 16.67);
+    const updatePaddleInput = handleInput();
+    setInterval(updatePaddleInput, 16); // Approximately 60 FPS
 
-    // Collision detection
-    function checkCollisions() {
-        // Placeholder for collision detection logic
+    // Main game loop
+    function gameLoop() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        drawParticles();
+        drawObstacles();
+        drawPaddles();
+
+        requestAnimationFrame(gameLoop);
     }
 
-    setInterval(checkCollisions, 16.67);
+    gameLoop();
 })();
