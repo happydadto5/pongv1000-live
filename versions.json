@@ -1,15 +1,6 @@
 {
   "versions": [
     {
-      "version": "v0.047",
-      "label": "Apr 07, 2026",
-      "captured_at": "2026-04-07T14:44:00+00:00",
-      "url": "history/v0.047/index.html",
-      "title": "Game Title Here",
-      "description": "One sentence description",
-      "is_current": false
-    },
-    {
       "version": "v0.048",
       "label": "Apr 07, 2026",
       "captured_at": "2026-04-07T15:14:00+00:00",
@@ -74,11 +65,20 @@
     },
     {
       "version": "v0.055",
-      "label": "Live now",
-      "captured_at": "2026-04-07T21:34:59.627526+00:00",
-      "url": "index.html",
+      "label": "Apr 07, 2026",
+      "captured_at": "2026-04-07T17:54:00+00:00",
+      "url": "history/v0.055/index.html",
       "title": "PongV1000",
       "description": "Classic Pong with dynamic particle effects and new game mechanics.",
+      "is_current": false
+    },
+    {
+      "version": "v0.056",
+      "label": "Live now",
+      "captured_at": "2026-04-07T21:55:58.237785+00:00",
+      "url": "index.html",
+      "title": "Classic Pong with Dynamic Power-Ups and Obstacles",
+      "description": "Enhancements include touch controls, improved particle effects, new power-ups, and obstacle interactions.",
       "is_current": true
     }
   ]
