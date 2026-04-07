@@ -168,32 +168,33 @@
         const keys = {};
         window.addEventListener('keydown', (e) => keys[e.key] = true);
         window.addEventListener('keyup', (e) => delete keys[e.key]);
-
-        return () => {
-            if (keys['ArrowUp'] && player.paddle.y > 0) {
-                player.paddle.y -= player.paddle.speed;
-            }
-            if (keys['ArrowDown'] && player.paddle.y < canvas.height - paddleHeight) {
-                player.paddle.y += player.paddle.speed;
-            }
-        };
+        return () => keys;
     }
 
-    const updateInput = handleInput();
-    setInterval(updateInput, 16.67);
+    const isKeyPressed = handleInput();
 
-    // Event listeners
-    document.addEventListener('click', (event) => {
+    requestAnimationFrame(() => {
+        if (isKeyPressed().ArrowLeft || isKeyPressed().A) {
+            player.paddle.x -= 5;
+        }
+        if (isKeyPressed().ArrowRight || isKeyPressed().D) {
+            player.paddle.x += 5;
+        }
+        gameLoop();
+    });
+
+    // Event listeners for creating particles
+    canvas.addEventListener('click', (event) => {
         const rect = canvas.getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
+        createParticles(x, y, 'powerup');
+    });
 
-        if (Math.random() > 0.5) {
-            createParticles(x, y, 'powerup');
-            playSound('powerup');
-        } else {
-            createParticles(x, y, 'default');
-            playSound('default');
-        }
+    window.addEventListener('mousemove', (event) => {
+        const rect = canvas.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        createParticles(x, y, 'normal');
     });
 })();

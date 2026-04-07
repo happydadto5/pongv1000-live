@@ -1,15 +1,6 @@
 {
   "versions": [
     {
-      "version": "v0.038",
-      "label": "Apr 07, 2026",
-      "captured_at": "2026-04-07T10:14:00+00:00",
-      "url": "history/v0.038/index.html",
-      "title": "PongV1000",
-      "description": "Enhanced Pong with dynamic particles and improved gameplay.",
-      "is_current": false
-    },
-    {
       "version": "v0.039",
       "label": "Apr 07, 2026",
       "captured_at": "2026-04-07T10:24:00+00:00",
@@ -74,11 +65,20 @@
     },
     {
       "version": "v0.046",
-      "label": "Live now",
-      "captured_at": "2026-04-07T18:24:59.673433+00:00",
-      "url": "index.html",
+      "label": "Apr 07, 2026",
+      "captured_at": "2026-04-07T14:34:00+00:00",
+      "url": "history/v0.046/index.html",
       "title": "Game Title Here",
       "description": "Game with dynamic particle effects based on event type.",
+      "is_current": false
+    },
+    {
+      "version": "v0.047",
+      "label": "Live now",
+      "captured_at": "2026-04-07T18:34:59.181923+00:00",
+      "url": "index.html",
+      "title": "Game Title Here",
+      "description": "One sentence description",
       "is_current": true
     }
   ]

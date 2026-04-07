@@ -1,6 +1,6 @@
 {
-  "version": "0.046",
+  "version": "0.047",
   "title": "Game Title Here",
-  "description": "Game with dynamic particle effects based on event type.",
-  "evolution_count": 45
+  "description": "One sentence description",
+  "evolution_count": 46
 }
