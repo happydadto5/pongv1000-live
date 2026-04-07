@@ -140,7 +140,7 @@
         const paddleWidth = 20;
         const paddleHeight = 100;
         const leftPaddle = {x: 16, y: canvas.height / 2 - paddleHeight / 2};
-        const rightPaddle = {x: canvas.width - 36, y: canvas.height / 2 - paddleHeight / 2};
+        const rightPaddle = {x: canvas.width - paddleWidth - 16, y: canvas.height / 2 - paddleHeight / 2};
 
         ctx.fillRect(leftPaddle.x, leftPaddle.y, paddleWidth, paddleHeight);
         ctx.fillRect(rightPaddle.x, rightPaddle.y, paddleWidth, paddleHeight);

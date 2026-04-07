@@ -1,15 +1,6 @@
 {
   "versions": [
     {
-      "version": "v0.046",
-      "label": "Apr 07, 2026",
-      "captured_at": "2026-04-07T14:34:00+00:00",
-      "url": "history/v0.046/index.html",
-      "title": "Game Title Here",
-      "description": "Game with dynamic particle effects based on event type.",
-      "is_current": false
-    },
-    {
       "version": "v0.047",
       "label": "Apr 07, 2026",
       "captured_at": "2026-04-07T14:44:00+00:00",
@@ -74,11 +65,20 @@
     },
     {
       "version": "v0.054",
-      "label": "Live now",
-      "captured_at": "2026-04-07T21:24:26.087512+00:00",
-      "url": "index.html",
+      "label": "Apr 07, 2026",
+      "captured_at": "2026-04-07T17:34:00+00:00",
+      "url": "history/v0.054/index.html",
       "title": "PongV1000",
       "description": "Enhanced visual effects based on event type.",
+      "is_current": false
+    },
+    {
+      "version": "v0.055",
+      "label": "Live now",
+      "captured_at": "2026-04-07T21:34:59.627526+00:00",
+      "url": "index.html",
+      "title": "PongV1000",
+      "description": "Classic Pong with dynamic particle effects and new game mechanics.",
       "is_current": true
     }
   ]
