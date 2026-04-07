@@ -1,15 +1,6 @@
 {
   "versions": [
     {
-      "version": "v0.026",
-      "label": "Apr 06, 2026",
-      "captured_at": "2026-04-07T00:09:00+00:00",
-      "url": "history/v0.026/index.html",
-      "title": "Enhanced Pong with AI Obstacles, Refined Particles, and Leaderboard",
-      "description": "Leaderboard added and UI improved for a better user experience.",
-      "is_current": false
-    },
-    {
       "version": "v0.027",
       "label": "Apr 06, 2026",
       "captured_at": "2026-04-07T00:27:00+00:00",
@@ -74,11 +65,20 @@
     },
     {
       "version": "v0.034",
-      "label": "Live now",
-      "captured_at": "2026-04-07T11:56:24.831176+00:00",
-      "url": "index.html",
+      "label": "Apr 07, 2026",
+      "captured_at": "2026-04-07T08:24:00+00:00",
+      "url": "history/v0.034/index.html",
       "title": "Classic Pong with Enhancements",
       "description": "Improve controls and fix previous version button.",
+      "is_current": false
+    },
+    {
+      "version": "v0.035",
+      "label": "Live now",
+      "captured_at": "2026-04-07T12:25:05.224209+00:00",
+      "url": "index.html",
+      "title": "PongV1000",
+      "description": "Classic Pong with high-score leaderboard, enhanced AI, and more.",
       "is_current": true
     }
   ]
