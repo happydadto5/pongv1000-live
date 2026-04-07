@@ -113,110 +113,77 @@
         // Move paddles
         clampPaddles();
 
-        // Move ball
-        ballX += ballSpeedX * aiSpeedMultiplier;
+        // Update ball position and collision detection
+        ballX += ballSpeedX;
         ballY += ballSpeedY;
 
-        // Ball collision with top/bottom
-        if (ballY - ballRadius < 0 || ballY + ballRadius > canvas.height) {
-            ballSpeedY = -ballSpeedY;
-            createParticles(ballX, ballY, 'collision');
-            playSound('collision');
+        if (ballY <= 0 || ballY >= canvas.height - ballRadius) {
+            ballSpeedY *= -1;
         }
 
-        // Ball collision with paddles
-        if (ballX - ballRadius < paddleWidth && 
-            ballY > leftPaddleY && 
-            ballY < leftPaddleY + paddleHeight) {
-            ballSpeedX = -ballSpeedX;
-            createParticles(ballX, ballY, 'paddle');
-        } else if (ballX + ballRadius > canvas.width - paddleWidth && 
-                   ballY > rightPaddleY && 
-                   ballY < rightPaddleY + paddleHeight) {
-            ballSpeedX = -ballSpeedX;
-            createParticles(ballX, ballY, 'paddle');
+        if (ballX <= paddleWidth && ballY + ballRadius > leftPaddleY && ballY < leftPaddleY + paddleHeight) {
+            ballSpeedX *= -1;
+        } else if (ballX >= canvas.width - ballRadius - paddleWidth && ballY + ballRadius > rightPaddleY && ballY < rightPaddleY + paddleHeight) {
+            ballSpeedX *= -1;
         }
 
-        // Ball collision with obstacles
-        for (let i = 0; i < obstacles.length; i++) {
-            if (ballX + ballRadius > obstacles[i].x && 
-                ballX - ballRadius < obstacles[i].x + obstacles[i].width &&
-                ballY + ballRadius > obstacles[i].y && 
-                ballY - ballRadius < obstacles[i].y + obstacles[i].height) {
-                ballSpeedX = -ballSpeedX;
-                createParticles(ballX, ballY, 'obstacle');
-            }
-        }
-
-        // Move obstacles
-        for (let i = 0; i < obstacles.length; i++) {
-            obstacles[i].x += obstacles[i].speedX;
-            if (obstacles[i].x + obstacles[i].width > canvas.width || obstacles[i].x < 0) {
-                obstacles[i].speedX *= -1;
-            }
-        }
-
-        // Ball out of bounds
-        if (ballX - ballRadius < 0) {
-            aiScore++;
-            resetBall();
-        } else if (ballX + ballRadius > canvas.width) {
-            playerScore++;
+        if (ballX <= 0 || ballX >= canvas.width - ballRadius) {
             resetBall();
         }
     }
 
-    // Reset ball position
     function resetBall() {
         ballX = canvas.width / 2;
         ballY = canvas.height / 2;
-        ballSpeedX = Math.random() - 0.5;
-        ballSpeedY = Math.random() - 0.5;
+        ballSpeedX *= -1;
     }
 
     // Draw game elements
     function draw() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
-        // Draw paddles
-        ctx.fillStyle = 'white';
+        ctx.fillStyle = 'black';
         ctx.fillRect(0, leftPaddleY, paddleWidth, paddleHeight);
         ctx.fillRect(canvas.width - paddleWidth, rightPaddleY, paddleWidth, paddleHeight);
-
-        // Draw ball
         ctx.beginPath();
         ctx.arc(ballX, ballY, ballRadius, 0, Math.PI * 2);
         ctx.fillStyle = 'white';
         ctx.fill();
-
-        // Draw obstacles
-        for (let i = 0; i < obstacles.length; i++) {
-            ctx.fillRect(obstacles[i].x, obstacles[i].y, obstacles[i].width, obstacles[i].height);
-        }
-
-        // Draw scores
-        ctx.font = '24px Arial';
-        ctx.fillStyle = 'white';
-        ctx.fillText(`Player: ${playerScore}`, 10, 30);
-        ctx.fillText(`AI: ${aiScore}`, canvas.width - 90, 30);
+        ctx.closePath();
 
         // Draw particles
-        for (let i = 0; i < particles.length; i++) {
-            ctx.beginPath();
-            ctx.arc(particles[i].x, particles[i].y, 2, 0, Math.PI * 2);
-            ctx.fillStyle = particles[i].type === 'collision' ? 'red' : 
-                             particles[i].type === 'paddle' ? 'blue' : 'green';
-            ctx.fill();
+        for (let i = particles.length - 1; i >= 0; i--) {
+            particles[i].x += particles[i].vx;
+            particles[i].y += particles[i].vy;
+            particles[i].alpha -= 0.01;
+            if (particles[i].alpha <= 0) {
+                particles.splice(i, 1);
+            } else {
+                ctx.beginPath();
+                ctx.arc(particles[i].x, particles[i].y, ballRadius / 2, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(255, 255, 255, ' + particles[i].alpha + ')';
+                ctx.fill();
+                ctx.closePath();
+            }
         }
 
-        // Update and draw
-        update();
+        // Draw obstacles
+        obstacles.forEach((obstacle) => {
+            ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
+        });
+
+        // Draw scores
+        ctx.fillStyle = 'white';
+        ctx.font = '24px Arial';
+        ctx.fillText('Player: ' + playerScore, 10, 30);
+        ctx.fillText('AI: ' + aiScore, canvas.width - 75, 30);
+
         requestAnimationFrame(draw);
     }
 
-    // Create obstacles at the start of the game
-    createObstacles();
+    function init() {
+        createObstacles();
+        draw();
+    }
 
-    // Start drawing
-    draw();
+    init();
 })();
