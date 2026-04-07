@@ -1,15 +1,6 @@
 {
   "versions": [
     {
-      "version": "v0.013",
-      "label": "Apr 06, 2026",
-      "captured_at": "2026-04-06T04:31:00+00:00",
-      "url": "history/v0.013/index.html",
-      "title": "Retro Pong",
-      "description": "Classic Pong with a retro pixel-art theme and touch controls",
-      "is_current": false
-    },
-    {
       "version": "v0.014",
       "label": "Apr 06, 2026",
       "captured_at": "2026-04-06T09:48:00+00:00",
@@ -74,10 +65,19 @@
     },
     {
       "version": "v0.021",
-      "label": "Live now",
-      "captured_at": "2026-04-07T02:00:07.041633+00:00",
-      "url": "index.html",
+      "label": "Apr 06, 2026",
+      "captured_at": "2026-04-06T22:08:00+00:00",
+      "url": "history/v0.021/index.html",
       "title": "Game Title Here",
+      "description": "Enhanced gameplay with dynamic AI difficulty and scoring effects.",
+      "is_current": false
+    },
+    {
+      "version": "v0.022",
+      "label": "Live now",
+      "captured_at": "2026-04-07T02:09:55.658044+00:00",
+      "url": "index.html",
+      "title": "PongV1000",
       "description": "Enhanced gameplay with dynamic AI difficulty and scoring effects.",
       "is_current": true
     }
