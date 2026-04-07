@@ -1,6 +1,6 @@
 {
-  "version": "0.019",
+  "version": "0.020",
   "title": "PongV1000",
-  "description": "A retro arcade game with modern accessibility features and vibrant visuals",
-  "evolution_count": 18
+  "description": "Classic Pong with improved controls and new features.",
+  "evolution_count": 19
 }
