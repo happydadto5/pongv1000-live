@@ -59,10 +59,11 @@
         particles.forEach((particle, index) => {
             ctx.save();
             ctx.globalAlpha = particle.alpha;
+            const size = Math.random() * 10 + 2; // Dynamic size based on event type
             const color = particle.type === 'powerup' ? '#ff6f61' : '#800';
             ctx.fillStyle = color;
             ctx.beginPath();
-            ctx.arc(particle.x, particle.y, Math.random() * 5 + 2, 0, Math.PI * 2);
+            ctx.arc(particle.x, particle.y, size, 0, Math.PI * 2);
             ctx.fill();
             ctx.restore();
 
