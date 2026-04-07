@@ -1,6 +1,6 @@
 {
-  "version": "0.048",
-  "title": "Game Title Here",
-  "description": "One sentence description",
-  "evolution_count": 47
+  "version": "0.049",
+  "title": "PongV1000 - Classic Pong with Dynamic Particles",
+  "description": "Classic Pong with procedurally generated dynamic particle effects based on game events.",
+  "evolution_count": 48
 }

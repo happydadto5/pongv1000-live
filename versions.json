@@ -1,15 +1,6 @@
 {
   "versions": [
     {
-      "version": "v0.040",
-      "label": "Apr 07, 2026",
-      "captured_at": "2026-04-07T11:44:00+00:00",
-      "url": "history/v0.040/index.html",
-      "title": "PongV1000",
-      "description": "Stable and polished Pong experience with improved AI difficulty.",
-      "is_current": false
-    },
-    {
       "version": "v0.041",
       "label": "Apr 07, 2026",
       "captured_at": "2026-04-07T12:24:00+00:00",
@@ -74,11 +65,20 @@
     },
     {
       "version": "v0.048",
-      "label": "Live now",
-      "captured_at": "2026-04-07T18:45:15.070879+00:00",
-      "url": "index.html",
+      "label": "Apr 07, 2026",
+      "captured_at": "2026-04-07T15:14:00+00:00",
+      "url": "history/v0.048/index.html",
       "title": "Game Title Here",
       "description": "One sentence description",
+      "is_current": false
+    },
+    {
+      "version": "v0.049",
+      "label": "Live now",
+      "captured_at": "2026-04-07T19:14:57.306463+00:00",
+      "url": "index.html",
+      "title": "PongV1000 - Classic Pong with Dynamic Particles",
+      "description": "Classic Pong with procedurally generated dynamic particle effects based on game events.",
       "is_current": true
     }
   ]
