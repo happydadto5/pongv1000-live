@@ -130,57 +130,30 @@
     function resetBall() {
         ballX = canvas.width / 2;
         ballY = canvas.height / 2;
-        ballSpeedX = ballSpeedX * -1;
-        ballSpeedY = (Math.random() < 0.5 ? -1 : 1) * (Math.floor(Math.random() * 3) + 2);
+        ballSpeedX = Math.random() < 0.5 ? -5 : 5;
+        ballSpeedY = Math.random() * 10 - 5;
     }
 
-    // Render game state
+    // Render game
     function render() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-
+        
         // Draw paddles and ball
         ctx.fillStyle = 'white';
         ctx.fillRect(0, leftPaddleY, paddleWidth, paddleHeight);
         ctx.fillRect(canvas.width - paddleWidth, rightPaddleY, paddleWidth, paddleHeight);
         ctx.beginPath();
         ctx.arc(ballX, ballY, ballRadius, 0, Math.PI * 2);
-        ctx.fillStyle = 'red';
         ctx.fill();
 
         // Draw scores
         ctx.font = '30px Arial';
-        ctx.fillStyle = 'white';
         ctx.fillText(playerScore, canvas.width / 4, 50);
-        ctx.fillText(aiScore, (canvas.width * 3) / 4, 50);
+        ctx.fillText(aiScore, canvas.width * 3 / 4, 50);
 
-        // Draw particles
-        for (let i = particles.length - 1; i >= 0; i--) {
-            ctx.beginPath();
-            ctx.arc(particles[i].x, particles[i].y, ballRadius / 2, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(255, 255, 255, ${particles[i].alpha})`;
-            ctx.fill();
-
-            // Update particle positions and alpha
-            particles[i].x += particles[i].vx;
-            particles[i].y += particles[i].vy;
-            particles[i].alpha -= 0.01;
-
-            if (particles[i].alpha <= 0) {
-                particles.splice(i, 1);
-            }
-        }
-    }
-
-    // Game loop
-    function gameLoop() {
-        update();
-        render();
-        requestAnimationFrame(gameLoop);
+        requestAnimationFrame(render);
     }
 
     // Start game loop
-    gameLoop();
-
-    // Initial ball reset
-    resetBall();
+    render();
 })();

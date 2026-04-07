@@ -10,6 +10,24 @@
         return audioContext;
     }
 
+    // Sound effect functions
+    function playSound(type) {
+        const context = getAudioContext();
+        const oscillator = context.createOscillator();
+        const gainNode = context.createGain();
+        
+        oscillator.type = type === 'powerup' ? 'sawtooth' : 'square';
+        oscillator.frequency.setValueAtTime(880, context.currentTime);
+        oscillator.frequency.exponentialRampToValueAtTime(440, context.currentTime + 1);
+        
+        gainNode.gain.setValueAtTime(0.1, context.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.001, context.currentTime + 1);
+        
+        oscillator.connect(gainNode).connect(context.destination);
+        oscillator.start();
+        oscillator.stop(context.currentTime + 1);
+    }
+
     // Game setup
     const canvas = document.getElementById('gameCanvas');
     const ctx = canvas.getContext('2d');
@@ -51,24 +69,20 @@
     const paddleWidth = 10;
     const ballRadius = 10;
 
-    // Keyboard controls
+    // Keyboard and mouse controls
     document.addEventListener('keydown', (e) => {
         if (e.key === 'w' || e.key === 'ArrowUp') {
-            leftPaddleY -= 10;
+            leftPaddleY -= 5;
         } else if (e.key === 's' || e.key === 'ArrowDown') {
-            leftPaddleY += 10;
+            leftPaddleY += 5;
         }
     });
 
-    // AI movement
-    function updateAI() {
-        const aiTargetY = ballY - paddleHeight / 2;
-        if (rightPaddleY < aiTargetY) {
-            rightPaddleY += 5;
-        } else if (rightPaddleY > aiTargetY) {
-            rightPaddleY -= 5;
-        }
-    }
+    document.addEventListener('mousemove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        const mouseY = e.clientY - rect.top;
+        rightPaddleY = Math.max(0, Math.min(mouseY - paddleHeight / 2, canvas.height - paddleHeight));
+    });
 
     // Clamp paddle positions
     function clampPaddles() {
@@ -80,7 +94,6 @@
     function update() {
         // Move paddles
         clampPaddles();
-        updateAI();
 
         // Move ball
         ballX += ballSpeedX;
@@ -90,6 +103,7 @@
         if (ballY - ballRadius < 0 || ballY + ballRadius > canvas.height) {
             ballSpeedY = -ballSpeedY;
             createParticles(ballX, ballY);
+            playSound('collision');
         }
 
         // Ball collision with paddles
@@ -98,19 +112,17 @@
             ballY < leftPaddleY + paddleHeight) {
             ballSpeedX = -ballSpeedX;
             createParticles(ballX, ballY);
+            playSound('collision');
         } else if (ballX + ballRadius > canvas.width - paddleWidth && 
                    ballY > rightPaddleY && 
                    ballY < rightPaddleY + paddleHeight) {
             ballSpeedX = -ballSpeedX;
             createParticles(ballX, ballY);
+            playSound('collision');
         }
 
-        // Score tracking
-        if (ballX < 0) {
-            aiScore++;
-            resetBall();
-        } else if (ballX > canvas.width) {
-            playerScore++;
+        // Ball out of bounds
+        if (ballX + ballRadius < 0 || ballX - ballRadius > canvas.width) {
             resetBall();
         }
     }
@@ -118,52 +130,30 @@
     function resetBall() {
         ballX = canvas.width / 2;
         ballY = canvas.height / 2;
-        ballSpeedX = -ballSpeedX;
-        ballSpeedY = (Math.random() - 0.5) * 4;
+        ballSpeedX = Math.random() < 0.5 ? -5 : 5;
+        ballSpeedY = Math.random() * 10 - 5;
     }
 
-    // Draw game
-    function draw() {
-        // Clear canvas
-        ctx.fillStyle = '#000';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        // Draw paddles
-        ctx.fillStyle = '#fff';
+    // Render game
+    function render() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Draw paddles and ball
+        ctx.fillStyle = 'white';
         ctx.fillRect(0, leftPaddleY, paddleWidth, paddleHeight);
         ctx.fillRect(canvas.width - paddleWidth, rightPaddleY, paddleWidth, paddleHeight);
-
-        // Draw ball
         ctx.beginPath();
         ctx.arc(ballX, ballY, ballRadius, 0, Math.PI * 2);
-        ctx.fillStyle = '#fff';
         ctx.fill();
-        ctx.closePath();
 
-        // Draw particles
-        for (let i = particles.length - 1; i >= 0; i--) {
-            const p = particles[i];
-            ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha})`;
-            ctx.fillRect(p.x, p.y, 5, 5);
-            p.alpha -= 0.02;
-            if (p.alpha <= 0) {
-                particles.splice(i, 1);
-            }
-        }
-
-        // Draw score
-        ctx.fillStyle = '#fff';
+        // Draw scores
         ctx.font = '30px Arial';
         ctx.fillText(playerScore, canvas.width / 4, 50);
-        ctx.fillText(aiScore, 3 * canvas.width / 4, 50);
+        ctx.fillText(aiScore, canvas.width * 3 / 4, 50);
+
+        requestAnimationFrame(render);
     }
 
-    // Game loop
-    function gameLoop() {
-        update();
-        draw();
-        requestAnimationFrame(gameLoop);
-    }
-
-    gameLoop();
+    // Start game loop
+    render();
 })();

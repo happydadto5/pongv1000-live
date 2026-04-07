@@ -3,35 +3,31 @@
   "last_evolution_time": "2026-04-07T02:09:49.498283+00:00",
   "last_evolution_started_time": "2026-04-07T02:15:31.878268+00:00",
   "last_evolution_finished_time": "2026-04-07T02:09:49.498283+00:00",
-  "next_evolution_time": "2026-04-07T02:26:08.292996+00:00",
+  "next_evolution_time": "2026-04-07T02:15:54.849949+00:00",
   "evolution_interval_minutes": 10,
   "daytime_interval_minutes": 10,
   "nighttime_interval_minutes": 10,
   "time_period": "daytime",
-  "current_version": "0.023",
-  "current_title": "PongV1000 \u2014 Living Roadmap",
-  "current_description": "Enhanced gameplay with dynamic AI difficulty and scoring effects, including a countdown timer on the status page.",
-  "total_evolutions": 22,
+  "current_version": "0.022",
+  "current_title": "PongV1000",
+  "current_description": "Enhanced gameplay with dynamic AI difficulty and scoring effects.",
+  "total_evolutions": 21,
   "planned_arcs": [
+    "Redesign the status page to include a countdown timer and game version tracking.",
     "Implement power-ups with varying effects to add strategic elements to gameplay.",
-    "Optimize audio handling for better performance across different devices.",
-    "Refine controls and accessibility features for better user experience on both mobile and desktop platforms."
+    "Optimize audio handling for better performance across different devices."
   ],
   "teasers": [
     {
-      "message": "\"Stay tuned for exciting power-ups in v0.024!\"",
+      "message": "\"Score more, watch particles fly! Power-ups coming soon.\"",
       "eta_days": 3
     },
     {
-      "message": "\"Enhancing audio performance, get ready for smoother gameplay.\"",
+      "message": "\"Stay tuned for exciting new features!\"",
       "eta_days": 5
-    },
-    {
-      "message": "\"Controls refined for an even better gaming experience!\"",
-      "eta_days": 7
     }
   ],
-  "last_focus_area": "documentation_status",
+  "last_focus_area": "creative_evolution",
   "long_term_steering": "",
   "evolution_targets": {
     "gameplay_improvements": 20,
@@ -61,13 +57,13 @@
       "audio_feedback": 2,
       "controls_accessibility": 6,
       "stability_performance": 1,
-      "documentation_status": 1,
+      "documentation_status": 0,
       "roadmap_review_planning": 0
     },
-    "total": 23,
+    "total": 22,
     "preferred_next": [
-      "documentation_status",
       "creative_evolution",
+      "documentation_status",
       "stability_performance"
     ],
     "overrepresented": [
@@ -80,6 +76,6 @@
   "degraded": false,
   "last_evolution_success": true,
   "last_error": "",
-  "generated_at": "2026-04-07T02:16:08.294427+00:00",
+  "generated_at": "2026-04-07T02:15:31.879853+00:00",
   "cooldown_until": ""
 }
