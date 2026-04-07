@@ -1,15 +1,6 @@
 {
   "versions": [
     {
-      "version": "v0.016",
-      "label": "Apr 06, 2026",
-      "captured_at": "2026-04-06T17:45:00+00:00",
-      "url": "history/v0.016/index.html",
-      "title": "PongV1000",
-      "description": "Classic Pong with vibrant particles, retro audio, and modern controls",
-      "is_current": false
-    },
-    {
       "version": "v0.017",
       "label": "Apr 06, 2026",
       "captured_at": "2026-04-06T18:11:00+00:00",
@@ -74,11 +65,20 @@
     },
     {
       "version": "v0.024",
-      "label": "Live now",
-      "captured_at": "2026-04-07T02:20:03.943528+00:00",
-      "url": "index.html",
+      "label": "Apr 06, 2026",
+      "captured_at": "2026-04-06T23:37:00+00:00",
+      "url": "history/v0.024/index.html",
       "title": "Pong V1000",
       "description": "Enhanced gameplay with dynamic AI difficulty, power-ups, and particle effects.",
+      "is_current": false
+    },
+    {
+      "version": "v0.025",
+      "label": "Live now",
+      "captured_at": "2026-04-07T03:38:07.903557+00:00",
+      "url": "index.html",
+      "title": "PongV1000",
+      "description": "Enhanced Pong with AI obstacles, refined particles, and leaderboard.",
       "is_current": true
     }
   ]
