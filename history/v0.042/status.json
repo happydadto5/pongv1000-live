@@ -3,30 +3,21 @@
   "last_evolution_time": "2026-04-07T16:24:49.855020+00:00",
   "last_evolution_started_time": "2026-04-07T16:33:24.702721+00:00",
   "last_evolution_finished_time": "2026-04-07T16:24:49.855020+00:00",
-  "next_evolution_time": "2026-04-07T16:45:33.760859+00:00",
+  "next_evolution_time": "2026-04-07T16:33:11.739047+00:00",
   "evolution_interval_minutes": 10,
   "daytime_interval_minutes": 10,
   "nighttime_interval_minutes": 10,
   "time_period": "daytime",
-  "current_version": "0.043",
-  "current_title": "PongV1000",
+  "current_version": "0.042",
+  "current_title": "Pong Evolution 42",
   "current_description": "Enhanced particle effects based on event type.",
-  "total_evolutions": 42,
+  "total_evolutions": 41,
   "planned_arcs": [
     "Refine AI difficulty further to maintain an optimal challenge level for players.",
     "Enhance user interface elements for better player experience.",
     "Polish performance and stability issues."
   ],
-  "teasers": [
-    {
-      "message": "Dynamic particle effects added for enhanced visual feedback",
-      "eta_days": 2
-    },
-    {
-      "message": "Improved AI difficulty to maintain optimal challenge",
-      "eta_days": 1
-    }
-  ],
+  "teasers": [],
   "last_focus_area": "audio_feedback",
   "long_term_steering": "",
   "evolution_targets": {
@@ -54,13 +45,13 @@
       "gameplay_improvements": 13,
       "creative_evolution": 8,
       "visuals_theme": 6,
-      "audio_feedback": 5,
+      "audio_feedback": 4,
       "controls_accessibility": 8,
       "stability_performance": 2,
       "documentation_status": 1,
       "roadmap_review_planning": 0
     },
-    "total": 43,
+    "total": 42,
     "preferred_next": [
       "documentation_status",
       "stability_performance",
@@ -76,6 +67,6 @@
   "degraded": false,
   "last_evolution_success": true,
   "last_error": "",
-  "generated_at": "2026-04-07T16:35:33.762295+00:00",
+  "generated_at": "2026-04-07T16:33:24.704503+00:00",
   "cooldown_until": ""
 }
