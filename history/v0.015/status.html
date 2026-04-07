@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PongV1000 — Agent Status</title>
+<style>
+:root{
+  --bg:#09131b;
+  --bg2:#102331;
+  --panel:#112837;
+  --line:#2d5065;
+  --text:#eef7fb;
+  --muted:#b8ccd8;
+  --accent:#7ef0ff;
+  --accent2:#ffd166;
+  --good:#86efac;
+  --warn:#ff8f70;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:radial-gradient(circle at top,#163347 0%,var(--bg) 46%,#050b10 100%);
+  color:var(--text);
+  font-family:'Courier New',monospace;
+  min-height:100vh;
+  padding:24px 20px 40px;
+}
+h1{font-size:1.15rem;letter-spacing:4px;margin-bottom:6px}
+.sub{color:#d8e7ef;font-size:0.95rem;margin-bottom:24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:20px}
+.card{background:rgba(17,40,55,.9);border:1px solid var(--line);border-radius:8px;padding:14px;box-shadow:0 10px 30px rgba(0,0,0,.18)}
+.card-label{color:#d9eaf3;font-size:0.88rem;letter-spacing:2px;margin-bottom:8px;text-transform:uppercase}
+.card-value{font-size:1.3rem;color:var(--text);line-height:1.3}
+.card-value.accent{color:var(--accent)}
+.card-value.warn{color:var(--warn)}
+.arc-list{margin:0;padding:0;list-style:none}
+.arc-list li{padding:7px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:0.92rem;color:var(--text)}
+.arc-list li::before{content:"→ ";color:var(--accent)}
+.teaser{background:rgba(255,209,102,.12);border-left:3px solid var(--accent2);padding:10px 14px;margin:8px 0;font-size:0.9rem;color:#fff3cd;border-radius:0 4px 4px 0}
+.degraded-banner{background:#3a120d;border:1px solid var(--warn);color:#ffe4da;padding:12px 16px;margin-bottom:20px;border-radius:8px;font-size:0.9rem}
+.footer{margin-top:28px;padding-top:16px;border-top:1px solid rgba(255,255,255,.08);font-size:0.82rem;color:var(--muted)}
+.footer a{color:var(--accent);text-decoration:none}
+.footer a:hover{color:#fff}
+#countdown{color:var(--accent);font-size:1.5rem;letter-spacing:2px}
+.balance-table{width:100%;border-collapse:collapse;font-size:0.86rem}
+.balance-table th,.balance-table td{padding:8px 10px;border-bottom:1px solid rgba(255,255,255,.08);text-align:left}
+.balance-table th{color:var(--muted);font-weight:normal}
+.pill{display:inline-block;padding:4px 8px;border-radius:999px;background:rgba(126,240,255,.12);color:var(--accent);font-size:0.78rem}
+.small{color:#d8e7ef;font-size:0.92rem}
+</style>
+</head>
+<body>
+<h1>PONGV1000 // AGENT STATUS</h1>
+<div class="sub" id="generated-at">Connecting to agent...</div>
+
+<div id="degraded-banner" class="degraded-banner" style="display:none">
+  ⚠ AGENT DEGRADED — consecutive failures detected. Attempting recovery.
+</div>
+
+<div class="grid">
+  <div class="card">
+    <div class="card-label">Next Evolution In</div>
+    <div class="card-value accent" id="countdown">--:--</div>
+  </div>
+  <div class="card">
+    <div class="card-label">Current Version</div>
+    <div class="card-value" id="version">—</div>
+  </div>
+  <div class="card">
+    <div class="card-label">Total Evolutions</div>
+    <div class="card-value" id="total-evo">—</div>
+  </div>
+  <div class="card">
+    <div class="card-label">Agent Runtime</div>
+    <div class="card-value" id="runtime">—</div>
+  </div>
+  <div class="card">
+    <div class="card-label">Last Started</div>
+    <div class="card-value" id="last-started">—</div>
+  </div>
+  <div class="card">
+    <div class="card-label">Last Finished</div>
+    <div class="card-value" id="last-finished">—</div>
+  </div>
+  <div class="card">
+    <div class="card-label">Deploy Health</div>
+    <div class="card-value" id="health">—</div>
+  </div>
+  <div class="card">
+    <div class="card-label">Last Focus Area</div>
+    <div class="card-value" id="focus-area">—</div>
+  </div>
+  <div class="card">
+    <div class="card-label">Last Result</div>
+    <div class="card-value" id="last-result">—</div>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:16px">
+  <div class="card-label">Current Game</div>
+  <div class="card-value" id="title" style="margin-bottom:6px">—</div>
+  <div style="color:#555;font-size:0.85rem" id="description">—</div>
+</div>
+
+<div class="card" style="margin-bottom:16px">
+  <div class="card-label">Planned Next Evolutions</div>
+  <ul class="arc-list" id="arcs"></ul>
+</div>
+
+<div class="card" style="margin-bottom:16px">
+  <div class="card-label">Evolution Balance</div>
+  <div class="small" id="balance-summary" style="margin-bottom:10px">Tracking category balance...</div>
+  <table class="balance-table">
+    <thead>
+      <tr>
+        <th>Focus Area</th>
+        <th>Target</th>
+        <th>Done</th>
+      </tr>
+    </thead>
+    <tbody id="balance-body"></tbody>
+  </table>
+</div>
+
+<div id="teasers-section"></div>
+
+<div class="footer">
+  <a href="index.html">▶ Play the game</a>
+  &nbsp;·&nbsp;
+  This page is autonomously generated and redesigned by the agent.
+  &nbsp;·&nbsp;
+  Evolving toward v1.000
+</div>
+
+<script>
+function fmtDuration(ms) {
+  if (ms < 0) return '0s';
+  var s = Math.floor(ms / 1000);
+  var m = Math.floor(s / 60), sec = s % 60;
+  var h = Math.floor(m / 60), min = m % 60;
+  var d = Math.floor(h / 24), hr  = h % 24;
+  if (d > 0) return d + 'd ' + hr + 'h ' + min + 'm';
+  if (h > 0) return h + 'h ' + min + 'm';
+  return min + 'm ' + sec + 's';
+}
+
+function fmtAgo(iso) {
+  var diff = Date.now() - new Date(iso).getTime();
+  if (diff < 5000) return 'just now';
+  return fmtDuration(diff) + ' ago';
+}
+
+function fmtEastern(iso) {
+  try {
+    return new Intl.DateTimeFormat('en-US', {
+      timeZone: 'America/New_York',
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: true,
+      timeZoneName: 'short'
+    }).format(new Date(iso));
+  } catch (e) {
+    return new Date(iso).toLocaleString();
+  }
+}
+
+var _nextTime  = null;
+var _startTime = null;
+var _lastStarted = null;
+var _lastFinished = null;
+var CATEGORY_LABELS = {
+  gameplay_improvements:'Gameplay Improvements',
+  creative_evolution:'Creative Evolution',
+  visuals_theme:'Visuals & Theme',
+  audio_feedback:'Audio & Feedback',
+  controls_accessibility:'Controls & Accessibility',
+  stability_performance:'Stability & Performance',
+  documentation_status:'Documentation & Status',
+  roadmap_review_planning:'Roadmap Review & Planning'
+};
+
+function tick() {
+  var now = Date.now();
+  if (_nextTime) {
+    var diff = _nextTime - now;
+    document.getElementById('countdown').textContent = diff > 0 ? fmtDuration(diff) : 'any moment...';
+  }
+  if (_startTime) {
+    document.getElementById('runtime').textContent = fmtDuration(now - _startTime);
+  }
+  if (_lastStarted) {
+    document.getElementById('last-started').textContent = fmtAgo(_lastStarted);
+  }
+  if (_lastFinished) {
+    document.getElementById('last-finished').textContent = fmtAgo(_lastFinished);
+  }
+}
+
+async function load() {
+  try {
+    var r = await fetch('status.json?t=' + Date.now());
+    var d = await r.json();
+
+    document.getElementById('version').textContent     = 'v' + (d.current_version || '—');
+    document.getElementById('title').textContent       = d.current_title || '—';
+    document.getElementById('description').textContent = d.current_description || '—';
+    document.getElementById('total-evo').textContent   = d.total_evolutions || '0';
+    document.getElementById('focus-area').textContent =
+      CATEGORY_LABELS[d.last_focus_area] || d.last_focus_area || '—';
+    document.getElementById('last-result').textContent =
+      d.last_evolution_success === false
+        ? ('Failed: ' + (d.last_error || 'unknown error'))
+        : 'Last deploy succeeded';
+    document.getElementById('last-result').className =
+      'card-value ' + (d.last_evolution_success === false ? 'warn' : '');
+    document.getElementById('generated-at').textContent =
+      d.generated_at !== 'pending'
+        ? 'Last updated: ' + fmtEastern(d.generated_at)
+        : 'Agent not yet started';
+
+    // Health
+    var failures = d.consecutive_failures || 0;
+    document.getElementById('health').textContent =
+      failures === 0 ? '✓ nominal' : '⚠ ' + failures + ' failure' + (failures > 1 ? 's' : '');
+    document.getElementById('health').className =
+      'card-value ' + (failures === 0 ? '' : failures >= 3 ? 'warn' : '');
+    document.getElementById('degraded-banner').style.display =
+      d.degraded ? 'block' : 'none';
+
+    // Planned arcs
+    var ul = document.getElementById('arcs');
+    ul.innerHTML = '';
+    (d.planned_arcs || []).forEach(function(a) {
+      var li = document.createElement('li');
+      li.textContent = a;
+      ul.appendChild(li);
+    });
+
+    var balanceBody = document.getElementById('balance-body');
+    var balanceSummary = document.getElementById('balance-summary');
+    balanceBody.innerHTML = '';
+    var balance = d.balance_summary || {};
+    var counts = balance.counts || {};
+    var targets = balance.targets || d.evolution_targets || {};
+    Object.keys(CATEGORY_LABELS).forEach(function(key) {
+      var tr = document.createElement('tr');
+      tr.innerHTML =
+        '<td>' + CATEGORY_LABELS[key] + '</td>' +
+        '<td><span class="pill">' + (targets[key] || 0) + '%</span></td>' +
+        '<td>' + (counts[key] || 0) + '</td>';
+      balanceBody.appendChild(tr);
+    });
+    var preferred = (balance.preferred_next || []).map(function(k){ return CATEGORY_LABELS[k] || k; });
+    balanceSummary.textContent = preferred.length
+      ? 'Next attention areas: ' + preferred.join(', ')
+      : 'Balance targets active.';
+
+    // Teasers
+    var ts = document.getElementById('teasers-section');
+    ts.innerHTML = '';
+    (d.teasers || []).forEach(function(t) {
+      var div = document.createElement('div');
+      div.className = 'teaser';
+      div.textContent = (t.eta_days <= 1 ? '🔥 ' : '⏳ ') + t.message;
+      ts.appendChild(div);
+    });
+
+    // Timers
+    _nextTime  = d.next_evolution_time  && d.next_evolution_time  !== 'pending' ? new Date(d.next_evolution_time).getTime()  : null;
+    _startTime = d.agent_start_time     && d.agent_start_time     !== 'pending' ? new Date(d.agent_start_time).getTime()     : null;
+    _lastStarted  = d.last_evolution_started_time  && d.last_evolution_started_time  !== 'pending' ? new Date(d.last_evolution_started_time).getTime()  : null;
+    _lastFinished = d.last_evolution_finished_time && d.last_evolution_finished_time !== 'pending' ? new Date(d.last_evolution_finished_time).getTime() : null;
+    tick();
+
+  } catch(e) {
+    document.getElementById('countdown').textContent = 'offline';
+    document.getElementById('generated-at').textContent = 'Cannot reach agent data';
+  }
+}
+
+load();
+setInterval(tick, 1000);
+setInterval(load, 60000);
+</script>
+</body>
+</html>
