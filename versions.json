@@ -1,15 +1,6 @@
 {
   "versions": [
     {
-      "version": "v0.031",
-      "label": "Apr 07, 2026",
-      "captured_at": "2026-04-07T04:57:00+00:00",
-      "url": "history/v0.031/index.html",
-      "title": "PongV1000 \u2014 Living Roadmap",
-      "description": "Enhanced gameplay with smoother ball speed, power-ups, richer visuals, and dynamic AI difficulty.",
-      "is_current": false
-    },
-    {
       "version": "v0.032",
       "label": "Apr 07, 2026",
       "captured_at": "2026-04-07T06:37:00+00:00",
@@ -74,11 +65,20 @@
     },
     {
       "version": "v0.039",
-      "label": "Live now",
-      "captured_at": "2026-04-07T14:14:56.319138+00:00",
-      "url": "index.html",
+      "label": "Apr 07, 2026",
+      "captured_at": "2026-04-07T10:24:00+00:00",
+      "url": "history/v0.039/index.html",
       "title": "Enhanced Pong with Dynamic Particles and Improved Gameplay",
       "description": "Particles react based on event type, enhancing gameplay visuals.",
+      "is_current": false
+    },
+    {
+      "version": "v0.040",
+      "label": "Live now",
+      "captured_at": "2026-04-07T14:24:29.347727+00:00",
+      "url": "index.html",
+      "title": "PongV1000",
+      "description": "Stable and polished Pong experience with improved AI difficulty.",
       "is_current": true
     }
   ]
