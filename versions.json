@@ -1,15 +1,6 @@
 {
   "versions": [
     {
-      "version": "v0.024",
-      "label": "Apr 06, 2026",
-      "captured_at": "2026-04-06T23:37:00+00:00",
-      "url": "history/v0.024/index.html",
-      "title": "Pong V1000",
-      "description": "Enhanced gameplay with dynamic AI difficulty, power-ups, and particle effects.",
-      "is_current": false
-    },
-    {
       "version": "v0.025",
       "label": "Apr 06, 2026",
       "captured_at": "2026-04-06T23:48:00+00:00",
@@ -74,11 +65,20 @@
     },
     {
       "version": "v0.032",
-      "label": "Live now",
-      "captured_at": "2026-04-07T08:57:36.990148+00:00",
-      "url": "index.html",
+      "label": "Apr 07, 2026",
+      "captured_at": "2026-04-07T06:37:00+00:00",
+      "url": "history/v0.032/index.html",
       "title": "Pong V1000",
       "description": "Enhanced AI difficulty, richer visuals, and power-ups.",
+      "is_current": false
+    },
+    {
+      "version": "v0.033",
+      "label": "Live now",
+      "captured_at": "2026-04-07T10:38:08.946318+00:00",
+      "url": "index.html",
+      "title": "Enhanced Pong Experience",
+      "description": "Added power-ups, refined AI, and enhanced visuals.",
       "is_current": true
     }
   ]
