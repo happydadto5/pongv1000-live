@@ -19,10 +19,10 @@
         oscillator.type = type === 'powerup' ? 'sawtooth' : 'square';
         oscillator.frequency.setValueAtTime(880, context.currentTime);
         oscillator.frequency.exponentialRampToValueAtTime(440, context.currentTime + 1);
-        
+    
         gainNode.gain.setValueAtTime(0.1, context.currentTime);
         gainNode.gain.exponentialRampToValueAtTime(0.001, context.currentTime + 1);
-        
+    
         oscillator.connect(gainNode).connect(context.destination);
         oscillator.start();
         oscillator.stop(context.currentTime + 1);
@@ -42,16 +42,44 @@
 
     // Particle system
     const particles = [];
-    function createParticles(x, y) {
+    function createParticles(x, y, type) {
         for (let i = 0; i < 10; i++) {
             particles.push({
                 x: x,
                 y: y,
                 vx: (Math.random() - 0.5) * 4,
                 vy: (Math.random() - 0.5) * 4,
-                alpha: 1
+                alpha: 1,
+                type: type
             });
         }
+    }
+
+    // Obstacle system
+    let obstacles = [];
+    function createObstacles() {
+        const pattern = [
+            {x: Math.random() * canvas.width, y: Math.random() * canvas.height},
+            {x: Math.random() * canvas.width, y: Math.random() * canvas.height},
+            {x: Math.random() * canvas.width, y: Math.random() * canvas.height}
+        ];
+        pattern.forEach((point) => {
+            obstacles.push({
+                x: point.x,
+                y: point.y,
+                width: 20,
+                height: 20,
+                speedX: Math.random() - 0.5,
+                type: 'default'
+            });
+        });
+    }
+
+    function drawObstacles() {
+        obstacles.forEach((obstacle) => {
+            ctx.fillStyle = obstacle.type === 'powerup' ? '#ff6f61' : '#6f6f6f';
+            ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
+        });
     }
 
     // Score system
@@ -68,6 +96,10 @@
     const paddleHeight = 100;
     const paddleWidth = 10;
     const ballRadius = 10;
+
+    // AI difficulty
+    let aiSpeedMultiplier = 1;
+    let lastPlayerScore = playerScore;
 
     // Keyboard and mouse controls
     document.addEventListener('keydown', (e) => {
@@ -92,95 +124,76 @@
 
     // Update game state
     function update() {
-        // Move paddles
         clampPaddles();
 
-        // Move ball
         ballX += ballSpeedX;
         ballY += ballSpeedY;
 
-        // Ball collision with top/bottom
-        if (ballY - ballRadius < 0 || ballY + ballRadius > canvas.height) {
-            ballSpeedY = -ballSpeedY;
-            createParticles(ballX, ballY);
-            playSound('collision');
+        obstacles.forEach((obstacle) => {
+            obstacle.x += obstacle.speedX;
+            if (obstacle.x < 0 || obstacle.x > canvas.width) obstacle.speedX *= -1;
+        });
+
+        if (ballX + ballRadius > canvas.width || ballX - ballRadius < 0) ballSpeedX *= -1;
+        if (ballY + ballRadius > canvas.height || ballY - ballRadius < 0) {
+            ballSpeedY *= -1;
+            if (ballY < 0) aiScore++;
+            else playerScore++;
         }
 
-        // Ball collision with paddles
-        if (ballX - ballRadius < paddleWidth && 
-            ballY > leftPaddleY && 
-            ballY < leftPaddleY + paddleHeight) {
-            ballSpeedX = -ballSpeedX;
-            createParticles(ballX, ballY);
-            playSound('collision');
-        } else if (ballX + ballRadius > canvas.width - paddleWidth && 
-                   ballY > rightPaddleY && 
-                   ballY < rightPaddleY + paddleHeight) {
-            ballSpeedX = -ballSpeedX;
-            createParticles(ballX, ballY);
-            playSound('collision');
-        }
+        if (obstacles.some((obstacle) => {
+            return Math.abs(ballX - obstacle.x) < 25 && Math.abs(ballY - obstacle.y) < 25;
+        })) ballSpeedX *= -1;
 
-        // Ball out of bounds
-        if (ballX + ballRadius < 0 || ballX - ballRadius > canvas.width) {
-            resetBall();
+        if (Math.abs(ballX - rightPaddleX) < 10 && Math.abs(ballY - rightPaddleY) < paddleHeight / 2) ballSpeedX *= -1;
+        if (Math.abs(ballX - leftPaddleX) < 10 && Math.abs(ballY - leftPaddleY) < paddleHeight / 2) ballSpeedX *= -1;
+
+        if (playerScore >= 5 || aiScore >= 5) {
+            resetGame();
         }
     }
 
-    function resetBall() {
+    function resetGame() {
         ballX = canvas.width / 2;
         ballY = canvas.height / 2;
-        ballSpeedX = ballSpeedX * -1;
-        ballSpeedY = (Math.random() < 0.5 ? -1 : 1) * (Math.floor(Math.random() * 3) + 2);
+        ballSpeedX = 5;
+        ballSpeedY = 3;
+        playerScore = 0;
+        aiScore = 0;
     }
 
-    // Render game state
-    function render() {
+    function draw() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        // Draw paddles and ball
         ctx.fillStyle = 'white';
-        ctx.fillRect(0, leftPaddleY, paddleWidth, paddleHeight);
-        ctx.fillRect(canvas.width - paddleWidth, rightPaddleY, paddleWidth, paddleHeight);
+        ctx.fillRect(leftPaddleX, leftPaddleY, paddleWidth, paddleHeight);
+        ctx.fillRect(rightPaddleX, rightPaddleY, paddleWidth, paddleHeight);
         ctx.beginPath();
         ctx.arc(ballX, ballY, ballRadius, 0, Math.PI * 2);
-        ctx.fillStyle = 'red';
         ctx.fill();
-
-        // Draw scores
+        obstacles.forEach((obstacle) => {
+            ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
+        });
+        ctx.fillStyle = 'black';
         ctx.font = '30px Arial';
-        ctx.fillStyle = 'white';
-        ctx.fillText(playerScore, canvas.width / 4, 50);
-        ctx.fillText(aiScore, (canvas.width * 3) / 4, 50);
-
-        // Draw particles
-        for (let i = particles.length - 1; i >= 0; i--) {
-            ctx.beginPath();
-            ctx.arc(particles[i].x, particles[i].y, ballRadius / 2, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(255, 255, 255, ${particles[i].alpha})`;
-            ctx.fill();
-
-            // Update particle positions and alpha
-            particles[i].x += particles[i].vx;
-            particles[i].y += particles[i].vy;
-            particles[i].alpha -= 0.01;
-
-            if (particles[i].alpha <= 0) {
-                particles.splice(i, 1);
-            }
-        }
+        ctx.fillText('Player: ' + playerScore, 10, canvas.height - 10);
+        ctx.fillText('AI: ' + aiScore, canvas.width - 80, canvas.height - 10);
     }
 
-    // Game loop
     function gameLoop() {
         update();
-        render();
+        draw();
         requestAnimationFrame(gameLoop);
     }
 
-    // Start game loop
-    gameLoop();
+    let leftPaddleX = 50;
+    let rightPaddleX = canvas.width - paddleWidth - 50;
 
-    // Initial ball reset
-    resetBall();
+    setInterval(createObstacles, 2000);
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowUp') leftPaddleY -= 10;
+        if (e.key === 'ArrowDown') leftPaddleY += 10;
+    });
+
+    gameLoop();
 })();

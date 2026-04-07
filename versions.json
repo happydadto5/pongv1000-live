@@ -1,15 +1,6 @@
 {
   "versions": [
     {
-      "version": "v0.021",
-      "label": "Apr 06, 2026",
-      "captured_at": "2026-04-06T22:08:00+00:00",
-      "url": "history/v0.021/index.html",
-      "title": "Game Title Here",
-      "description": "Enhanced gameplay with dynamic AI difficulty and scoring effects.",
-      "is_current": false
-    },
-    {
       "version": "v0.022",
       "label": "Apr 06, 2026",
       "captured_at": "2026-04-06T22:16:00+00:00",
@@ -74,11 +65,20 @@
     },
     {
       "version": "v0.029",
-      "label": "Live now",
-      "captured_at": "2026-04-07T05:39:11.038977+00:00",
-      "url": "index.html",
+      "label": "Apr 06, 2026",
+      "captured_at": "2026-04-07T01:47:00+00:00",
+      "url": "history/v0.029/index.html",
       "title": "PongV1000",
       "description": "Enhanced obstacles, gameplay mechanics, and AI difficulty.",
+      "is_current": false
+    },
+    {
+      "version": "v0.030",
+      "label": "Live now",
+      "captured_at": "2026-04-07T05:48:05.936188+00:00",
+      "url": "index.html",
+      "title": "PongV1000 \u2014 Classic Pong with Obstacles and Improved AI",
+      "description": "Enhanced gameplay with obstacle patterns and dynamic AI difficulty.",
       "is_current": true
     }
   ]
