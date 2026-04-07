@@ -59,7 +59,7 @@
         particles.forEach((particle, index) => {
             ctx.save();
             ctx.globalAlpha = particle.alpha;
-            const size = Math.random() * 10 + (type === 'powerup' ? 5 : 2); // Dynamic size based on event type
+            const size = Math.random() * 10 + (particle.type === 'powerup' ? 5 : 2); // Dynamic size based on event type
             const color = particle.type === 'powerup' ? '#ff6f61' : '#800';
             ctx.fillStyle = color;
             ctx.beginPath();
@@ -137,13 +137,15 @@
     // Draw paddles
     function drawPaddles() {
         ctx.fillStyle = '#ffffff'; // Corrected fillStyle color
-        const paddleWidth = 20;
+        const paddleWidth = 10;
         const paddleHeight = 100;
-        const leftPaddle = {x: 16, y: canvas.height / 2 - paddleHeight / 2};
-        const rightPaddle = {x: canvas.width - paddleWidth - 16, y: canvas.height / 2 - paddleHeight / 2};
+        const paddleX = canvas.width - paddleWidth - 10;
 
-        ctx.fillRect(leftPaddle.x, leftPaddle.y, paddleWidth, paddleHeight);
-        ctx.fillRect(rightPaddle.x, rightPaddle.y, paddleWidth, paddleHeight);
+        // Left paddle
+        ctx.fillRect(10, (canvas.height / 2) - (paddleHeight / 2), paddleWidth, paddleHeight);
+
+        // Right paddle
+        ctx.fillRect(paddleX, (canvas.height / 2) - (paddleHeight / 2), paddleWidth, paddleHeight);
     }
 
     // Start game loop

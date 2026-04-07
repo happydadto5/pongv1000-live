@@ -59,10 +59,11 @@
         particles.forEach((particle, index) => {
             ctx.save();
             ctx.globalAlpha = particle.alpha;
+            const size = Math.random() * 10 + (particle.type === 'powerup' ? 5 : 2); // Dynamic size based on event type
             const color = particle.type === 'powerup' ? '#ff6f61' : '#800';
             ctx.fillStyle = color;
             ctx.beginPath();
-            ctx.arc(particle.x, particle.y, Math.random() * 5 + 2, 0, Math.PI * 2);
+            ctx.arc(particle.x, particle.y, size, 0, Math.PI * 2);
             ctx.fill();
             ctx.restore();
 
@@ -98,96 +99,55 @@
     }
 
     function drawObstacles() {
-        obstacles.forEach((obstacle) => {
+        obstacles.forEach((obstacle, index) => {
             ctx.fillStyle = '#ff0000';
             ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
+            // Update obstacle properties
+            obstacle.x += obstacle.speedX;
+            if (obstacle.x + obstacle.width < 0 || obstacle.x > canvas.width) {
+                obstacles.splice(index, 1);
+            }
         });
     }
 
-    // Paddle movement
-    const paddleMargin = 16;
-    function movePaddle(event) {
-        const rect = canvas.getBoundingClientRect();
-        if (event.type === 'touchstart' || event.type === 'touchmove') {
-            const touchX = event.touches[0].clientX - rect.left;
-            player.paddle.x = Math.max(paddleMargin, Math.min(canvas.width - paddleWidth - paddleMargin, touchX));
-        } else if (event.type === 'mousemove') {
-            player.paddle.x = Math.max(paddleMargin, Math.min(canvas.width - paddleWidth - paddleMargin, event.clientX - rect.left));
-        }
-    }
-
-    canvas.addEventListener('touchstart', movePaddle);
-    canvas.addEventListener('touchmove', movePaddle);
-    document.addEventListener('mousemove', movePaddle);
-
-    // Game loop
+    // Main game loop
     function gameLoop() {
-        const startTime = performance.now();
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         drawParticles();
         drawObstacles();
-        drawPaddles();
+        drawPaddles(); // Draw paddles in the game loop
 
         requestAnimationFrame(gameLoop);
+    }
 
-        const elapsedTime = performance.now() - startTime;
-        if (elapsedTime < 16.67) {
-            setTimeout(() => gameLoop(), 16.67 - elapsedTime);
+    // Handle events
+    function handleEvent(event) {
+        if (event.type === 'click') {
+            createParticles(event.clientX, event.clientY, 'powerup');
+        } else if (event.type === 'touchstart') {
+            const touch = event.touches[0];
+            createParticles(touch.clientX, touch.clientY, 'powerup');
         }
     }
 
-    // Initialize paddles and ball
-    const paddleWidth = 20;
-    const paddleHeight = 100;
-    const leftPaddle = {x: paddleMargin, y: canvas.height / 2 - paddleHeight / 2};
-    const rightPaddle = {x: canvas.width - paddleMargin - paddleWidth, y: canvas.height / 2 - paddleHeight / 2};
+    // Add event listeners
+    canvas.addEventListener('click', handleEvent);
+    canvas.addEventListener('touchstart', handleEvent);
 
     // Draw paddles
     function drawPaddles() {
         ctx.fillStyle = '#ffffff'; // Corrected fillStyle color
-        ctx.fillRect(leftPaddle.x, leftPaddle.y, paddleWidth, paddleHeight);
-        ctx.fillRect(rightPaddle.x, rightPaddle.y, paddleWidth, paddleHeight);
+        const paddleWidth = 10;
+        const paddleHeight = 100;
+        const paddleX = canvas.width - paddleWidth - 10;
+
+        // Left paddle
+        ctx.fillRect(10, (canvas.height / 2) - (paddleHeight / 2), paddleWidth, paddleHeight);
+
+        // Right paddle
+        ctx.fillRect(paddleX, (canvas.height / 2) - (paddleHeight / 2), paddleWidth, paddleHeight);
     }
 
+    // Start game loop
     gameLoop();
-
-    // Player setup
-    const player = {
-        paddle: {
-            width: 20,
-            height: 100,
-            x: canvas.width / 2 - 10,
-            y: canvas.height / 2 - 50,
-            vy: 0,
-            speed: 8
-        }
-    };
-
-    // Input handling
-    function handleInput() {
-        const keys = {};
-        window.addEventListener('keydown', (e) => keys[e.key] = true);
-        window.addEventListener('keyup', (e) => delete keys[e.key]);
-        return () => keys;
-    }
-
-    const isKeyPressed = handleInput();
-
-    requestAnimationFrame(() => {
-        if (isKeyPressed().ArrowLeft || isKeyPressed().A) {
-            player.paddle.x -= 5;
-        }
-        if (isKeyPressed().ArrowRight || isKeyPressed().D) {
-            player.paddle.x += 5;
-        }
-        gameLoop();
-    });
-
-    // Handle clicks to create particles and obstacles
-    canvas.addEventListener('click', (event) => {
-        const rect = canvas.getBoundingClientRect();
-        const x = event.clientX - rect.left;
-        const y = event.clientY;
-        createParticles(x, y, 'powerup');
-    });
 })();
