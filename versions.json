@@ -1,15 +1,6 @@
 {
   "versions": [
     {
-      "version": "v0.051",
-      "label": "Apr 07, 2026",
-      "captured_at": "2026-04-07T16:44:00+00:00",
-      "url": "history/v0.051/index.html",
-      "title": "Pong Evolution",
-      "description": "Enhanced gameplay with dynamic particle effects based on event type.",
-      "is_current": false
-    },
-    {
       "version": "v0.052",
       "label": "Apr 07, 2026",
       "captured_at": "2026-04-07T17:04:00+00:00",
@@ -74,11 +65,20 @@
     },
     {
       "version": "v0.059",
-      "label": "Live now",
-      "captured_at": "2026-04-07T22:44:14.814912+00:00",
-      "url": "index.html",
+      "label": "Apr 07, 2026",
+      "captured_at": "2026-04-07T19:13:00+00:00",
+      "url": "history/v0.059/index.html",
       "title": "PongV1000 - Enhanced Gameplay",
       "description": "Improved particle effects based on event type and enhanced AI behavior.",
+      "is_current": false
+    },
+    {
+      "version": "v0.060",
+      "label": "Live now",
+      "captured_at": "2026-04-07T23:14:24.003271+00:00",
+      "url": "index.html",
+      "title": "PongV1000 \u2014 Living Roadmap",
+      "description": "Enhanced gameplay with dynamic paddles and more to come.",
       "is_current": true
     }
   ]

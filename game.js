@@ -32,10 +32,11 @@
     const canvas = document.getElementById('gameCanvas');
     const ctx = canvas.getContext('2d');
 
-    // Resize canvas
+    // Resize canvas and paddles
     function resizeCanvas() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
+        drawPaddles(); // Recreate paddles when resizing
     }
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
@@ -110,30 +111,6 @@
         });
     }
 
-    // Main game loop
-    function gameLoop() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        drawParticles();
-        drawObstacles();
-        drawPaddles(); // Draw paddles in the game loop
-
-        requestAnimationFrame(gameLoop);
-    }
-
-    // Handle events
-    function handleEvent(event) {
-        if (event.type === 'click') {
-            createParticles(event.clientX, event.clientY, 'powerup');
-        } else if (event.type === 'touchstart') {
-            const touch = event.touches[0];
-            createParticles(touch.clientX, touch.clientY, 'powerup');
-        }
-    }
-
-    // Add event listeners
-    canvas.addEventListener('click', handleEvent);
-    canvas.addEventListener('touchstart', handleEvent);
-
     // Draw paddles
     function drawPaddles() {
         ctx.fillStyle = '#ffffff'; // Corrected fillStyle color
@@ -147,6 +124,40 @@
         ctx.fillRect(canvas.width - paddleWidth - 50, (canvas.height - paddleHeight) / 2, paddleWidth, paddleHeight);
     }
 
+    // Main game loop
+    function gameLoop() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawParticles();
+        drawObstacles();
+        drawPaddles(); // Draw paddles in the game loop
+
+        requestAnimationFrame(gameLoop);
+    }
+
+    // Handle events
+    function handleEvent(event) {
+        const rect = canvas.getBoundingClientRect();
+        let mouseY = event.clientY - rect.top;
+
+        if (event.type === 'mousedown' || event.type === 'touchstart') {
+            // Left paddle control
+            if (mouseY > 0 && mouseY < canvas.height) {
+                // Adjust logic as needed based on actual game mechanics
+            }
+        } else if (event.type === 'mouseup' || event.type === 'touchend') {
+            // Reset paddle position or other logic
+        }
+    }
+
+    canvas.addEventListener('mousedown', handleEvent);
+    canvas.addEventListener('mousemove', handleEvent);
+    canvas.addEventListener('mouseup', handleEvent);
+    canvas.addEventListener('touchstart', handleEvent);
+    canvas.addEventListener('touchmove', handleEvent);
+    canvas.addEventListener('touchend', handleEvent);
+
     // Initialize game
+    createObstacles();
+    drawPaddles();
     gameLoop();
 })();
