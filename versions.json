@@ -1,15 +1,6 @@
 {
   "versions": [
     {
-      "version": "v0.039",
-      "label": "Apr 07, 2026",
-      "captured_at": "2026-04-07T10:24:00+00:00",
-      "url": "history/v0.039/index.html",
-      "title": "Enhanced Pong with Dynamic Particles and Improved Gameplay",
-      "description": "Particles react based on event type, enhancing gameplay visuals.",
-      "is_current": false
-    },
-    {
       "version": "v0.040",
       "label": "Apr 07, 2026",
       "captured_at": "2026-04-07T11:44:00+00:00",
@@ -74,8 +65,17 @@
     },
     {
       "version": "v0.047",
+      "label": "Apr 07, 2026",
+      "captured_at": "2026-04-07T14:44:00+00:00",
+      "url": "history/v0.047/index.html",
+      "title": "Game Title Here",
+      "description": "One sentence description",
+      "is_current": false
+    },
+    {
+      "version": "v0.048",
       "label": "Live now",
-      "captured_at": "2026-04-07T18:34:59.181923+00:00",
+      "captured_at": "2026-04-07T18:45:15.070879+00:00",
       "url": "index.html",
       "title": "Game Title Here",
       "description": "One sentence description",

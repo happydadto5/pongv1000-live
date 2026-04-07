@@ -92,14 +92,14 @@
                 width: 20,
                 height: 20,
                 speedX: Math.random() - 0.5,
-                type: 'default'
+                type: 'obstacle'
             });
         });
     }
 
     function drawObstacles() {
         obstacles.forEach((obstacle) => {
-            ctx.fillStyle = obstacle.type === 'powerup' ? '#ff6f61' : '#800';
+            ctx.fillStyle = '#ff0000';
             ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
         });
     }
@@ -183,18 +183,13 @@
         gameLoop();
     });
 
-    // Event listeners for creating particles
+    // Handle clicks to create particles and obstacles
     canvas.addEventListener('click', (event) => {
         const rect = canvas.getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
-        createParticles(x, y, 'powerup');
-    });
 
-    window.addEventListener('mousemove', (event) => {
-        const rect = canvas.getBoundingClientRect();
-        const x = event.clientX - rect.left;
-        const y = event.clientY - rect.top;
-        createParticles(x, y, 'normal');
+        createParticles(x, y, 'powerup');
+        createObstacles();
     });
 })();
