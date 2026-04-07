@@ -1,6 +1,6 @@
 {
-  "version": "0.041",
-  "title": "Stable and Polished Pong Experience with Enhanced AI and Dynamic Effects",
-  "description": "Enhanced gameplay experience with dynamic particle effects and refined AI difficulty.",
-  "evolution_count": 40
+  "version": "0.042",
+  "title": "Pong Evolution 42",
+  "description": "Enhanced particle effects based on event type.",
+  "evolution_count": 41
 }

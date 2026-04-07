@@ -1,15 +1,6 @@
 {
   "versions": [
     {
-      "version": "v0.033",
-      "label": "Apr 07, 2026",
-      "captured_at": "2026-04-07T07:56:00+00:00",
-      "url": "history/v0.033/index.html",
-      "title": "Enhanced Pong Experience",
-      "description": "Added power-ups, refined AI, and enhanced visuals.",
-      "is_current": false
-    },
-    {
       "version": "v0.034",
       "label": "Apr 07, 2026",
       "captured_at": "2026-04-07T08:24:00+00:00",
@@ -74,11 +65,20 @@
     },
     {
       "version": "v0.041",
-      "label": "Live now",
-      "captured_at": "2026-04-07T15:44:58.708008+00:00",
-      "url": "index.html",
+      "label": "Apr 07, 2026",
+      "captured_at": "2026-04-07T12:24:00+00:00",
+      "url": "history/v0.041/index.html",
       "title": "Stable and Polished Pong Experience with Enhanced AI and Dynamic Effects",
       "description": "Enhanced gameplay experience with dynamic particle effects and refined AI difficulty.",
+      "is_current": false
+    },
+    {
+      "version": "v0.042",
+      "label": "Live now",
+      "captured_at": "2026-04-07T16:24:55.731386+00:00",
+      "url": "index.html",
+      "title": "Pong Evolution 42",
+      "description": "Enhanced particle effects based on event type.",
       "is_current": true
     }
   ]
