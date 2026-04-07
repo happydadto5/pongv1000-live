@@ -1,24 +1,29 @@
 {
   "agent_start_time": "2026-04-05T17:52:38.912886+00:00",
-  "last_evolution_time": "2026-04-07T14:14:50.620392+00:00",
-  "last_evolution_started_time": "2026-04-07T14:23:24.583901+00:00",
-  "last_evolution_finished_time": "2026-04-07T14:14:50.620392+00:00",
-  "next_evolution_time": "2026-04-07T14:34:24.007245+00:00",
+  "last_evolution_time": "2026-04-07T15:34:23.439561+00:00",
+  "last_evolution_started_time": "2026-04-07T15:43:24.650224+00:00",
+  "last_evolution_finished_time": "2026-04-07T15:34:23.439561+00:00",
+  "next_evolution_time": "2026-04-07T15:54:24.682113+00:00",
   "evolution_interval_minutes": 10,
   "daytime_interval_minutes": 10,
   "nighttime_interval_minutes": 10,
   "time_period": "daytime",
-  "current_version": "0.040",
-  "current_title": "PongV1000",
-  "current_description": "Stable and polished Pong experience with improved AI difficulty.",
-  "total_evolutions": 39,
+  "current_version": "0.041",
+  "current_title": "Stable and Polished Pong Experience with Enhanced AI and Dynamic Effects",
+  "current_description": "Enhanced gameplay experience with dynamic particle effects and refined AI difficulty.",
+  "total_evolutions": 40,
   "planned_arcs": [
     "Refine AI difficulty further to maintain an optimal challenge level for players.",
     "Enhance user interface elements for better player experience.",
     "Polish performance and stability issues."
   ],
-  "teasers": [],
-  "last_focus_area": "stability_performance",
+  "teasers": [
+    {
+      "message": "Dynamic particle effects now add a new layer of visual excitement to the game!",
+      "eta_days": 1
+    }
+  ],
+  "last_focus_area": "audio_feedback",
   "long_term_steering": "",
   "evolution_targets": {
     "gameplay_improvements": 20,
@@ -45,16 +50,16 @@
       "gameplay_improvements": 13,
       "creative_evolution": 8,
       "visuals_theme": 6,
-      "audio_feedback": 2,
+      "audio_feedback": 3,
       "controls_accessibility": 8,
       "stability_performance": 2,
       "documentation_status": 1,
       "roadmap_review_planning": 0
     },
-    "total": 40,
+    "total": 41,
     "preferred_next": [
-      "stability_performance",
       "documentation_status",
+      "stability_performance",
       "roadmap_review_planning"
     ],
     "overrepresented": [
@@ -65,8 +70,8 @@
   "game_url": "index.html",
   "consecutive_failures": 0,
   "degraded": false,
-  "last_evolution_success": true,
-  "last_error": "",
-  "generated_at": "2026-04-07T14:24:24.008748+00:00",
+  "last_evolution_success": false,
+  "last_error": "Smoke test: Console errors: drawPaddles is not defined",
+  "generated_at": "2026-04-07T15:44:24.684039+00:00",
   "cooldown_until": ""
 }
