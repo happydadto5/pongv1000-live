@@ -92,7 +92,7 @@
                 y: point.y,
                 width: 20,
                 height: 20,
-                speedX: Math.random() - 0.5,
+                speedX: (Math.random() - 0.5) * 2, // Increased speed
                 type: 'obstacle'
             });
         });
@@ -138,16 +138,16 @@
     function drawPaddles() {
         ctx.fillStyle = '#ffffff'; // Corrected fillStyle color
         const paddleWidth = 10;
-        const paddleHeight = 100;
-        const paddleX = canvas.width - paddleWidth - 10;
+        const paddleHeight = 80;
 
         // Left paddle
-        ctx.fillRect(10, (canvas.height / 2) - (paddleHeight / 2), paddleWidth, paddleHeight);
+        ctx.fillRect(50, (canvas.height - paddleHeight) / 2, paddleWidth, paddleHeight);
 
         // Right paddle
-        ctx.fillRect(paddleX, (canvas.height / 2) - (paddleHeight / 2), paddleWidth, paddleHeight);
+        ctx.fillRect(canvas.width - 50 - paddleWidth, (canvas.height - paddleHeight) / 2, paddleWidth, paddleHeight);
     }
 
-    // Start game loop
+    // Initialize game state
+    createObstacles();
     gameLoop();
 })();
