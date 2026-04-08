@@ -1,15 +1,6 @@
 {
   "versions": [
     {
-      "version": "v0.059",
-      "label": "Apr 07, 2026",
-      "captured_at": "2026-04-07T19:13:00+00:00",
-      "url": "history/v0.059/index.html",
-      "title": "PongV1000 - Enhanced Gameplay",
-      "description": "Improved particle effects based on event type and enhanced AI behavior.",
-      "is_current": false
-    },
-    {
       "version": "v0.060",
       "label": "Apr 07, 2026",
       "captured_at": "2026-04-07T19:24:00+00:00",
@@ -74,8 +65,17 @@
     },
     {
       "version": "v0.067",
+      "label": "Apr 07, 2026",
+      "captured_at": "2026-04-07T21:57:00+00:00",
+      "url": "history/v0.067/index.html",
+      "title": "Game Title Here",
+      "description": "One sentence description",
+      "is_current": false
+    },
+    {
+      "version": "v0.068",
       "label": "Live now",
-      "captured_at": "2026-04-08T01:46:13.112227+00:00",
+      "captured_at": "2026-04-08T01:59:26.532264+00:00",
       "url": "index.html",
       "title": "Game Title Here",
       "description": "One sentence description",
