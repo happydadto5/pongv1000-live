@@ -1,36 +1,22 @@
 {
   "agent_start_time": "2026-04-05T17:52:38.912886+00:00",
-  "last_evolution_time": "2026-04-08T01:59:23.542463+00:00",
-  "last_evolution_started_time": "2026-04-08T02:04:51.268651+00:00",
-  "last_evolution_finished_time": "2026-04-08T01:59:23.542463+00:00",
-  "next_evolution_time": "2026-04-08T02:15:27.729646+00:00",
+  "last_evolution_time": "2026-04-08T02:05:45.025206+00:00",
+  "last_evolution_started_time": "2026-04-08T21:44:59.867367+00:00",
+  "last_evolution_finished_time": "2026-04-08T02:05:45.025206+00:00",
+  "next_evolution_time": "2026-04-08T22:16:44.918683+00:00",
   "evolution_interval_minutes": 10,
   "daytime_interval_minutes": 10,
   "nighttime_interval_minutes": 10,
   "time_period": "daytime",
-  "current_version": "0.069",
+  "current_version": "0.070",
   "current_title": "Game Title Here",
   "current_description": "One sentence description",
-  "total_evolutions": 68,
+  "total_evolutions": 69,
   "planned_arcs": [
     "Enhance AI paddle behavior with dynamic movement patterns.",
-    "Introduce power-up mechanics that grant temporary advantages.",
     "Optimize game loop performance for better mobile compatibility."
   ],
-  "teasers": [
-    {
-      "message": "Enhanced particle effects based on event types!",
-      "eta_days": 1
-    },
-    {
-      "message": "AI paddle behavior getting smarter!",
-      "eta_days": 2
-    },
-    {
-      "message": "Optimizing game loop for better mobile performance.",
-      "eta_days": 3
-    }
-  ],
+  "teasers": [],
   "last_focus_area": "creative_evolution",
   "long_term_steering": "",
   "evolution_targets": {
@@ -56,7 +42,7 @@
     },
     "counts": {
       "gameplay_improvements": 23,
-      "creative_evolution": 11,
+      "creative_evolution": 12,
       "visuals_theme": 11,
       "audio_feedback": 12,
       "controls_accessibility": 9,
@@ -64,11 +50,11 @@
       "documentation_status": 1,
       "roadmap_review_planning": 0
     },
-    "total": 69,
+    "total": 70,
     "preferred_next": [
       "documentation_status",
       "stability_performance",
-      "creative_evolution"
+      "roadmap_review_planning"
     ],
     "overrepresented": [
       "gameplay_improvements",
@@ -80,6 +66,6 @@
   "degraded": false,
   "last_evolution_success": true,
   "last_error": "",
-  "generated_at": "2026-04-08T02:05:27.731242+00:00",
+  "generated_at": "2026-04-08T22:06:44.920252+00:00",
   "cooldown_until": ""
 }
