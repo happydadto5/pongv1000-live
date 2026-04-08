@@ -133,41 +133,60 @@
 
         requestAnimationFrame(gameLoop);
     }
-
-    // Event listeners for controls
-    document.addEventListener('keydown', (event) => {
-        switch (event.key) {
-            case 'ArrowUp':
-                // Move left paddle up
-                break;
-            case 'ArrowDown':
-                // Move left paddle down
-                break;
-            case 'w':
-                // Move right paddle up
-                break;
-            case 's':
-                // Move right paddle down
-                break;
-        }
-    });
-
-    document.addEventListener('keyup', (event) => {
-        switch (event.key) {
-            case 'ArrowUp':
-                // Stop left paddle moving up
-                break;
-            case 'ArrowDown':
-                // Stop left paddle moving down
-                break;
-            case 'w':
-                // Stop right paddle moving up
-                break;
-            case 's':
-                // Stop right paddle moving down
-                break;
-        }
-    });
-
     gameLoop();
+
+    // Touch controls for Android
+    if ('ontouchstart' in window) {
+        let touchY = 0;
+        canvas.addEventListener('touchstart', (e) => {
+            touchY = e.touches[0].clientY;
+        });
+        canvas.addEventListener('touchmove', (e) => {
+            const deltaY = touchY - e.touches[0].clientY;
+            touchY = e.touches[0].clientY;
+
+            const paddleHeight = 80;
+            const halfPaddleHeight = paddleHeight / 2;
+            const paddleY = (canvas.height - paddleHeight) / 2 + deltaY;
+
+            if (paddleY < halfPaddleHeight) {
+                ctx.fillRect(50, 0, 10, paddleHeight);
+            } else if (paddleY > canvas.height - halfPaddleHeight) {
+                ctx.fillRect(50, canvas.height - paddleHeight, 10, paddleHeight);
+            } else {
+                ctx.fillRect(50, paddleY, 10, paddleHeight);
+            }
+        });
+    }
+
+    // Controls for desktop
+    let mouseDown = false;
+    let mouseY = 0;
+
+    canvas.addEventListener('mousedown', (e) => {
+        mouseDown = true;
+        mouseY = e.clientY;
+    });
+    canvas.addEventListener('mousemove', (e) => {
+        if (!mouseDown) return;
+
+        const deltaY = mouseY - e.clientY;
+        mouseY = e.clientY;
+
+        const paddleHeight = 80;
+        const halfPaddleHeight = paddleHeight / 2;
+        const paddleY = (canvas.height - paddleHeight) / 2 + deltaY;
+
+        if (paddleY < halfPaddleHeight) {
+            ctx.fillRect(50, 0, 10, paddleHeight);
+        } else if (paddleY > canvas.height - halfPaddleHeight) {
+            ctx.fillRect(50, canvas.height - paddleHeight, 10, paddleHeight);
+        } else {
+            ctx.fillRect(50, paddleY, 10, paddleHeight);
+        }
+    });
+    canvas.addEventListener('mouseup', () => {
+        mouseDown = false;
+    });
+
 })();
