@@ -1,15 +1,6 @@
 {
   "versions": [
     {
-      "version": "v0.060",
-      "label": "Apr 07, 2026",
-      "captured_at": "2026-04-07T19:24:00+00:00",
-      "url": "history/v0.060/index.html",
-      "title": "PongV1000 \u2014 Living Roadmap",
-      "description": "Enhanced gameplay with dynamic paddles and more to come.",
-      "is_current": false
-    },
-    {
       "version": "v0.061",
       "label": "Apr 07, 2026",
       "captured_at": "2026-04-07T20:05:00+00:00",
@@ -74,8 +65,17 @@
     },
     {
       "version": "v0.068",
+      "label": "Apr 07, 2026",
+      "captured_at": "2026-04-07T22:05:00+00:00",
+      "url": "history/v0.068/index.html",
+      "title": "Game Title Here",
+      "description": "One sentence description",
+      "is_current": false
+    },
+    {
+      "version": "v0.069",
       "label": "Live now",
-      "captured_at": "2026-04-08T01:59:26.532264+00:00",
+      "captured_at": "2026-04-08T02:05:48.467223+00:00",
       "url": "index.html",
       "title": "Game Title Here",
       "description": "One sentence description",

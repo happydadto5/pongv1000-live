@@ -91,23 +91,17 @@
             obstacles.push({
                 x: point.x,
                 y: point.y,
-                width: 20,
-                height: 20,
-                speedX: (Math.random() - 0.5) * 2, // Increased speed
-                type: 'obstacle'
+                width: 50 + Math.random() * 100, // Dynamic size based on screen size
+                height: 50 + Math.random() * 100,
+                speed: Math.random() * 2 + 1
             });
         });
     }
 
     function drawObstacles() {
-        obstacles.forEach((obstacle, index) => {
-            ctx.fillStyle = '#ff0000';
+        obstacles.forEach(obstacle => {
+            ctx.fillStyle = '#333';
             ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
-            // Update obstacle properties
-            obstacle.x += obstacle.speedX;
-            if (obstacle.x + obstacle.width < 0 || obstacle.x > canvas.width) {
-                obstacles.splice(index, 1);
-            }
         });
     }
 
@@ -124,7 +118,7 @@
         ctx.fillRect(canvas.width - paddleWidth - 50, (canvas.height - paddleHeight) / 2, paddleWidth, paddleHeight);
     }
 
-    // Main game loop
+    // Game loop
     function gameLoop() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         drawObstacles();
@@ -133,23 +127,22 @@
 
         requestAnimationFrame(gameLoop);
     }
+    gameLoop();
 
-    // Handle particle effects based on event type
-    function handleEvent(eventType) {
-        if (eventType === 'powerup') {
-            createParticles(event.x, event.y, 'powerup');
-        } else {
-            createParticles(event.x, event.y, 'default');
-        }
-    }
-
-    // Event listeners for dynamic particle effects
-    document.addEventListener('customEvent', function(event) {
-        handleEvent(event.detail.type);
+    // Mouse events for desktop
+    canvas.addEventListener('mousemove', (event) => {
+        const rect = canvas.getBoundingClientRect();
+        const mouseX = event.clientX - rect.left;
+        const mouseY = event.clientY - rect.top;
+        // Update paddle position based on mouse movement
     });
 
-    // Initialize game
-    createObstacles();
-    drawPaddles();
-    gameLoop();
+    // Touch events for mobile
+    canvas.addEventListener('touchmove', (event) => {
+        event.preventDefault();
+        const touch = event.touches[0];
+        const mouseX = touch.clientX;
+        const mouseY = touch.clientY;
+        // Update paddle position based on touch move
+    });
 })();
