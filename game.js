@@ -93,7 +93,7 @@
                 y: point.y,
                 width: 20,
                 height: 20,
-                speedX: (Math.random() - 0.5) * 2, // Increased speed
+                speedX: (Math.random() - 0.5) * 4, // Increased speed for dynamic movement
                 type: 'obstacle'
             });
         });
@@ -137,19 +137,55 @@
     // Handle particle effects based on event type
     function handleEvent(eventType) {
         if (eventType === 'powerup') {
-            createParticles(event.x, event.y, 'powerup');
-        } else {
-            createParticles(event.x, event.y, 'default');
+            playSound('powerup');
         }
+        createParticles(canvas.width / 2, canvas.height / 2, eventType);
     }
 
-    // Event listeners for dynamic particle effects
-    document.addEventListener('customEvent', function(event) {
-        handleEvent(event.detail.type);
+    // Example usage: Create obstacles and add an obstacle at the center of the screen
+    function initializeGame() {
+        createObstacles();
+        handleEvent('powerup'); // Add a power-up effect when initializing the game
+    }
+
+    initializeGame();
+
+    // Event listeners for controls
+    document.addEventListener('keydown', (event) => {
+        switch (event.key) {
+            case 'ArrowUp':
+                // Move left paddle up
+                break;
+            case 'ArrowDown':
+                // Move left paddle down
+                break;
+            case 'w':
+                // Move right paddle up
+                break;
+            case 's':
+                // Move right paddle down
+                break;
+        }
     });
 
-    // Initialize game
-    createObstacles();
-    drawPaddles();
-    gameLoop();
+    document.addEventListener('keyup', (event) => {
+        switch (event.key) {
+            case 'ArrowUp':
+                // Stop left paddle moving up
+                break;
+            case 'ArrowDown':
+                // Stop left paddle moving down
+                break;
+            case 'w':
+                // Stop right paddle moving up
+                break;
+            case 's':
+                // Stop right paddle moving down
+                break;
+        }
+    });
+
+    document.addEventListener('click', (event) => {
+        handleEvent('powerup'); // Add a power-up effect when clicking anywhere on the screen
+    });
 })();
