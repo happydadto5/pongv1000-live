@@ -1,15 +1,6 @@
 {
   "versions": [
     {
-      "version": "v0.062",
-      "label": "Apr 07, 2026",
-      "captured_at": "2026-04-07T20:45:00+00:00",
-      "url": "history/v0.062/index.html",
-      "title": "Classic Pong with Dynamic Obstacles and Power-Ups",
-      "description": "Enhanced gameplay with dynamic obstacles and power-ups.",
-      "is_current": false
-    },
-    {
       "version": "v0.063",
       "label": "Apr 07, 2026",
       "captured_at": "2026-04-07T21:15:00+00:00",
@@ -74,8 +65,17 @@
     },
     {
       "version": "v0.070",
+      "label": "Apr 08, 2026",
+      "captured_at": "2026-04-08T18:31:00+00:00",
+      "url": "history/v0.070/index.html",
+      "title": "Game Title Here",
+      "description": "One sentence description",
+      "is_current": false
+    },
+    {
+      "version": "v0.071",
       "label": "Live now",
-      "captured_at": "2026-04-08T22:07:50.179985+00:00",
+      "captured_at": "2026-04-08T22:32:00.201993+00:00",
       "url": "index.html",
       "title": "Game Title Here",
       "description": "One sentence description",
