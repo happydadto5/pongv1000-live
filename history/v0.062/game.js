@@ -32,10 +32,11 @@
     const canvas = document.getElementById('gameCanvas');
     const ctx = canvas.getContext('2d');
 
-    // Resize canvas
+    // Resize canvas and paddles
     function resizeCanvas() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
+        drawPaddles(); // Recreate paddles when resizing
     }
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
@@ -59,7 +60,7 @@
         particles.forEach((particle, index) => {
             ctx.save();
             ctx.globalAlpha = particle.alpha;
-            const size = Math.random() * 10 + 2; // Dynamic size based on event type
+            const size = Math.random() * 10 + (particle.type === 'powerup' ? 5 : 2); // Dynamic size based on event type
             const color = particle.type === 'powerup' ? '#ff6f61' : '#800';
             ctx.fillStyle = color;
             ctx.beginPath();
@@ -92,7 +93,7 @@
                 y: point.y,
                 width: 20,
                 height: 20,
-                speedX: Math.random() - 0.5,
+                speedX: (Math.random() - 0.5) * 4, // Increased speed for dynamic movement
                 type: 'obstacle'
             });
         });
@@ -110,42 +111,63 @@
         });
     }
 
-    // Main game loop
+    // Draw paddles
+    function drawPaddles() {
+        ctx.fillStyle = '#ffffff'; // Corrected fillStyle color
+        const paddleWidth = 10;
+        const paddleHeight = 80;
+
+        // Left paddle
+        ctx.fillRect(50, (canvas.height - paddleHeight) / 2, paddleWidth, paddleHeight);
+
+        // Right paddle
+        ctx.fillRect(canvas.width - paddleWidth - 50, (canvas.height - paddleHeight) / 2, paddleWidth, paddleHeight);
+    }
+
+    // Game loop
     function gameLoop() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        drawParticles();
         drawObstacles();
+        drawParticles();
         drawPaddles(); // Draw paddles in the game loop
 
         requestAnimationFrame(gameLoop);
     }
 
-    // Handle events
-    function handleEvent(event) {
-        if (event.type === 'click') {
-            createParticles(event.clientX, event.clientY, 'powerup');
-        } else if (event.type === 'touchstart') {
-            const touch = event.touches[0];
-            createParticles(touch.clientX, touch.clientY, 'powerup');
+    // Event listeners for controls
+    document.addEventListener('keydown', (event) => {
+        switch (event.key) {
+            case 'ArrowUp':
+                // Move left paddle up
+                break;
+            case 'ArrowDown':
+                // Move left paddle down
+                break;
+            case 'w':
+                // Move right paddle up
+                break;
+            case 's':
+                // Move right paddle down
+                break;
         }
-    }
+    });
 
-    // Add event listeners
-    canvas.addEventListener('click', handleEvent);
-    canvas.addEventListener('touchstart', handleEvent);
+    document.addEventListener('keyup', (event) => {
+        switch (event.key) {
+            case 'ArrowUp':
+                // Stop left paddle moving up
+                break;
+            case 'ArrowDown':
+                // Stop left paddle moving down
+                break;
+            case 'w':
+                // Stop right paddle moving up
+                break;
+            case 's':
+                // Stop right paddle moving down
+                break;
+        }
+    });
 
-    // Draw paddles
-    function drawPaddles() {
-        ctx.fillStyle = '#ffffff'; // Corrected fillStyle color
-        const paddleWidth = 20;
-        const paddleHeight = 100;
-        const leftPaddle = {x: 16, y: canvas.height / 2 - paddleHeight / 2};
-        const rightPaddle = {x: canvas.width - paddleWidth - 16, y: canvas.height / 2 - paddleHeight / 2};
-
-        ctx.fillRect(leftPaddle.x, leftPaddle.y, paddleWidth, paddleHeight);
-        ctx.fillRect(rightPaddle.x, rightPaddle.y, paddleWidth, paddleHeight);
-    }
-
-    // Start game loop
     gameLoop();
 })();

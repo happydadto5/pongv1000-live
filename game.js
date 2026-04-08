@@ -124,7 +124,7 @@
         ctx.fillRect(canvas.width - paddleWidth - 50, (canvas.height - paddleHeight) / 2, paddleWidth, paddleHeight);
     }
 
-    // Main game loop
+    // Game loop
     function gameLoop() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         drawObstacles();
@@ -133,22 +133,6 @@
 
         requestAnimationFrame(gameLoop);
     }
-
-    // Handle particle effects based on event type
-    function handleEvent(eventType) {
-        if (eventType === 'powerup') {
-            playSound('powerup');
-        }
-        createParticles(canvas.width / 2, canvas.height / 2, eventType);
-    }
-
-    // Example usage: Create obstacles and add an obstacle at the center of the screen
-    function initializeGame() {
-        createObstacles();
-        handleEvent('powerup'); // Add a power-up effect when initializing the game
-    }
-
-    initializeGame();
 
     // Event listeners for controls
     document.addEventListener('keydown', (event) => {
@@ -185,7 +169,5 @@
         }
     });
 
-    document.addEventListener('click', (event) => {
-        handleEvent('powerup'); // Add a power-up effect when clicking anywhere on the screen
-    });
+    gameLoop();
 })();

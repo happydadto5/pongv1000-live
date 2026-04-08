@@ -1,15 +1,6 @@
 {
   "versions": [
     {
-      "version": "v0.054",
-      "label": "Apr 07, 2026",
-      "captured_at": "2026-04-07T17:34:00+00:00",
-      "url": "history/v0.054/index.html",
-      "title": "PongV1000",
-      "description": "Enhanced visual effects based on event type.",
-      "is_current": false
-    },
-    {
       "version": "v0.055",
       "label": "Apr 07, 2026",
       "captured_at": "2026-04-07T17:54:00+00:00",
@@ -74,11 +65,20 @@
     },
     {
       "version": "v0.062",
-      "label": "Live now",
-      "captured_at": "2026-04-08T00:06:13.648753+00:00",
-      "url": "index.html",
+      "label": "Apr 07, 2026",
+      "captured_at": "2026-04-07T20:45:00+00:00",
+      "url": "history/v0.062/index.html",
       "title": "Classic Pong with Dynamic Obstacles and Power-Ups",
       "description": "Enhanced gameplay with dynamic obstacles and power-ups.",
+      "is_current": false
+    },
+    {
+      "version": "v0.063",
+      "label": "Live now",
+      "captured_at": "2026-04-08T00:48:15.816676+00:00",
+      "url": "index.html",
+      "title": "Game Title Here",
+      "description": "One sentence description",
       "is_current": true
     }
   ]
