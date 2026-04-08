@@ -143,6 +143,6 @@
         const touch = event.touches[0];
         const mouseX = touch.clientX;
         const mouseY = touch.clientY;
-        // Update paddle position based on touch position
+        // Update paddle position based on touch movement
     });
 })();

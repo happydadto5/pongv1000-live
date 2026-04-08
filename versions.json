@@ -1,15 +1,6 @@
 {
   "versions": [
     {
-      "version": "v0.058",
-      "label": "Apr 07, 2026",
-      "captured_at": "2026-04-07T18:43:00+00:00",
-      "url": "history/v0.058/index.html",
-      "title": "PongV1000 \u2014 Living Roadmap",
-      "description": "Enhanced obstacle behavior and particle effects for a more challenging game experience.",
-      "is_current": false
-    },
-    {
       "version": "v0.059",
       "label": "Apr 07, 2026",
       "captured_at": "2026-04-07T19:13:00+00:00",
@@ -74,8 +65,17 @@
     },
     {
       "version": "v0.066",
+      "label": "Apr 07, 2026",
+      "captured_at": "2026-04-07T21:45:00+00:00",
+      "url": "history/v0.066/index.html",
+      "title": "Game Title Here",
+      "description": "One sentence description",
+      "is_current": false
+    },
+    {
+      "version": "v0.067",
       "label": "Live now",
-      "captured_at": "2026-04-08T01:36:30.650396+00:00",
+      "captured_at": "2026-04-08T01:46:13.112227+00:00",
       "url": "index.html",
       "title": "Game Title Here",
       "description": "One sentence description",
