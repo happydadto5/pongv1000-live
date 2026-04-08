@@ -91,8 +91,8 @@
             obstacles.push({
                 x: point.x,
                 y: point.y,
-                width: 50,
-                height: 50,
+                width: 50 + Math.random() * 100, // Dynamic size based on screen size
+                height: 50 + Math.random() * 100,
                 speed: Math.random() * 2 + 1
             });
         });
