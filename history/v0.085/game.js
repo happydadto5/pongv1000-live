@@ -179,10 +179,12 @@
         }
 
         const rightPaddleY = state.right.y + currentPaddleHeight / 2;
-        if (aiTargetY < rightPaddleY - 5) {
-            state.right.y -= paddleSpeed;
-        } else if (aiTargetY > rightPaddleY + 5) {
-            state.right.y += paddleSpeed;
+        if (state.ball.x > canvas.width / 2) {
+            if (aiTargetY < rightPaddleY - 5) {
+                state.right.y -= paddleSpeed;
+            } else if (aiTargetY > rightPaddleY + 5) {
+                state.right.y += paddleSpeed;
+            }
         }
 
         state.ball.x += state.ball.vx;
@@ -196,34 +198,54 @@
         } else if (state.ball.x <= paddleMargin() + ballSize() && !state.left.up) {
             resetRound(-1);
         }
-        if (state.ball.x >= canvas.width - paddleMargin() - ballSize() && state.right.up) {
+        if (state.ball.x >= canvas.width - paddleMargin() - ballSize() && state.right.down) {
             state.ball.vx = -state.ball.vx;
-        } else if (state.ball.x >= canvas.width - paddleMargin() - ballSize() && !state.right.up) {
+        } else if (state.ball.x >= canvas.width - paddleMargin() - ballSize() && !state.right.down) {
             resetRound(1);
         }
     }
 
-    function render() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        // Draw paddles and ball
-        ctx.fillStyle = 'white';
-        ctx.fillRect(paddleMargin(), state.left.y, paddleWidth(), paddleHeight());
-        ctx.fillRect(canvas.width - paddleMargin() - paddleWidth(), state.right.y, paddleWidth(), paddleHeight());
+    function drawBall() {
         ctx.beginPath();
-        ctx.arc(state.ball.x, state.ball.y, ballSize(), 0, Math.PI * 2);
+        ctx.arc(state.ball.x, state.ball.y, ballSize(), 0, Math.PI*2);
+        ctx.fillStyle = "white";
         ctx.fill();
+        ctx.closePath();
+    }
 
-        // Draw net
-        ctx.fillStyle = 'white';
-        for (let y = 0; y < canvas.height; y += 10) {
-            ctx.fillRect(canvas.width / 2 - 1, y, 2, 5);
+    function drawPaddle(player) {
+        ctx.beginPath();
+        ctx.rect((player === 'left' ? paddleMargin() : canvas.width - paddleWidth() - paddleMargin()), state[player].y, paddleWidth(), paddleHeight());
+        ctx.fillStyle = "white";
+        ctx.fill();
+        ctx.closePath();
+    }
+
+    function drawNet() {
+        for (let i = 0; i <= canvas.height; i += 20) {
+            ctx.beginPath();
+            ctx.rect(canvas.width / 2 - 1, i, 2, 10);
+            ctx.fillStyle = "white";
+            ctx.fill();
+            ctx.closePath();
         }
+    }
+
+    function drawScore() {
+        ctx.font = "30px Arial";
+        ctx.fillStyle = "white";
+        ctx.fillText(state.left.score, canvas.width / 4 - 20, 50);
+        ctx.fillText(state.right.score, (canvas.width * 3) / 4 + 10, 50);
     }
 
     function gameLoop() {
         update();
-        render();
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawNet();
+        drawPaddle('left');
+        drawPaddle('right');
+        drawBall();
+        drawScore();
         requestAnimationFrame(gameLoop);
     }
 
