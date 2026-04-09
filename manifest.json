@@ -1,6 +1,6 @@
 {
-  "version": "0.103",
+  "version": "0.104",
   "title": "Pong Evolution",
-  "description": "Evolution towards more engaging gameplay mechanics.",
-  "evolution_count": 102
+  "description": "Evolutionary Pong with new themes and power-ups.",
+  "evolution_count": 103
 }

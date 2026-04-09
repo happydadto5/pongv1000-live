@@ -1,15 +1,6 @@
 {
   "versions": [
     {
-      "version": "v0.095",
-      "label": "Apr 09, 2026",
-      "captured_at": "2026-04-09T04:45:00+00:00",
-      "url": "history/v0.095/index.html",
-      "title": "Pong Evolution",
-      "description": "Enhanced gameplay with consistent AI and new theme ideas.",
-      "is_current": false
-    },
-    {
       "version": "v0.096",
       "label": "Apr 09, 2026",
       "captured_at": "2026-04-09T05:11:00+00:00",
@@ -74,11 +65,20 @@
     },
     {
       "version": "v0.103",
-      "label": "Live now",
-      "captured_at": "2026-04-09T11:19:27.916837+00:00",
-      "url": "index.html",
+      "label": "Apr 09, 2026",
+      "captured_at": "2026-04-09T07:55:00+00:00",
+      "url": "history/v0.103/index.html",
       "title": "Pong Evolution",
       "description": "Evolution towards more engaging gameplay mechanics.",
+      "is_current": false
+    },
+    {
+      "version": "v0.104",
+      "label": "Live now",
+      "captured_at": "2026-04-09T11:58:09.417323+00:00",
+      "url": "index.html",
+      "title": "Pong Evolution",
+      "description": "Evolutionary Pong with new themes and power-ups.",
       "is_current": true
     }
   ]

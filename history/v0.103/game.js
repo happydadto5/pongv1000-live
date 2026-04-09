@@ -210,32 +210,30 @@
     function drawBall() {
         ctx.beginPath();
         ctx.arc(state.ball.x, state.ball.y, ballSize(), 0, Math.PI * 2);
-        ctx.fillStyle = 'white';
+        ctx.fillStyle = "white";
         ctx.fill();
         ctx.closePath();
     }
 
-    function drawPaddle(x, y) {
-        ctx.fillStyle = 'white';
-        ctx.fillRect(x, y, paddleWidth(), paddleHeight());
+    function drawPaddle(paddle) {
+        ctx.fillRect(paddle.x, paddle.y, paddleWidth(), paddleHeight());
     }
 
-    function drawNet() {
-        ctx.beginPath();
-        ctx.moveTo(canvas.width / 2, 0);
-        ctx.lineTo(canvas.width / 2, canvas.height);
-        ctx.stroke();
+    function drawScoreboard() {
+        ctx.font = "30px Arial";
+        ctx.fillText("Player 1: " + state.left.score, 10, 50);
+        ctx.fillText("Player 2: " + state.right.score, canvas.width - 170, 50);
     }
 
     function gameLoop() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
         update();
         drawBall();
-        drawPaddle(state.left.x, state.left.y);
-        drawPaddle(state.right.x, state.right.y);
-        drawNet();
+        drawPaddle(state.left);
+        drawPaddle(state.right);
+        drawScoreboard();
         requestAnimationFrame(gameLoop);
     }
 
     gameLoop();
+
 })();
