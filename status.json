@@ -1,23 +1,36 @@
 {
   "agent_start_time": "2026-04-05T17:52:38.912886+00:00",
-  "last_evolution_time": "2026-04-09T07:23:38.573939+00:00",
-  "last_evolution_started_time": "2026-04-09T07:23:48.437458+00:00",
-  "last_evolution_finished_time": "2026-04-09T07:23:38.573939+00:00",
-  "next_evolution_time": "2026-04-09T07:44:14.938589+00:00",
+  "last_evolution_time": "2026-04-09T08:37:21.901444+00:00",
+  "last_evolution_started_time": "2026-04-09T08:37:31.433056+00:00",
+  "last_evolution_finished_time": "2026-04-09T08:37:21.901444+00:00",
+  "next_evolution_time": "2026-04-09T08:55:34.992138+00:00",
   "evolution_interval_minutes": 10,
   "daytime_interval_minutes": 10,
   "nighttime_interval_minutes": 10,
   "time_period": "nighttime",
-  "current_version": "0.095",
-  "current_title": "Pong Evolution",
-  "current_description": "Enhanced gameplay with consistent AI and new theme ideas.",
-  "total_evolutions": 94,
+  "current_version": "0.096",
+  "current_title": "Game Title Here",
+  "current_description": "One sentence description",
+  "total_evolutions": 95,
   "planned_arcs": [
-    "Next evolution plan 1: Implement gravity pit theme with two paddles.",
-    "Next evolution plan 2: Add tempest theme with moving obstacles.",
-    "Next evolution plan 3: Develop tower defense theme with levels and enemies."
+    "Next evolution plan 1: Introduce a gravity pit around the paddles.",
+    "Next evolution plan 2: Implement a tempest theme with random wind effects.",
+    "Next evolution plan 3: Create a tower defense style game where blocks appear and must be avoided."
   ],
-  "teasers": [],
+  "teasers": [
+    {
+      "message": "\"Watch out! Gravity takes over!\"",
+      "eta_days": 3
+    },
+    {
+      "message": "\"Who can handle the tempest?\"",
+      "eta_days": 5
+    },
+    {
+      "message": "\"Defend against an endless stream of blocks!\"",
+      "eta_days": 7
+    }
+  ],
   "last_focus_area": "gameplay_improvements",
   "long_term_steering": "",
   "evolution_targets": {
@@ -42,7 +55,7 @@
       "roadmap_review_planning": 5
     },
     "counts": {
-      "gameplay_improvements": 44,
+      "gameplay_improvements": 45,
       "creative_evolution": 12,
       "visuals_theme": 11,
       "audio_feedback": 12,
@@ -51,7 +64,7 @@
       "documentation_status": 1,
       "roadmap_review_planning": 0
     },
-    "total": 95,
+    "total": 96,
     "preferred_next": [
       "documentation_status",
       "creative_evolution",
@@ -66,6 +79,6 @@
   "degraded": false,
   "last_evolution_success": false,
   "last_error": "Smoke test: Paddles not visibly rendered on canvas",
-  "generated_at": "2026-04-09T07:34:14.940212+00:00",
+  "generated_at": "2026-04-09T08:45:34.995058+00:00",
   "cooldown_until": ""
 }
