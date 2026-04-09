@@ -231,8 +231,8 @@
     function drawScore() {
         ctx.font = '36px Arial';
         ctx.fillStyle = 'white';
-        ctx.fillText(state.left.score, canvas.width / 4, canvas.height / 8);
-        ctx.fillText(state.right.score, canvas.width * 3 / 4, canvas.height / 8);
+        ctx.fillText(state.left.score, 50, 50);
+        ctx.fillText(state.right.score, canvas.width - 100, 50);
     }
 
     function render() {
