@@ -1,15 +1,6 @@
 {
   "versions": [
     {
-      "version": "v0.080",
-      "label": "Apr 08, 2026",
-      "captured_at": "2026-04-08T22:38:00+00:00",
-      "url": "history/v0.080/index.html",
-      "title": "Pong Evolution",
-      "description": "Stability improvements and realistic ball bouncing mechanics.",
-      "is_current": false
-    },
-    {
       "version": "v0.081",
       "label": "Apr 08, 2026",
       "captured_at": "2026-04-08T23:03:00+00:00",
@@ -74,11 +65,20 @@
     },
     {
       "version": "v0.088",
-      "label": "Live now",
-      "captured_at": "2026-04-09T05:32:51.806105+00:00",
-      "url": "index.html",
+      "label": "Apr 08, 2026",
+      "captured_at": "2026-04-09T01:42:00+00:00",
+      "url": "history/v0.088/index.html",
       "title": "Game Title Here",
       "description": "One sentence description",
+      "is_current": false
+    },
+    {
+      "version": "v0.089",
+      "label": "Live now",
+      "captured_at": "2026-04-09T05:44:45.278328+00:00",
+      "url": "index.html",
+      "title": "Galactic Pong",
+      "description": "A fun game of Pong with improved AI and space-themed obstacles.",
       "is_current": true
     }
   ]
