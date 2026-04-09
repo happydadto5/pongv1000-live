@@ -1,15 +1,6 @@
 {
   "versions": [
     {
-      "version": "v0.069",
-      "label": "Apr 08, 2026",
-      "captured_at": "2026-04-08T18:06:00+00:00",
-      "url": "history/v0.069/index.html",
-      "title": "Game Title Here",
-      "description": "One sentence description",
-      "is_current": false
-    },
-    {
       "version": "v0.070",
       "label": "Apr 08, 2026",
       "captured_at": "2026-04-08T18:31:00+00:00",
@@ -74,8 +65,17 @@
     },
     {
       "version": "v0.077",
+      "label": "Apr 08, 2026",
+      "captured_at": "2026-04-08T21:50:00+00:00",
+      "url": "history/v0.077/index.html",
+      "title": "Game Title Here",
+      "description": "One sentence description",
+      "is_current": false
+    },
+    {
+      "version": "v0.078",
       "label": "Live now",
-      "captured_at": "2026-04-09T01:38:41.456375+00:00",
+      "captured_at": "2026-04-09T01:50:06.199050+00:00",
       "url": "index.html",
       "title": "Game Title Here",
       "description": "One sentence description",
