@@ -1,36 +1,23 @@
 {
   "agent_start_time": "2026-04-05T17:52:38.912886+00:00",
-  "last_evolution_time": "2026-04-09T02:55:09.670878+00:00",
-  "last_evolution_started_time": "2026-04-09T02:55:19.509347+00:00",
-  "last_evolution_finished_time": "2026-04-09T02:55:09.670878+00:00",
-  "next_evolution_time": "2026-04-09T03:13:32.942660+00:00",
+  "last_evolution_time": "2026-04-09T03:16:27.411789+00:00",
+  "last_evolution_started_time": "2026-04-09T03:16:36.938320+00:00",
+  "last_evolution_finished_time": "2026-04-09T03:16:27.411789+00:00",
+  "next_evolution_time": "2026-04-09T03:34:17.583912+00:00",
   "evolution_interval_minutes": 10,
   "daytime_interval_minutes": 10,
   "nighttime_interval_minutes": 10,
   "time_period": "nighttime",
-  "current_version": "0.082",
+  "current_version": "0.083",
   "current_title": "Game Title Here",
   "current_description": "One sentence description",
-  "total_evolutions": 81,
+  "total_evolutions": 82,
   "planned_arcs": [
-    "Next evolution plan 1: Introduce new mechanics such as power-ups or obstacles.",
-    "Next evolution plan 2: Develop a theme where players control paddles around a gravity pit.",
-    "Next evolution plan 3: Implement a genre drift, transitioning the game into a tower defense style."
+    "Next evolution plan 1: Introduce power-ups that temporarily speed up the ball or give additional lives.",
+    "Next evolution plan 2: Create a new theme where players control paddles around a gravity pit.",
+    "Next evolution plan 3: Develop a tower defense-like game mode with obstacles and enemies."
   ],
-  "teasers": [
-    {
-      "message": "\"AI paddle update incoming! Stay tuned for more control options.\"",
-      "eta_days": 2
-    },
-    {
-      "message": "\"Check out the new gravity pit theme coming soon!\"",
-      "eta_days": 4
-    },
-    {
-      "message": "\"Ready to test your skills in tower defense? Evolve with us!\"",
-      "eta_days": 6
-    }
-  ],
+  "teasers": [],
   "last_focus_area": "gameplay_improvements",
   "long_term_steering": "",
   "evolution_targets": {
@@ -55,7 +42,7 @@
       "roadmap_review_planning": 5
     },
     "counts": {
-      "gameplay_improvements": 31,
+      "gameplay_improvements": 32,
       "creative_evolution": 12,
       "visuals_theme": 11,
       "audio_feedback": 12,
@@ -64,7 +51,7 @@
       "documentation_status": 1,
       "roadmap_review_planning": 0
     },
-    "total": 82,
+    "total": 83,
     "preferred_next": [
       "documentation_status",
       "creative_evolution",
@@ -78,7 +65,7 @@
   "consecutive_failures": 0,
   "degraded": false,
   "last_evolution_success": false,
-  "last_error": "Smoke test: Console errors: aiTargetY is not defined",
-  "generated_at": "2026-04-09T03:03:32.944355+00:00",
+  "last_error": "JS validation failed: Missing game loop (requestAnimationFrame)",
+  "generated_at": "2026-04-09T03:24:17.585535+00:00",
   "cooldown_until": ""
 }
