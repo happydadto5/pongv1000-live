@@ -1,15 +1,6 @@
 {
   "versions": [
     {
-      "version": "v0.084",
-      "label": "Apr 08, 2026",
-      "captured_at": "2026-04-09T00:15:00+00:00",
-      "url": "history/v0.084/index.html",
-      "title": "Pong Evolution",
-      "description": "Gameplay improvements with fixed AI paddle behavior.",
-      "is_current": false
-    },
-    {
       "version": "v0.085",
       "label": "Apr 08, 2026",
       "captured_at": "2026-04-09T00:29:00+00:00",
@@ -74,11 +65,20 @@
     },
     {
       "version": "v0.092",
-      "label": "Live now",
-      "captured_at": "2026-04-09T06:41:43.311448+00:00",
-      "url": "index.html",
+      "label": "Apr 08, 2026",
+      "captured_at": "2026-04-09T02:53:00+00:00",
+      "url": "history/v0.092/index.html",
       "title": "Game Title Here",
       "description": "Enhanced AI paddle behavior and improved collision detection for a more enjoyable gameplay experience.",
+      "is_current": false
+    },
+    {
+      "version": "v0.093",
+      "label": "Live now",
+      "captured_at": "2026-04-09T06:55:05.684067+00:00",
+      "url": "index.html",
+      "title": "Game Title Here",
+      "description": "Enhanced gameplay and new themes coming up soon.",
       "is_current": true
     }
   ]
