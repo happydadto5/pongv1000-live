@@ -102,20 +102,20 @@
 
     document.addEventListener('keydown', (event) => {
         const key = event.key.toLowerCase();
-        if (key === 'w' || event.key === 'ArrowUp') {
+        if (key === 'w' || key === 'ArrowUp') {
             state.left.up = true;
         }
-        if (key === 's' || event.key === 'ArrowDown') {
+        if (key === 's' || key === 'ArrowDown') {
             state.left.down = true;
         }
     });
 
     document.addEventListener('keyup', (event) => {
         const key = event.key.toLowerCase();
-        if (key === 'w' || event.key === 'ArrowUp') {
+        if (key === 'w' || key === 'ArrowUp') {
             state.left.up = false;
         }
-        if (key === 's' || event.key === 'ArrowDown') {
+        if (key === 's' || key === 'ArrowDown') {
             state.left.down = false;
         }
     });
@@ -123,7 +123,7 @@
     function movePlayerPaddle(clientY) {
         const rect = canvas.getBoundingClientRect();
         const scaledY = (clientY - rect.top) * (canvas.height / rect.height);
-        state.left.y = scaledY - paddleHeight() / 2;
+        state.left.y = Math.max(0, Math.min(canvas.height - paddleHeight(), scaledY - paddleHeight() / 2));
     }
 
     canvas.addEventListener('mousemove', (event) => {

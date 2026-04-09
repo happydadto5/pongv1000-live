@@ -102,20 +102,20 @@
 
     document.addEventListener('keydown', (event) => {
         const key = event.key.toLowerCase();
-        if (key === 'w' || event.key === 'ArrowUp') {
+        if (key === 'w' || key === 'ArrowUp') {
             state.left.up = true;
         }
-        if (key === 's' || event.key === 'ArrowDown') {
+        if (key === 's' || key === 'ArrowDown') {
             state.left.down = true;
         }
     });
 
     document.addEventListener('keyup', (event) => {
         const key = event.key.toLowerCase();
-        if (key === 'w' || event.key === 'ArrowUp') {
+        if (key === 'w' || key === 'ArrowUp') {
             state.left.up = false;
         }
-        if (key === 's' || event.key === 'ArrowDown') {
+        if (key === 's' || key === 'ArrowDown') {
             state.left.down = false;
         }
     });
@@ -123,7 +123,7 @@
     function movePlayerPaddle(clientY) {
         const rect = canvas.getBoundingClientRect();
         const scaledY = (clientY - rect.top) * (canvas.height / rect.height);
-        state.left.y = scaledY - paddleHeight() / 2;
+        state.left.y = Math.max(0, Math.min(canvas.height - paddleHeight(), scaledY - paddleHeight() / 2));
     }
 
     canvas.addEventListener('mousemove', (event) => {
@@ -210,32 +210,30 @@
     function drawBall() {
         ctx.beginPath();
         ctx.arc(state.ball.x, state.ball.y, ballSize(), 0, Math.PI * 2);
-        ctx.fillStyle = 'white';
+        ctx.fillStyle = "white";
         ctx.fill();
         ctx.closePath();
     }
 
-    function drawPaddle(x, y) {
-        ctx.fillStyle = 'white';
-        ctx.fillRect(x, y, paddleWidth(), paddleHeight());
+    function drawPaddle(paddle) {
+        ctx.fillRect(paddle.x, paddle.y, paddleWidth(), paddleHeight());
     }
 
-    function drawNet() {
-        ctx.beginPath();
-        ctx.moveTo(canvas.width / 2, 0);
-        ctx.lineTo(canvas.width / 2, canvas.height);
-        ctx.stroke();
+    function drawScoreboard() {
+        ctx.font = "30px Arial";
+        ctx.fillText("Player 1: " + state.left.score, 10, 50);
+        ctx.fillText("Player 2: " + state.right.score, canvas.width - 170, 50);
     }
 
     function gameLoop() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
         update();
         drawBall();
-        drawPaddle(state.left.x, state.left.y);
-        drawPaddle(state.right.x, state.right.y);
-        drawNet();
+        drawPaddle(state.left);
+        drawPaddle(state.right);
+        drawScoreboard();
         requestAnimationFrame(gameLoop);
     }
 
     gameLoop();
+
 })();

@@ -1,15 +1,6 @@
 {
   "versions": [
     {
-      "version": "v0.097",
-      "label": "Apr 09, 2026",
-      "captured_at": "2026-04-09T05:43:00+00:00",
-      "url": "history/v0.097/index.html",
-      "title": "Pong Evolution",
-      "description": "Enhanced gameplay with AI fixes and dynamic steering messages.",
-      "is_current": false
-    },
-    {
       "version": "v0.098",
       "label": "Apr 09, 2026",
       "captured_at": "2026-04-09T05:57:00+00:00",
@@ -74,8 +65,17 @@
     },
     {
       "version": "v0.105",
+      "label": "Apr 09, 2026",
+      "captured_at": "2026-04-09T08:30:00+00:00",
+      "url": "history/v0.105/index.html",
+      "title": "Game Title Here",
+      "description": "One sentence description",
+      "is_current": false
+    },
+    {
+      "version": "v0.106",
       "label": "Live now",
-      "captured_at": "2026-04-09T12:16:11.888687+00:00",
+      "captured_at": "2026-04-09T12:31:15.138050+00:00",
       "url": "index.html",
       "title": "Game Title Here",
       "description": "One sentence description",
