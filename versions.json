@@ -1,15 +1,6 @@
 {
   "versions": [
     {
-      "version": "v0.075",
-      "label": "Apr 08, 2026",
-      "captured_at": "2026-04-08T20:54:00+00:00",
-      "url": "history/v0.075/index.html",
-      "title": "Pong Evolution 0.075",
-      "description": "Stability and performance improvements, plus an AI paddle fix.",
-      "is_current": false
-    },
-    {
       "version": "v0.076",
       "label": "Apr 08, 2026",
       "captured_at": "2026-04-08T21:37:00+00:00",
@@ -74,11 +65,20 @@
     },
     {
       "version": "v0.083",
-      "label": "Live now",
-      "captured_at": "2026-04-09T03:25:51.455446+00:00",
-      "url": "index.html",
+      "label": "Apr 08, 2026",
+      "captured_at": "2026-04-08T23:34:00+00:00",
+      "url": "history/v0.083/index.html",
       "title": "Game Title Here",
       "description": "One sentence description",
+      "is_current": false
+    },
+    {
+      "version": "v0.084",
+      "label": "Live now",
+      "captured_at": "2026-04-09T03:35:33.384325+00:00",
+      "url": "index.html",
+      "title": "Pong Evolution",
+      "description": "Gameplay improvements with fixed AI paddle behavior.",
       "is_current": true
     }
   ]

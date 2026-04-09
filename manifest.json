@@ -1,6 +1,6 @@
 {
-  "version": "0.083",
-  "title": "Game Title Here",
-  "description": "One sentence description",
-  "evolution_count": 82
+  "version": "0.084",
+  "title": "Pong Evolution",
+  "description": "Gameplay improvements with fixed AI paddle behavior.",
+  "evolution_count": 83
 }
