@@ -1,15 +1,6 @@
 {
   "versions": [
     {
-      "version": "v0.098",
-      "label": "Apr 09, 2026",
-      "captured_at": "2026-04-09T05:57:00+00:00",
-      "url": "history/v0.098/index.html",
-      "title": "Game Title Here",
-      "description": "One sentence description",
-      "is_current": false
-    },
-    {
       "version": "v0.099",
       "label": "Apr 09, 2026",
       "captured_at": "2026-04-09T06:12:00+00:00",
@@ -74,11 +65,20 @@
     },
     {
       "version": "v0.106",
-      "label": "Live now",
-      "captured_at": "2026-04-09T12:31:15.138050+00:00",
-      "url": "index.html",
+      "label": "Apr 09, 2026",
+      "captured_at": "2026-04-09T08:38:00+00:00",
+      "url": "history/v0.106/index.html",
       "title": "Game Title Here",
       "description": "One sentence description",
+      "is_current": false
+    },
+    {
+      "version": "v0.107",
+      "label": "Live now",
+      "captured_at": "2026-04-09T12:39:00.759865+00:00",
+      "url": "index.html",
+      "title": "Pong Evolution",
+      "description": "Enhanced gameplay through simulated testing and AI improvements.",
       "is_current": true
     }
   ]
