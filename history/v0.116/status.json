@@ -3,28 +3,28 @@
   "last_evolution_time": "2026-04-09T20:56:39.983631+00:00",
   "last_evolution_started_time": "2026-04-09T20:56:58.665675+00:00",
   "last_evolution_finished_time": "2026-04-09T20:56:39.983631+00:00",
-  "next_evolution_time": "2026-04-09T21:14:58.531825+00:00",
+  "next_evolution_time": "2026-04-09T20:54:44.227933+00:00",
   "evolution_interval_minutes": 10,
   "daytime_interval_minutes": 10,
   "nighttime_interval_minutes": 10,
   "time_period": "daytime",
-  "current_version": "0.117",
-  "current_title": "Pong Plus",
-  "current_description": "Enhanced gameplay mechanics, power-ups, and new levels.",
-  "total_evolutions": 116,
+  "current_version": "0.116",
+  "current_title": "Pong Plus Power-Ups",
+  "current_description": "Evolve Pong with exciting new ball mechanics, obstacles, and power-ups.",
+  "total_evolutions": 115,
   "planned_arcs": [
-    "Next evolution plan 1: Introduce power-ups that can enhance paddle strength, speed, or shield duration.",
-    "Next evolution plan 2: Develop a scoring system where players earn points for successfully bouncing the ball multiple times in a row.",
-    "Next evolution plan 3: Design a new level with obstacles and enemies that the player must navigate to progress."
+    "Next evolution plan 1: Introduce obstacles that the ball must navigate around.",
+    "Next evolution plan 2: Develop a scoring system based on power-up collection.",
+    "Next evolution plan 3: Create different types of power-ups with unique effects (e.g., increased paddle size, time freeze)."
   ],
   "teasers": [
     {
-      "message": "\"Unlock new power-ups by playing longer!\"",
-      "eta_days": 5
+      "message": "\"Speed up your game with power-ups! Can you master the new ball mechanics?\"",
+      "eta_days": 3
     },
     {
-      "message": "\"Navigate through levels with obstacles and enemies.\"",
-      "eta_days": 7
+      "message": "\"Navigate around obstacles and collect power-ups for a chance to win big!\"",
+      "eta_days": 5
     }
   ],
   "last_focus_area": "gameplay_improvements",
@@ -51,7 +51,7 @@
       "roadmap_review_planning": 5
     },
     "counts": {
-      "gameplay_improvements": 51,
+      "gameplay_improvements": 50,
       "creative_evolution": 14,
       "visuals_theme": 11,
       "audio_feedback": 12,
@@ -60,7 +60,7 @@
       "documentation_status": 5,
       "roadmap_review_planning": 8
     },
-    "total": 117,
+    "total": 116,
     "preferred_next": [
       "creative_evolution",
       "documentation_status",
@@ -75,6 +75,6 @@
   "degraded": false,
   "last_evolution_success": true,
   "last_error": "",
-  "generated_at": "2026-04-09T21:04:58.534483+00:00",
+  "generated_at": "2026-04-09T20:56:58.667287+00:00",
   "cooldown_until": ""
 }
