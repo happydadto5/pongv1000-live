@@ -207,47 +207,39 @@
 
     function drawBall() {
         ctx.beginPath();
-        ctx.arc(state.ball.x, state.ball.y, ballSize(), 0, Math.PI*2);
-        ctx.fillStyle = "white";
+        ctx.arc(state.ball.x, state.ball.y, ballSize(), 0, Math.PI * 2);
+        ctx.fillStyle = 'white';
         ctx.fill();
         ctx.closePath();
     }
 
-    function drawPaddle(player) {
-        ctx.beginPath();
-        ctx.rect((player === 'left' ? paddleMargin() : canvas.width - paddleWidth() - paddleMargin()), state[player].y, paddleWidth(), paddleHeight());
-        ctx.fillStyle = "white";
-        ctx.fill();
-        ctx.closePath();
+    function drawPaddle(x, y) {
+        ctx.fillStyle = 'white';
+        ctx.fillRect(x, y, paddleWidth(), paddleHeight());
     }
 
     function drawNet() {
-        for (let i = 0; i <= canvas.height; i += 20) {
-            ctx.beginPath();
-            ctx.rect(canvas.width / 2 - 1, i, 2, 10);
-            ctx.fillStyle = "white";
-            ctx.fill();
-            ctx.closePath();
-        }
+        ctx.beginPath();
+        ctx.moveTo(canvas.width / 2, 0);
+        ctx.lineTo(canvas.width / 2, canvas.height);
+        ctx.strokeStyle = 'white';
+        ctx.stroke();
+        ctx.closePath();
     }
 
-    function drawScore() {
-        ctx.font = "30px Arial";
-        ctx.fillStyle = "white";
-        ctx.fillText(state.left.score, canvas.width / 4 - 20, 50);
-        ctx.fillText(state.right.score, (canvas.width * 3) / 4 + 10, 50);
-    }
-
-    function gameLoop() {
+    function updateGame() {
         update();
+        clampPaddles();
+
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+
         drawNet();
-        drawPaddle('left');
-        drawPaddle('right');
+        drawPaddle(paddleMargin(), state.left.y);
+        drawPaddle(canvas.width - paddleMargin() - paddleWidth(), state.right.y);
         drawBall();
-        drawScore();
-        requestAnimationFrame(gameLoop);
+
+        requestAnimationFrame(updateGame);
     }
 
-    gameLoop();
+    requestAnimationFrame(updateGame);
 })();

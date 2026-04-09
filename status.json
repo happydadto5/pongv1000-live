@@ -1,34 +1,34 @@
 {
   "agent_start_time": "2026-04-05T17:52:38.912886+00:00",
-  "last_evolution_time": "2026-04-09T04:17:24.945068+00:00",
-  "last_evolution_started_time": "2026-04-09T04:17:41.626331+00:00",
-  "last_evolution_finished_time": "2026-04-09T04:17:24.945068+00:00",
-  "next_evolution_time": "2026-04-09T04:39:27.274863+00:00",
+  "last_evolution_time": "2026-04-09T04:45:02.253230+00:00",
+  "last_evolution_started_time": "2026-04-09T04:45:11.692316+00:00",
+  "last_evolution_finished_time": "2026-04-09T04:45:02.253230+00:00",
+  "next_evolution_time": "2026-04-09T05:11:34.044869+00:00",
   "evolution_interval_minutes": 10,
   "daytime_interval_minutes": 10,
   "nighttime_interval_minutes": 10,
   "time_period": "nighttime",
-  "current_version": "0.086",
+  "current_version": "0.087",
   "current_title": "Game Title Here",
-  "current_description": "One sentence description",
-  "total_evolutions": 85,
+  "current_description": "Improved AI paddle and basic obstacle mechanics added.",
+  "total_evolutions": 86,
   "planned_arcs": [
-    "Next evolution plan 1: Implement power-ups with various effects.",
-    "Next evolution plan 2: Add obstacles and barriers that players must navigate around.",
-    "Next evolution plan 3: Develop a new theme for the game, such as a space or underwater setting."
+    "Next evolution plan 1: Implement power-ups with different effects (e.g., speed boost, shield).",
+    "Next evolution plan 2: Introduce obstacles that can be destroyed by hitting them with the paddle.",
+    "Next evolution plan 3: Change the game theme to a space-inspired setting with asteroids and a spaceship."
   ],
   "teasers": [
     {
-      "message": "Enhanced AI behavior for more consistent gameplay",
+      "message": "\"AI Paddle Update: Get ready for more exciting gameplay!\"",
       "eta_days": 3
     },
     {
-      "message": "New power-ups and obstacles to add strategic depth",
-      "eta_days": 2
+      "message": "\"Obstacles Ahead: Add some strategic thinking to your game playstyle.\"",
+      "eta_days": 5
     },
     {
-      "message": "Explore a new space-themed level",
-      "eta_days": 1
+      "message": "\"Asteroid Field: Journey through space with a new game theme!\"",
+      "eta_days": 7
     }
   ],
   "last_focus_area": "gameplay_improvements",
@@ -55,7 +55,7 @@
       "roadmap_review_planning": 5
     },
     "counts": {
-      "gameplay_improvements": 35,
+      "gameplay_improvements": 36,
       "creative_evolution": 12,
       "visuals_theme": 11,
       "audio_feedback": 12,
@@ -64,7 +64,7 @@
       "documentation_status": 1,
       "roadmap_review_planning": 0
     },
-    "total": 86,
+    "total": 87,
     "preferred_next": [
       "documentation_status",
       "creative_evolution",
@@ -77,8 +77,8 @@
   "game_url": "index.html",
   "consecutive_failures": 0,
   "degraded": false,
-  "last_evolution_success": true,
-  "last_error": "",
-  "generated_at": "2026-04-09T04:29:27.276517+00:00",
+  "last_evolution_success": false,
+  "last_error": "Smoke test: Canvas appears static \u2014 no gameplay motion detected",
+  "generated_at": "2026-04-09T05:01:34.046530+00:00",
   "cooldown_until": ""
 }
