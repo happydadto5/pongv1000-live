@@ -1,6 +1,6 @@
 {
-  "version": "0.084",
+  "version": "0.085",
   "title": "Pong Evolution",
-  "description": "Gameplay improvements with fixed AI paddle behavior.",
-  "evolution_count": 83
+  "description": "Enhanced AI, obstacles, and a new theme are on the way.",
+  "evolution_count": 84
 }
