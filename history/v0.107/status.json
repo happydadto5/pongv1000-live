@@ -3,19 +3,19 @@
   "last_evolution_time": "2026-04-09T12:59:37.738586+00:00",
   "last_evolution_started_time": "2026-04-09T13:01:30.398656+00:00",
   "last_evolution_finished_time": "2026-04-09T12:59:37.738586+00:00",
-  "next_evolution_time": "2026-04-09T13:18:39.467635+00:00",
+  "next_evolution_time": "2026-04-09T13:01:20.693577+00:00",
   "evolution_interval_minutes": 10,
   "daytime_interval_minutes": 10,
   "nighttime_interval_minutes": 10,
   "time_period": "daytime",
-  "current_version": "0.108",
+  "current_version": "0.107",
   "current_title": "Pong Evolution",
-  "current_description": "Improved gameplay with consistent ball bounces and enhanced controls.",
-  "total_evolutions": 107,
+  "current_description": "Enhanced gameplay through simulated testing and AI improvements.",
+  "total_evolutions": 106,
   "planned_arcs": [
     "Next evolution plan 1: Adjust AI paddle behavior for more consistent gameplay experience.",
-    "Next evolution plan 2: Introduce a dedicated section in the roadmap for upcoming theme changes and their expected release dates.",
-    "Next evolution plan 3: Optimize power-up effects based on their type to enhance player engagement."
+    "Next evolution plan 2: Implement power-ups with dynamic effects based on their type.",
+    "Next evolution plan 3: Introduce a dedicated section in the roadmap for upcoming theme changes and their expected release dates."
   ],
   "teasers": [],
   "last_focus_area": "gameplay_improvements",
@@ -42,7 +42,7 @@
       "roadmap_review_planning": 5
     },
     "counts": {
-      "gameplay_improvements": 49,
+      "gameplay_improvements": 48,
       "creative_evolution": 13,
       "visuals_theme": 11,
       "audio_feedback": 12,
@@ -51,7 +51,7 @@
       "documentation_status": 2,
       "roadmap_review_planning": 5
     },
-    "total": 108,
+    "total": 107,
     "preferred_next": [
       "documentation_status",
       "creative_evolution",
@@ -62,10 +62,10 @@
     ]
   },
   "game_url": "index.html",
-  "consecutive_failures": 0,
+  "consecutive_failures": 2,
   "degraded": false,
   "last_evolution_success": false,
   "last_error": "Smoke test: Console errors: Identifier 'audioContext' has already been declared",
-  "generated_at": "2026-04-09T13:08:39.469345+00:00",
+  "generated_at": "2026-04-09T13:01:30.400041+00:00",
   "cooldown_until": ""
 }

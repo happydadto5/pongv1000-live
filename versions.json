@@ -1,15 +1,6 @@
 {
   "versions": [
     {
-      "version": "v0.099",
-      "label": "Apr 09, 2026",
-      "captured_at": "2026-04-09T06:12:00+00:00",
-      "url": "history/v0.099/index.html",
-      "title": "Morphing Pong",
-      "description": "Evolutionary Pong with gravity and particle effects.",
-      "is_current": false
-    },
-    {
       "version": "v0.100",
       "label": "Apr 09, 2026",
       "captured_at": "2026-04-09T06:53:00+00:00",
@@ -74,11 +65,20 @@
     },
     {
       "version": "v0.107",
-      "label": "Live now",
-      "captured_at": "2026-04-09T12:39:00.759865+00:00",
-      "url": "index.html",
+      "label": "Apr 09, 2026",
+      "captured_at": "2026-04-09T09:08:00+00:00",
+      "url": "history/v0.107/index.html",
       "title": "Pong Evolution",
       "description": "Enhanced gameplay through simulated testing and AI improvements.",
+      "is_current": false
+    },
+    {
+      "version": "v0.108",
+      "label": "Live now",
+      "captured_at": "2026-04-09T13:08:56.854596+00:00",
+      "url": "index.html",
+      "title": "Pong Evolution",
+      "description": "Improved gameplay with consistent ball bounces and enhanced controls.",
       "is_current": true
     }
   ]
