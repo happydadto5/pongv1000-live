@@ -227,31 +227,34 @@
         }
     }
 
-    function drawPaddle(paddle) {
-        ctx.fillStyle = paddle.hasShield ? 'blue' : 'white';
+    function drawPaddle(paddle, color) {
+        ctx.fillStyle = color;
         ctx.fillRect(paddle.x, paddle.y, paddleWidth(), paddleHeight());
     }
 
     function drawBall() {
         ctx.beginPath();
-        ctx.arc(state.ball.x, state.ball.y, ballSize() / 2, 0, Math.PI * 2);
-        ctx.fillStyle = 'white';
+        ctx.arc(state.ball.x, state.ball.y, ballSize(), 0, Math.PI * 2);
         ctx.fill();
-        ctx.closePath();
+    }
+
+    function drawScore() {
+        ctx.font = '48px Arial';
+        ctx.fillStyle = 'white';
+        ctx.fillText(state.left.score + ' - ' + state.right.score, canvas.width / 2 - 60, 50);
     }
 
     function gameLoop() {
         update();
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
         drawNet();
-        drawPaddle(state.left);
-        drawPaddle(state.right);
+        drawPaddle(state.left, 'white');
+        drawPaddle(state.right, 'white');
         drawBall();
+        drawScore();
         requestAnimationFrame(gameLoop);
     }
 
-    state.right.speed = 5;
-    state.right.hasShield = false;
-    state.scoreMultiplier = 1;
-
     gameLoop();
+
 })();
