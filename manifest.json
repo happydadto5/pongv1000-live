@@ -1,6 +1,6 @@
 {
-  "version": "0.080",
+  "version": "0.081",
   "title": "Pong Evolution",
-  "description": "Stability improvements and realistic ball bouncing mechanics.",
-  "evolution_count": 79
+  "description": "Improved AI, ball bounce, and UI feedback.",
+  "evolution_count": 80
 }

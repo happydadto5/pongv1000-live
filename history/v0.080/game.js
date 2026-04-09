@@ -216,8 +216,8 @@
 
         // Draw net
         ctx.fillStyle = 'white';
-        for (let y = 0; y < canvas.height; y += 40) {
-            ctx.fillRect(canvas.width / 2 - 1, y, 2, 20);
+        for (let y = 0; y < canvas.height; y += 10) {
+            ctx.fillRect(canvas.width / 2 - 5, y, 10, 5);
         }
     }
 
@@ -227,6 +227,5 @@
         requestAnimationFrame(gameLoop);
     }
 
-    resetRound(Math.random() > 0.5 ? 1 : -1);
     gameLoop();
 })();
