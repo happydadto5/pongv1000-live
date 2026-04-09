@@ -217,7 +217,7 @@
         // Draw net
         ctx.fillStyle = 'white';
         for (let y = 0; y < canvas.height; y += 10) {
-            ctx.fillRect(canvas.width / 2 - 1, y, 2, 5);
+            ctx.fillRect(canvas.width / 2 - 5, y, 10, 5);
         }
     }
 
