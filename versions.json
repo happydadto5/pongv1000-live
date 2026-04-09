@@ -1,15 +1,6 @@
 {
   "versions": [
     {
-      "version": "v0.094",
-      "label": "Apr 08, 2026",
-      "captured_at": "2026-04-09T03:34:00+00:00",
-      "url": "history/v0.094/index.html",
-      "title": "Game Evolution: Consistent AI Paddle & Theme Roadmap",
-      "description": "Enhanced gameplay with consistent AI paddle behavior and roadmap updates for future themes.",
-      "is_current": false
-    },
-    {
       "version": "v0.095",
       "label": "Apr 09, 2026",
       "captured_at": "2026-04-09T04:45:00+00:00",
@@ -74,11 +65,20 @@
     },
     {
       "version": "v0.102",
-      "label": "Live now",
-      "captured_at": "2026-04-09T11:06:09.598260+00:00",
-      "url": "index.html",
+      "label": "Apr 09, 2026",
+      "captured_at": "2026-04-09T07:17:00+00:00",
+      "url": "history/v0.102/index.html",
       "title": "Game Title Here",
       "description": "One sentence description",
+      "is_current": false
+    },
+    {
+      "version": "v0.103",
+      "label": "Live now",
+      "captured_at": "2026-04-09T11:19:27.916837+00:00",
+      "url": "index.html",
+      "title": "Pong Evolution",
+      "description": "Evolution towards more engaging gameplay mechanics.",
       "is_current": true
     }
   ]
