@@ -1,15 +1,6 @@
 {
   "versions": [
     {
-      "version": "v0.093",
-      "label": "Apr 08, 2026",
-      "captured_at": "2026-04-09T03:08:00+00:00",
-      "url": "history/v0.093/index.html",
-      "title": "Game Title Here",
-      "description": "Enhanced gameplay and new themes coming up soon.",
-      "is_current": false
-    },
-    {
       "version": "v0.094",
       "label": "Apr 08, 2026",
       "captured_at": "2026-04-09T03:34:00+00:00",
@@ -74,8 +65,17 @@
     },
     {
       "version": "v0.101",
+      "label": "Apr 09, 2026",
+      "captured_at": "2026-04-09T07:05:00+00:00",
+      "url": "history/v0.101/index.html",
+      "title": "Game Title Here",
+      "description": "One sentence description",
+      "is_current": false
+    },
+    {
+      "version": "v0.102",
       "label": "Live now",
-      "captured_at": "2026-04-09T10:54:58.180137+00:00",
+      "captured_at": "2026-04-09T11:06:09.598260+00:00",
       "url": "index.html",
       "title": "Game Title Here",
       "description": "One sentence description",
