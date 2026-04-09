@@ -224,29 +224,58 @@
     function drawBall() {
         ctx.beginPath();
         ctx.arc(state.ball.x, state.ball.y, ballSize(), 0, Math.PI * 2);
-        ctx.fillStyle = 'white';
+        ctx.fillStyle = 'yellow';
         ctx.fill();
     }
 
-    function drawScore() {
-        ctx.font = '36px Arial';
-        ctx.fillStyle = 'white';
-        ctx.fillText(state.left.score, canvas.width / 4, 50);
-        ctx.fillText(state.right.score, canvas.width * 3 / 4, 50);
+    function applyPowerUpEffect(powerUpType) {
+        switch (powerUpType) {
+            case 'color':
+                paddle.color = getRandomColor();
+                break;
+            case 'size':
+                paddle.size = getRandomSize();
+                break;
+            // Add more cases as needed
+        }
     }
 
-    function render() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        drawNet();
-        drawPaddle({ x: state.left.x, y: state.left.y });
-        drawPaddle({ x: state.right.x, y: state.right.y });
-        drawBall();
-        drawScore();
+    function getRandomColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+
+    function getRandomSize() {
+        return Math.floor(Math.random() * (paddleWidth() - 2) + 2);
+    }
+
+    function drawPowerUp(paddle) {
+        ctx.fillStyle = paddle.color;
+        ctx.fillRect(paddle.x, paddle.y, paddle.size, paddleHeight());
+    }
+
+    function updatePaddles() {
+        if (powerUpActive) {
+            state.left.color = getRandomColor();
+            state.right.color = getRandomColor();
+            drawPowerUp(state.left);
+            drawPowerUp(state.right);
+        } else {
+            ctx.fillStyle = 'white';
+            drawPaddle(state.left);
+            drawPaddle(state.right);
+        }
     }
 
     function gameLoop() {
         update();
-        render();
+        drawNet();
+        updatePaddles();
+        drawBall();
         requestAnimationFrame(gameLoop);
     }
 

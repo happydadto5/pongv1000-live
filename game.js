@@ -228,15 +228,56 @@
         ctx.fill();
     }
 
+    function applyPowerUpEffect(powerUpType) {
+        switch (powerUpType) {
+            case 'color':
+                paddle.color = getRandomColor();
+                break;
+            case 'size':
+                paddle.size = getRandomSize();
+                break;
+            // Add more cases as needed
+        }
+    }
+
+    function getRandomColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+
+    function getRandomSize() {
+        return Math.floor(Math.random() * (paddleWidth() - 2) + 2);
+    }
+
+    function drawPowerUp(paddle) {
+        ctx.fillStyle = paddle.color;
+        ctx.fillRect(paddle.x, paddle.y, paddle.size, paddleHeight());
+    }
+
+    function updatePaddles() {
+        if (powerUpActive) {
+            state.left.color = getRandomColor();
+            state.right.color = getRandomColor();
+            drawPowerUp(state.left);
+            drawPowerUp(state.right);
+        } else {
+            ctx.fillStyle = 'white';
+            drawPaddle(state.left);
+            drawPaddle(state.right);
+        }
+    }
+
     function gameLoop() {
         update();
         drawNet();
-        drawPaddle(state.left);
-        drawPaddle(state.right);
+        updatePaddles();
         drawBall();
         requestAnimationFrame(gameLoop);
     }
 
     gameLoop();
-
 })();
