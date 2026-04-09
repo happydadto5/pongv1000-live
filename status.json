@@ -1,32 +1,23 @@
 {
   "agent_start_time": "2026-04-05T17:52:38.912886+00:00",
-  "last_evolution_time": "2026-04-09T21:07:02.785313+00:00",
-  "last_evolution_started_time": "2026-04-09T21:07:22.702356+00:00",
-  "last_evolution_finished_time": "2026-04-09T21:07:02.785313+00:00",
-  "next_evolution_time": "2026-04-09T21:26:15.107909+00:00",
+  "last_evolution_time": "2026-04-09T22:06:06.663803+00:00",
+  "last_evolution_started_time": "2026-04-09T22:06:16.189382+00:00",
+  "last_evolution_finished_time": "2026-04-09T22:06:06.663803+00:00",
+  "next_evolution_time": "2026-04-09T22:32:00.677846+00:00",
   "evolution_interval_minutes": 10,
   "daytime_interval_minutes": 10,
   "nighttime_interval_minutes": 10,
   "time_period": "daytime",
-  "current_version": "0.118",
-  "current_title": "Pong Evolution",
-  "current_description": "Enhanced power-ups and a variety of gameplay modes.",
-  "total_evolutions": 117,
+  "current_version": "0.119",
+  "current_title": "Pong Evolution X",
+  "current_description": "Enhanced gameplay with dynamic power-ups and new modes.",
+  "total_evolutions": 118,
   "planned_arcs": [
-    "Next evolution plan 1: Implement a scoring system that rewards players for collecting specific types of power-ups.",
-    "Next evolution plan 2: Add an AI opponent with varying difficulty levels to increase replay value.",
-    "Next evolution plan 3: Introduce a level editor where players can create custom game maps."
+    "Next evolution plan 1: Implement AI opponents with increasing difficulty levels.",
+    "Next evolution plan 2: Introduce new game modes like time trials and capture the flag.",
+    "Next evolution plan 3: Create a customizable settings menu for players to tailor their experience."
   ],
-  "teasers": [
-    {
-      "message": "\"Power up your game with new visual enhancements!\"",
-      "eta_days": 1
-    },
-    {
-      "message": "\"Dive into custom levels and endless fun!\"",
-      "eta_days": 2
-    }
-  ],
+  "teasers": [],
   "last_focus_area": "creative_evolution",
   "long_term_steering": "",
   "evolution_targets": {
@@ -52,7 +43,7 @@
     },
     "counts": {
       "gameplay_improvements": 51,
-      "creative_evolution": 15,
+      "creative_evolution": 16,
       "visuals_theme": 11,
       "audio_feedback": 12,
       "controls_accessibility": 10,
@@ -60,7 +51,7 @@
       "documentation_status": 5,
       "roadmap_review_planning": 8
     },
-    "total": 118,
+    "total": 119,
     "preferred_next": [
       "creative_evolution",
       "documentation_status",
@@ -73,8 +64,8 @@
   "game_url": "index.html",
   "consecutive_failures": 0,
   "degraded": false,
-  "last_evolution_success": true,
-  "last_error": "",
-  "generated_at": "2026-04-09T21:16:15.109801+00:00",
+  "last_evolution_success": false,
+  "last_error": "Smoke test: Console errors: updatePaddles is not defined",
+  "generated_at": "2026-04-09T22:22:00.679940+00:00",
   "cooldown_until": ""
 }

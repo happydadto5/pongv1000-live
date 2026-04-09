@@ -63,8 +63,7 @@
     const state = {
         left: { x: 0, y: 0, up: false, down: false, score: 0 },
         right: { x: 0, y: 0, score: 0 },
-        ball: { x: 0, y: 0, vx: 0, vy: 0 },
-        netOffset: 0
+        ball: { x: 0, y: 0, vx: 0, vy: 0 }
     };
 
     function centerPaddles() {
@@ -148,7 +147,7 @@
     var powerUpActive = false;
     var powerUpTimeoutId = 0;
 
-    function applyPowerUp() {
+    function applyPowerUp(powerUpType) {
         if (powerUpActive) {
             return;
         }
@@ -158,6 +157,24 @@
         powerUpTimeoutId = window.setTimeout(function () {
             powerUpActive = false;
         }, 5000);
+
+        const context = getAudioContext();
+        switch (powerUpType) {
+            case 'speedBoost':
+                state.right.speed *= 1.5;
+                playBlip(800, 200);
+                break;
+            case 'shield':
+                state.right.hasShield = true;
+                ctx.fillStyle = 'blue';
+                break;
+            case 'doublePoints':
+                state.scoreMultiplier = 2;
+                playBlip(400, 100);
+                break;
+            default:
+                break;
+        }
     }
 
     function checkForPowerUp() {
@@ -171,113 +188,70 @@
         const currentBallSize = ballSize();
         const currentPaddleMargin = paddleMargin();
         const paddleSpeed = powerUpActive ? 7 : 5;
-        const aiTargetY = state.ball.y - currentPaddleHeight / 2;
+        const aiTargetY = state.right.y + paddleHeight() / 2;
 
-        if (state.left.up && state.left.y > 0) {
+        if (state.left.up) {
             state.left.y -= paddleSpeed;
-        }
-        if (state.left.down && state.left.y + currentPaddleHeight < canvas.height) {
+        } else if (state.left.down) {
             state.left.y += paddleSpeed;
         }
 
-        const rightPaddleY = state.right.y + currentPaddleHeight / 2;
-        if (state.ball.x > canvas.width / 2) {
-            if (aiTargetY < rightPaddleY - 5) {
-                state.right.y -= paddleSpeed;
-            } else if (aiTargetY > rightPaddleY + 5) {
-                state.right.y += paddleSpeed;
-            }
-        }
+        clampPaddles();
 
         state.ball.x += state.ball.vx;
         state.ball.y += state.ball.vy;
 
-        if (state.ball.y <= 0 || state.ball.y >= canvas.height - ballSize()) {
+        if (state.ball.y <= 0 || state.ball.y >= canvas.height - currentBallSize) {
             state.ball.vy = -state.ball.vy;
         }
-        if (state.ball.x <= paddleMargin() + ballSize() && state.left.up) {
+
+        if (state.left.x + paddleWidth() > state.ball.x && state.left.x < state.ball.x + currentBallSize && state.left.y <= state.ball.y && state.left.y + currentPaddleHeight >= state.ball.y) {
             state.ball.vx = -state.ball.vx;
-        } else if (state.ball.x <= paddleMargin() + ballSize() && !state.left.up) {
-            resetRound(-1);
-        }
-        if (state.ball.x >= canvas.width - paddleMargin() - ballSize()) {
-            resetRound(1);
+            applyPowerUp('speedBoost');
         }
 
-        clampPaddles();
+        if (state.right.x <= state.ball.x + currentBallSize && state.right.x + paddleWidth() > state.ball.x && state.right.y <= state.ball.y && state.right.y + currentPaddleHeight >= state.ball.y) {
+            state.ball.vx = -state.ball.vx;
+            applyPowerUp('speedBoost');
+        }
+
+        if (state.ball.x <= 0 || state.ball.x >= canvas.width) {
+            resetBall(state.ball.x > 0 ? -1 : 1);
+        }
     }
 
     function drawNet() {
-        for (let i = 0; i < canvas.height; i += 40) {
-            ctx.beginPath();
-            ctx.moveTo(canvas.width / 2, i);
-            ctx.lineTo(canvas.width / 2, i + 20);
-            ctx.stroke();
+        ctx.fillStyle = 'white';
+        for (let i = 5; i < canvas.height; i += 30) {
+            ctx.fillRect(canvas.width / 2 - 1, i, 2, 10);
         }
     }
 
     function drawPaddle(paddle) {
-        ctx.fillStyle = 'white';
+        ctx.fillStyle = paddle.hasShield ? 'blue' : 'white';
         ctx.fillRect(paddle.x, paddle.y, paddleWidth(), paddleHeight());
     }
 
     function drawBall() {
         ctx.beginPath();
-        ctx.arc(state.ball.x, state.ball.y, ballSize(), 0, Math.PI * 2);
-        ctx.fillStyle = 'yellow';
+        ctx.arc(state.ball.x, state.ball.y, ballSize() / 2, 0, Math.PI * 2);
+        ctx.fillStyle = 'white';
         ctx.fill();
-    }
-
-    function applyPowerUpEffect(powerUpType) {
-        switch (powerUpType) {
-            case 'color':
-                paddle.color = getRandomColor();
-                break;
-            case 'size':
-                paddle.size = getRandomSize();
-                break;
-            // Add more cases as needed
-        }
-    }
-
-    function getRandomColor() {
-        const letters = '0123456789ABCDEF';
-        let color = '#';
-        for (let i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
-    }
-
-    function getRandomSize() {
-        return Math.floor(Math.random() * (paddleWidth() - 2) + 2);
-    }
-
-    function drawPowerUp(paddle) {
-        ctx.fillStyle = paddle.color;
-        ctx.fillRect(paddle.x, paddle.y, paddle.size, paddleHeight());
-    }
-
-    function updatePaddles() {
-        if (powerUpActive) {
-            state.left.color = getRandomColor();
-            state.right.color = getRandomColor();
-            drawPowerUp(state.left);
-            drawPowerUp(state.right);
-        } else {
-            ctx.fillStyle = 'white';
-            drawPaddle(state.left);
-            drawPaddle(state.right);
-        }
+        ctx.closePath();
     }
 
     function gameLoop() {
         update();
         drawNet();
-        updatePaddles();
+        drawPaddle(state.left);
+        drawPaddle(state.right);
         drawBall();
         requestAnimationFrame(gameLoop);
     }
+
+    state.right.speed = 5;
+    state.right.hasShield = false;
+    state.scoreMultiplier = 1;
 
     gameLoop();
 })();
