@@ -1,23 +1,32 @@
 {
   "agent_start_time": "2026-04-05T17:52:38.912886+00:00",
-  "last_evolution_time": "2026-04-09T04:17:24.945068+00:00",
-  "last_evolution_started_time": "2026-04-09T04:17:41.626331+00:00",
-  "last_evolution_finished_time": "2026-04-09T04:17:24.945068+00:00",
-  "next_evolution_time": "2026-04-09T04:16:40.786262+00:00",
+  "last_evolution_time": "2026-04-09T06:55:02.464543+00:00",
+  "last_evolution_started_time": "2026-04-09T06:55:20.176433+00:00",
+  "last_evolution_finished_time": "2026-04-09T06:55:02.464543+00:00",
+  "next_evolution_time": "2026-04-09T06:51:47.432547+00:00",
   "evolution_interval_minutes": 10,
   "daytime_interval_minutes": 10,
   "nighttime_interval_minutes": 10,
   "time_period": "nighttime",
-  "current_version": "0.085",
-  "current_title": "Pong Evolution",
-  "current_description": "Enhanced AI, obstacles, and a new theme are on the way.",
-  "total_evolutions": 84,
+  "current_version": "0.093",
+  "current_title": "Game Title Here",
+  "current_description": "Enhanced gameplay and new themes coming up soon.",
+  "total_evolutions": 92,
   "planned_arcs": [
-    "Next evolution plan 1: Implement power-ups with varying effects to increase player engagement.",
-    "Next evolution plan 2: Add obstacles around the playing area to add complexity and strategic elements.",
-    "Next evolution plan 3: Develop a new theme for the game that incorporates elements of space or cosmic exploration."
+    "Next evolution plan 1: Implement power-up effects dynamically based on their type.",
+    "Next evolution plan 2: Introduce a new theme with a gravity pit around the paddles.",
+    "Next evolution plan 3: Develop a tempest-themed level with wind currents affecting the ball's movement."
   ],
-  "teasers": [],
+  "teasers": [
+    {
+      "message": "\"Improve your paddle's reaction! Play with the updated AI now!\"",
+      "eta_days": 3
+    },
+    {
+      "message": "\"Step into a new theme soon, filled with gravity and wind!\"",
+      "eta_days": 7
+    }
+  ],
   "last_focus_area": "gameplay_improvements",
   "long_term_steering": "",
   "evolution_targets": {
@@ -42,7 +51,7 @@
       "roadmap_review_planning": 5
     },
     "counts": {
-      "gameplay_improvements": 34,
+      "gameplay_improvements": 42,
       "creative_evolution": 12,
       "visuals_theme": 11,
       "audio_feedback": 12,
@@ -51,7 +60,7 @@
       "documentation_status": 1,
       "roadmap_review_planning": 0
     },
-    "total": 85,
+    "total": 93,
     "preferred_next": [
       "documentation_status",
       "creative_evolution",
@@ -66,6 +75,6 @@
   "degraded": false,
   "last_evolution_success": true,
   "last_error": "",
-  "generated_at": "2026-04-09T04:17:41.628070+00:00",
+  "generated_at": "2026-04-09T06:55:20.177771+00:00",
   "cooldown_until": ""
 }
