@@ -3,22 +3,35 @@
   "last_evolution_time": "2026-04-09T10:43:36.694908+00:00",
   "last_evolution_started_time": "2026-04-09T10:43:46.539577+00:00",
   "last_evolution_finished_time": "2026-04-09T10:43:36.694908+00:00",
-  "next_evolution_time": "2026-04-09T11:03:36.064665+00:00",
+  "next_evolution_time": "2026-04-09T10:22:17.723109+00:00",
   "evolution_interval_minutes": 10,
   "daytime_interval_minutes": 10,
   "nighttime_interval_minutes": 10,
   "time_period": "daytime",
-  "current_version": "0.101",
-  "current_title": "Game Title Here",
-  "current_description": "One sentence description",
-  "total_evolutions": 100,
+  "current_version": "0.100",
+  "current_title": "Pong Evolution",
+  "current_description": "Stability improvements and gameplay fixes",
+  "total_evolutions": 99,
   "planned_arcs": [
-    "Next evolution plan 1: Implement power-up effects dynamically based on their type.",
-    "Next evolution plan 2: Adjust AI paddle behavior further to provide more consistent gameplay experience.",
-    "Next evolution plan 3: Introduce a dedicated section in the roadmap for upcoming theme changes and their expected release dates."
+    "Next evolution plan 1: Implement power-ups with different effects.",
+    "Next evolution plan 2: Introduce a gravity pit mechanic around the paddles.",
+    "Next evolution plan 3: Update the UI/UX with a new theme and polished controls."
   ],
-  "teasers": [],
-  "last_focus_area": "roadmap_review_planning",
+  "teasers": [
+    {
+      "message": "Gameplay tweak: Fixed ball reset issue!",
+      "eta_days": 2
+    },
+    {
+      "message": "Next feature: Power-ups incoming!",
+      "eta_days": 3
+    },
+    {
+      "message": "UI refresh: New theme coming soon!",
+      "eta_days": 4
+    }
+  ],
+  "last_focus_area": "stability_performance",
   "long_term_steering": "",
   "evolution_targets": {
     "gameplay_improvements": 20,
@@ -49,23 +62,23 @@
       "controls_accessibility": 10,
       "stability_performance": 6,
       "documentation_status": 1,
-      "roadmap_review_planning": 3
+      "roadmap_review_planning": 2
     },
-    "total": 101,
+    "total": 100,
     "preferred_next": [
       "documentation_status",
       "creative_evolution",
-      "visuals_theme"
+      "stability_performance"
     ],
     "overrepresented": [
       "gameplay_improvements"
     ]
   },
   "game_url": "index.html",
-  "consecutive_failures": 0,
+  "consecutive_failures": 1,
   "degraded": false,
   "last_evolution_success": false,
   "last_error": "Smoke test: Canvas appears static \u2014 no gameplay motion detected",
-  "generated_at": "2026-04-09T10:53:36.066344+00:00",
+  "generated_at": "2026-04-09T10:43:46.540844+00:00",
   "cooldown_until": ""
 }
