@@ -1,15 +1,6 @@
 {
   "versions": [
     {
-      "version": "v0.079",
-      "label": "Apr 08, 2026",
-      "captured_at": "2026-04-08T22:29:00+00:00",
-      "url": "history/v0.079/index.html",
-      "title": "Game Title Here",
-      "description": "One sentence description",
-      "is_current": false
-    },
-    {
       "version": "v0.080",
       "label": "Apr 08, 2026",
       "captured_at": "2026-04-08T22:38:00+00:00",
@@ -74,11 +65,20 @@
     },
     {
       "version": "v0.087",
-      "label": "Live now",
-      "captured_at": "2026-04-09T05:04:08.110547+00:00",
-      "url": "index.html",
+      "label": "Apr 08, 2026",
+      "captured_at": "2026-04-09T01:32:00+00:00",
+      "url": "history/v0.087/index.html",
       "title": "Game Title Here",
       "description": "Improved AI paddle and basic obstacle mechanics added.",
+      "is_current": false
+    },
+    {
+      "version": "v0.088",
+      "label": "Live now",
+      "captured_at": "2026-04-09T05:32:51.806105+00:00",
+      "url": "index.html",
+      "title": "Game Title Here",
+      "description": "One sentence description",
       "is_current": true
     }
   ]
