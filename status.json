@@ -1,23 +1,32 @@
 {
   "agent_start_time": "2026-04-05T17:52:38.912886+00:00",
-  "last_evolution_time": "2026-04-09T09:33:35.289552+00:00",
-  "last_evolution_started_time": "2026-04-09T09:33:45.158474+00:00",
-  "last_evolution_finished_time": "2026-04-09T09:33:35.289552+00:00",
-  "next_evolution_time": "2026-04-09T09:53:48.927659+00:00",
+  "last_evolution_time": "2026-04-09T09:46:41.436735+00:00",
+  "last_evolution_started_time": "2026-04-09T09:47:00.424618+00:00",
+  "last_evolution_finished_time": "2026-04-09T09:46:41.436735+00:00",
+  "next_evolution_time": "2026-04-09T10:07:30.520709+00:00",
   "evolution_interval_minutes": 10,
   "daytime_interval_minutes": 10,
   "nighttime_interval_minutes": 10,
   "time_period": "daytime",
-  "current_version": "0.098",
-  "current_title": "Game Title Here",
-  "current_description": "One sentence description",
-  "total_evolutions": 97,
+  "current_version": "0.099",
+  "current_title": "Morphing Pong",
+  "current_description": "Evolutionary Pong with gravity and particle effects.",
+  "total_evolutions": 98,
   "planned_arcs": [
-    "Next evolution plan 1: Implement a gravity pit mechanics around the paddles.",
-    "Next evolution plan 2: Add power-up effects that dynamically change paddle behavior based on type.",
-    "Next evolution plan 3: Adjust AI paddle behavior to provide more consistent gameplay experience."
+    "Next evolution plan 1: Introduce gravity pit mechanics",
+    "Next evolution plan 2: Implement particle effects based on power-up types",
+    "Next evolution plan 3: Add a leaderboard feature"
   ],
-  "teasers": [],
+  "teasers": [
+    {
+      "message": "Game is morphing! Stay tuned for new mechanics.",
+      "eta_days": 2
+    },
+    {
+      "message": "Next evolution: Gravity pit mechanics incoming!",
+      "eta_days": 3
+    }
+  ],
   "last_focus_area": "roadmap_review_planning",
   "long_term_steering": "",
   "evolution_targets": {
@@ -49,13 +58,13 @@
       "controls_accessibility": 10,
       "stability_performance": 5,
       "documentation_status": 1,
-      "roadmap_review_planning": 1
+      "roadmap_review_planning": 2
     },
-    "total": 98,
+    "total": 99,
     "preferred_next": [
       "documentation_status",
       "creative_evolution",
-      "roadmap_review_planning"
+      "stability_performance"
     ],
     "overrepresented": [
       "gameplay_improvements"
@@ -64,8 +73,8 @@
   "game_url": "index.html",
   "consecutive_failures": 0,
   "degraded": false,
-  "last_evolution_success": false,
-  "last_error": "Smoke test: Paddles not visibly rendered on canvas",
-  "generated_at": "2026-04-09T09:43:48.929537+00:00",
+  "last_evolution_success": true,
+  "last_error": "",
+  "generated_at": "2026-04-09T09:57:30.523094+00:00",
   "cooldown_until": ""
 }

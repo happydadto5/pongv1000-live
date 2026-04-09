@@ -61,14 +61,16 @@
     }
 
     const state = {
-        left: { y: 0, up: false, down: false, score: 0 },
-        right: { y: 0, score: 0 },
+        left: { x: 0, y: 0, up: false, down: false, score: 0 },
+        right: { x: 0, y: 0, score: 0 },
         ball: { x: 0, y: 0, vx: 0, vy: 0 },
         netOffset: 0
     };
 
     function centerPaddles() {
         const centeredY = (canvas.height - paddleHeight()) / 2;
+        state.left.x = paddleMargin();
+        state.right.x = canvas.width - paddleMargin() - paddleWidth();
         state.left.y = centeredY;
         state.right.y = centeredY;
     }
@@ -222,24 +224,18 @@
         ctx.beginPath();
         ctx.moveTo(canvas.width / 2, 0);
         ctx.lineTo(canvas.width / 2, canvas.height);
-        ctx.strokeStyle = 'white';
         ctx.stroke();
-        ctx.closePath();
     }
 
-    function updateGame() {
-        update();
-        clampPaddles();
-
+    function gameLoop() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        drawNet();
-        drawPaddle(paddleMargin(), state.left.y);
-        drawPaddle(canvas.width - paddleMargin() - paddleWidth(), state.right.y);
+        update();
         drawBall();
-
-        requestAnimationFrame(updateGame);
+        drawPaddle(state.left.x, state.left.y);
+        drawPaddle(state.right.x, state.right.y);
+        drawNet();
+        requestAnimationFrame(gameLoop);
     }
 
-    updateGame();
+    gameLoop();
 })();
