@@ -241,5 +241,5 @@
         requestAnimationFrame(updateGame);
     }
 
-    requestAnimationFrame(updateGame);
+    updateGame();
 })();
