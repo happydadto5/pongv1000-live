@@ -1,15 +1,6 @@
 {
   "versions": [
     {
-      "version": "v0.104",
-      "label": "Apr 09, 2026",
-      "captured_at": "2026-04-09T08:15:00+00:00",
-      "url": "history/v0.104/index.html",
-      "title": "Pong Evolution",
-      "description": "Evolutionary Pong with new themes and power-ups.",
-      "is_current": false
-    },
-    {
       "version": "v0.105",
       "label": "Apr 09, 2026",
       "captured_at": "2026-04-09T08:30:00+00:00",
@@ -74,11 +65,20 @@
     },
     {
       "version": "v0.112",
-      "label": "Live now",
-      "captured_at": "2026-04-09T19:04:51.033163+00:00",
-      "url": "index.html",
+      "label": "Apr 09, 2026",
+      "captured_at": "2026-04-09T16:21:00+00:00",
+      "url": "history/v0.112/index.html",
       "title": "Pong Evolutionary",
       "description": "A game that morphs over time with new mechanics and themes.",
+      "is_current": false
+    },
+    {
+      "version": "v0.113",
+      "label": "Live now",
+      "captured_at": "2026-04-09T20:23:39.803260+00:00",
+      "url": "index.html",
+      "title": "Game Title Here",
+      "description": "One sentence description",
       "is_current": true
     }
   ]

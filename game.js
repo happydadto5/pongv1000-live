@@ -229,24 +229,18 @@
     }
 
     function drawScore() {
-        ctx.font = '36px Arial';
+        ctx.font = '30px Arial';
         ctx.fillStyle = 'white';
         ctx.fillText(state.left.score, 50, 50);
         ctx.fillText(state.right.score, canvas.width - 100, 50);
     }
 
-    function render() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    function gameLoop() {
+        update();
         drawNet();
         drawPaddle({ x: state.left.x, y: state.left.y });
         drawPaddle({ x: state.right.x, y: state.right.y });
         drawBall();
-        drawScore();
-    }
-
-    function gameLoop() {
-        update();
-        render();
         requestAnimationFrame(gameLoop);
     }
 
