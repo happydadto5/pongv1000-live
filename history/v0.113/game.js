@@ -200,37 +200,47 @@
         } else if (state.ball.x <= paddleMargin() + ballSize() && !state.left.up) {
             resetRound(-1);
         }
-        if (state.ball.x >= canvas.width - paddleMargin() - ballSize() && state.right.down) {
-            state.ball.vx = -state.ball.vx;
-        } else if (state.ball.x >= canvas.width - paddleMargin() - ballSize() && !state.right.down) {
+        if (state.ball.x >= canvas.width - paddleMargin() - ballSize()) {
             resetRound(1);
         }
+
+        clampPaddles();
+    }
+
+    function drawNet() {
+        for (let i = 0; i < canvas.height; i += 40) {
+            ctx.beginPath();
+            ctx.moveTo(canvas.width / 2, i);
+            ctx.lineTo(canvas.width / 2, i + 20);
+            ctx.stroke();
+        }
+    }
+
+    function drawPaddle(paddle) {
+        ctx.fillStyle = 'white';
+        ctx.fillRect(paddle.x, paddle.y, paddleWidth(), paddleHeight());
     }
 
     function drawBall() {
         ctx.beginPath();
         ctx.arc(state.ball.x, state.ball.y, ballSize(), 0, Math.PI * 2);
-        ctx.fillStyle = "white";
+        ctx.fillStyle = 'white';
         ctx.fill();
-        ctx.closePath();
     }
 
-    function drawPaddle(paddle) {
-        ctx.fillRect(paddle.x, paddle.y, paddleWidth(), paddleHeight());
-    }
-
-    function drawScoreboard() {
-        ctx.font = "30px Arial";
-        ctx.fillText("Player 1: " + state.left.score, 10, 50);
-        ctx.fillText("Player 2: " + state.right.score, canvas.width - 170, 50);
+    function drawScore() {
+        ctx.font = '30px Arial';
+        ctx.fillStyle = 'white';
+        ctx.fillText(state.left.score, 50, 50);
+        ctx.fillText(state.right.score, canvas.width - 150, 50);
     }
 
     function gameLoop() {
         update();
+        drawNet();
+        drawPaddle({ x: state.left.x, y: state.left.y });
+        drawPaddle({ x: state.right.x, y: state.right.y });
         drawBall();
-        drawPaddle(state.left);
-        drawPaddle(state.right);
-        drawScoreboard();
         requestAnimationFrame(gameLoop);
     }
 

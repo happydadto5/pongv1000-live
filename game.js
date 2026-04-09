@@ -232,7 +232,7 @@
         ctx.font = '30px Arial';
         ctx.fillStyle = 'white';
         ctx.fillText(state.left.score, 50, 50);
-        ctx.fillText(state.right.score, canvas.width - 100, 50);
+        ctx.fillText(state.right.score, canvas.width - 150, 50);
     }
 
     function gameLoop() {
@@ -245,4 +245,5 @@
     }
 
     gameLoop();
+
 })();
