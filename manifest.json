@@ -1,6 +1,6 @@
 {
-  "version": "0.099",
-  "title": "Morphing Pong",
-  "description": "Evolutionary Pong with gravity and particle effects.",
-  "evolution_count": 98
+  "version": "0.100",
+  "title": "Pong Evolution",
+  "description": "Stability improvements and gameplay fixes",
+  "evolution_count": 99
 }
