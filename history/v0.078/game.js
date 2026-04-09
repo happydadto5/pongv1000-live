@@ -188,74 +188,44 @@
         state.ball.x += state.ball.vx;
         state.ball.y += state.ball.vy;
 
-        if (state.ball.y - currentBallSize / 2 < 0 || state.ball.y + currentBallSize / 2 > canvas.height) {
+        if (state.ball.y <= 0 || state.ball.y >= canvas.height - ballSize()) {
             state.ball.vy = -state.ball.vy;
         }
-
-        if (state.ball.x - currentBallSize / 2 < currentPaddleMargin) {
-            if (state.ball.y > state.left.y && state.ball.y < state.left.y + currentPaddleHeight) {
-                state.ball.vx = -state.ball.vx;
-            } else {
-                state.right.score++;
-                resetRound(1);
-            }
+        if (state.ball.x <= paddleMargin() + ballSize() && state.left.up) {
+            state.ball.vx = -state.ball.vx;
+        } else if (state.ball.x <= paddleMargin() + ballSize() && !state.left.up) {
+            resetRound(-1);
         }
-
-        if (state.ball.x + currentBallSize / 2 > canvas.width - currentPaddleMargin) {
-            if (state.ball.y > state.right.y && state.ball.y < state.right.y + currentPaddleHeight) {
-                state.ball.vx = -state.ball.vx;
-            } else {
-                state.left.score++;
-                resetRound(-1);
-            }
+        if (state.ball.x >= canvas.width - paddleMargin() - ballSize() && state.right.up) {
+            state.ball.vx = -state.ball.vx;
+        } else if (state.ball.x >= canvas.width - paddleMargin() - ballSize() && !state.right.up) {
+            resetRound(1);
         }
-
-        clampPaddles();
     }
 
-    function draw() {
-        const currentPaddleHeight = paddleHeight();
-        const currentPaddleWidth = paddleWidth();
-        const currentBallSize = ballSize();
-        const currentPaddleMargin = paddleMargin();
+    function render() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        ctx.fillStyle = '#050505';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        drawCenterLine();
-
-        ctx.fillStyle = '#ffffff';
-        ctx.font = 'bold 42px monospace';
-        ctx.textAlign = 'center';
-        ctx.fillText(String(state.left.score), canvas.width * 0.25, 60);
-        ctx.fillText(String(state.right.score), canvas.width * 0.75, 60);
-
-        ctx.fillRect(currentPaddleMargin, state.left.y, currentPaddleWidth, currentPaddleHeight);
-        ctx.fillRect(canvas.width - currentPaddleMargin - currentPaddleWidth, state.right.y, currentPaddleWidth, currentPaddleHeight);
-
+        // Draw paddles and ball
+        ctx.fillStyle = 'white';
+        ctx.fillRect(paddleMargin(), state.left.y, paddleWidth(), paddleHeight());
+        ctx.fillRect(canvas.width - paddleMargin() - paddleWidth(), state.right.y, paddleWidth(), paddleHeight());
         ctx.beginPath();
-        ctx.arc(state.ball.x, state.ball.y, currentBallSize / 2, 0, Math.PI * 2);
+        ctx.arc(state.ball.x, state.ball.y, ballSize(), 0, Math.PI * 2);
         ctx.fill();
-    }
 
-    function drawCenterLine() {
-        ctx.strokeStyle = '#ffffff';
-        ctx.lineWidth = 2;
-        ctx.setLineDash([12, 12]);
-        ctx.lineDashOffset = -state.netOffset;
-        ctx.beginPath();
-        ctx.moveTo(canvas.width / 2, 0);
-        ctx.lineTo(canvas.width / 2, canvas.height);
-        ctx.stroke();
-        ctx.setLineDash([]);
+        // Draw net
+        ctx.fillStyle = 'white';
+        for (let y = 0; y < canvas.height; y += 10) {
+            ctx.fillRect(canvas.width / 2 - 1, y, 2, 5);
+        }
     }
 
     function gameLoop() {
         update();
-        draw();
+        render();
         requestAnimationFrame(gameLoop);
     }
 
-    resetRound(Math.random() > 0.5 ? 1 : -1);
     gameLoop();
 })();
