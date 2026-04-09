@@ -3,31 +3,22 @@
   "last_evolution_time": "2026-04-09T20:44:35.061236+00:00",
   "last_evolution_started_time": "2026-04-09T20:44:53.795481+00:00",
   "last_evolution_finished_time": "2026-04-09T20:44:35.061236+00:00",
-  "next_evolution_time": "2026-04-09T21:03:36.182838+00:00",
+  "next_evolution_time": "2026-04-09T20:43:53.183939+00:00",
   "evolution_interval_minutes": 10,
   "daytime_interval_minutes": 10,
   "nighttime_interval_minutes": 10,
   "time_period": "daytime",
-  "current_version": "0.116",
-  "current_title": "Pong Plus Power-Ups",
-  "current_description": "Evolve Pong with exciting new ball mechanics, obstacles, and power-ups.",
-  "total_evolutions": 115,
+  "current_version": "0.115",
+  "current_title": "Game Title Here",
+  "current_description": "One sentence description",
+  "total_evolutions": 114,
   "planned_arcs": [
-    "Next evolution plan 1: Introduce obstacles that the ball must navigate around.",
-    "Next evolution plan 2: Develop a scoring system based on power-up collection.",
-    "Next evolution plan 3: Create different types of power-ups with unique effects (e.g., increased paddle size, time freeze)."
+    "Next evolution plan 1: Introduce new mechanics (power-ups, multi-ball).",
+    "Next evolution plan 2: Theme emerges (you choose the direction).",
+    "Next evolution plan 3: Genre drift."
   ],
-  "teasers": [
-    {
-      "message": "\"Speed up your game with power-ups! Can you master the new ball mechanics?\"",
-      "eta_days": 3
-    },
-    {
-      "message": "\"Navigate around obstacles and collect power-ups for a chance to win big!\"",
-      "eta_days": 5
-    }
-  ],
-  "last_focus_area": "gameplay_improvements",
+  "teasers": [],
+  "last_focus_area": "roadmap_review_planning",
   "long_term_steering": "",
   "evolution_targets": {
     "gameplay_improvements": 20,
@@ -51,7 +42,7 @@
       "roadmap_review_planning": 5
     },
     "counts": {
-      "gameplay_improvements": 50,
+      "gameplay_improvements": 49,
       "creative_evolution": 14,
       "visuals_theme": 11,
       "audio_feedback": 12,
@@ -60,7 +51,7 @@
       "documentation_status": 5,
       "roadmap_review_planning": 8
     },
-    "total": 116,
+    "total": 115,
     "preferred_next": [
       "creative_evolution",
       "documentation_status",
@@ -75,6 +66,6 @@
   "degraded": false,
   "last_evolution_success": true,
   "last_error": "",
-  "generated_at": "2026-04-09T20:53:36.184714+00:00",
+  "generated_at": "2026-04-09T20:44:53.796861+00:00",
   "cooldown_until": ""
 }
