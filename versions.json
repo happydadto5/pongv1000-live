@@ -1,15 +1,6 @@
 {
   "versions": [
     {
-      "version": "v0.096",
-      "label": "Apr 09, 2026",
-      "captured_at": "2026-04-09T05:11:00+00:00",
-      "url": "history/v0.096/index.html",
-      "title": "Game Title Here",
-      "description": "One sentence description",
-      "is_current": false
-    },
-    {
       "version": "v0.097",
       "label": "Apr 09, 2026",
       "captured_at": "2026-04-09T05:43:00+00:00",
@@ -74,11 +65,20 @@
     },
     {
       "version": "v0.104",
-      "label": "Live now",
-      "captured_at": "2026-04-09T11:58:09.417323+00:00",
-      "url": "index.html",
+      "label": "Apr 09, 2026",
+      "captured_at": "2026-04-09T08:15:00+00:00",
+      "url": "history/v0.104/index.html",
       "title": "Pong Evolution",
       "description": "Evolutionary Pong with new themes and power-ups.",
+      "is_current": false
+    },
+    {
+      "version": "v0.105",
+      "label": "Live now",
+      "captured_at": "2026-04-09T12:16:11.888687+00:00",
+      "url": "index.html",
+      "title": "Game Title Here",
+      "description": "One sentence description",
       "is_current": true
     }
   ]
