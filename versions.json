@@ -1,15 +1,6 @@
 {
   "versions": [
     {
-      "version": "v0.073",
-      "label": "Apr 08, 2026",
-      "captured_at": "2026-04-08T20:26:00+00:00",
-      "url": "history/v0.073/index.html",
-      "title": "Game Title Here",
-      "description": "One sentence description",
-      "is_current": false
-    },
-    {
       "version": "v0.074",
       "label": "Apr 08, 2026",
       "captured_at": "2026-04-08T20:44:00+00:00",
@@ -74,11 +65,20 @@
     },
     {
       "version": "v0.081",
-      "label": "Live now",
-      "captured_at": "2026-04-09T02:38:52.934061+00:00",
-      "url": "index.html",
+      "label": "Apr 08, 2026",
+      "captured_at": "2026-04-08T23:03:00+00:00",
+      "url": "history/v0.081/index.html",
       "title": "Pong Evolution",
       "description": "Improved AI, ball bounce, and UI feedback.",
+      "is_current": false
+    },
+    {
+      "version": "v0.082",
+      "label": "Live now",
+      "captured_at": "2026-04-09T03:05:49.972616+00:00",
+      "url": "index.html",
+      "title": "Game Title Here",
+      "description": "One sentence description",
       "is_current": true
     }
   ]

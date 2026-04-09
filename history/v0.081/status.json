@@ -1,24 +1,24 @@
 {
   "agent_start_time": "2026-04-05T17:52:38.912886+00:00",
-  "last_evolution_time": "2026-04-09T00:17:46.398771+00:00",
-  "last_evolution_started_time": "2026-04-09T00:18:54.370651+00:00",
-  "last_evolution_finished_time": "2026-04-09T00:17:46.398771+00:00",
-  "next_evolution_time": "2026-04-09T00:18:44.882314+00:00",
+  "last_evolution_time": "2026-04-09T02:55:09.670878+00:00",
+  "last_evolution_started_time": "2026-04-09T02:55:19.509347+00:00",
+  "last_evolution_finished_time": "2026-04-09T02:55:09.670878+00:00",
+  "next_evolution_time": "2026-04-09T02:50:20.223072+00:00",
   "evolution_interval_minutes": 10,
   "daytime_interval_minutes": 10,
   "nighttime_interval_minutes": 10,
   "time_period": "daytime",
-  "current_version": "0.073",
-  "current_title": "Game Title Here",
-  "current_description": "One sentence description",
-  "total_evolutions": 72,
+  "current_version": "0.081",
+  "current_title": "Pong Evolution",
+  "current_description": "Improved AI, ball bounce, and UI feedback.",
+  "total_evolutions": 80,
   "planned_arcs": [
-    "Update roadmap with future game morphing plans.",
-    "Refine audio feedback to enhance immersion.",
-    "Improve control panel UI/UX design."
+    "Next evolution plan 1: New mechanics (power-ups, multi-ball, obstacles, AI difficulty)",
+    "Next evolution plan 2: Theme emerges (you choose the direction)",
+    "Next evolution plan 3: Genre drift"
   ],
   "teasers": [],
-  "last_focus_area": "controls_accessibility",
+  "last_focus_area": "gameplay_improvements",
   "long_term_steering": "",
   "evolution_targets": {
     "gameplay_improvements": 20,
@@ -42,31 +42,30 @@
       "roadmap_review_planning": 5
     },
     "counts": {
-      "gameplay_improvements": 24,
+      "gameplay_improvements": 30,
       "creative_evolution": 12,
       "visuals_theme": 11,
       "audio_feedback": 12,
       "controls_accessibility": 10,
-      "stability_performance": 3,
+      "stability_performance": 5,
       "documentation_status": 1,
       "roadmap_review_planning": 0
     },
-    "total": 73,
+    "total": 81,
     "preferred_next": [
       "documentation_status",
-      "stability_performance",
-      "roadmap_review_planning"
+      "roadmap_review_planning",
+      "creative_evolution"
     ],
     "overrepresented": [
-      "gameplay_improvements",
-      "audio_feedback"
+      "gameplay_improvements"
     ]
   },
   "game_url": "index.html",
-  "consecutive_failures": 0,
+  "consecutive_failures": 1,
   "degraded": false,
-  "last_evolution_success": true,
-  "last_error": "",
-  "generated_at": "2026-04-09T00:18:54.372736+00:00",
+  "last_evolution_success": false,
+  "last_error": "Smoke test: Console errors: aiTargetY is not defined",
+  "generated_at": "2026-04-09T02:55:19.510952+00:00",
   "cooldown_until": ""
 }
