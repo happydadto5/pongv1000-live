@@ -1,15 +1,6 @@
 {
   "versions": [
     {
-      "version": "v0.083",
-      "label": "Apr 08, 2026",
-      "captured_at": "2026-04-08T23:34:00+00:00",
-      "url": "history/v0.083/index.html",
-      "title": "Game Title Here",
-      "description": "One sentence description",
-      "is_current": false
-    },
-    {
       "version": "v0.084",
       "label": "Apr 08, 2026",
       "captured_at": "2026-04-09T00:15:00+00:00",
@@ -74,11 +65,20 @@
     },
     {
       "version": "v0.091",
-      "label": "Live now",
-      "captured_at": "2026-04-09T06:28:56.487127+00:00",
-      "url": "index.html",
+      "label": "Apr 08, 2026",
+      "captured_at": "2026-04-09T02:39:00+00:00",
+      "url": "history/v0.091/index.html",
       "title": "Game Title Here",
       "description": "Enhanced gameplay and AI paddle behavior, along with a futuristic city theme.",
+      "is_current": false
+    },
+    {
+      "version": "v0.092",
+      "label": "Live now",
+      "captured_at": "2026-04-09T06:41:43.311448+00:00",
+      "url": "index.html",
+      "title": "Game Title Here",
+      "description": "Enhanced AI paddle behavior and improved collision detection for a more enjoyable gameplay experience.",
       "is_current": true
     }
   ]

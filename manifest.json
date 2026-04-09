@@ -1,6 +1,6 @@
 {
-  "version": "0.091",
+  "version": "0.092",
   "title": "Game Title Here",
-  "description": "Enhanced gameplay and AI paddle behavior, along with a futuristic city theme.",
-  "evolution_count": 90
+  "description": "Enhanced AI paddle behavior and improved collision detection for a more enjoyable gameplay experience.",
+  "evolution_count": 91
 }
