@@ -3,23 +3,32 @@
   "last_evolution_time": "2026-04-10T18:05:17.816743+00:00",
   "last_evolution_started_time": "2026-04-10T18:05:41.864502+00:00",
   "last_evolution_finished_time": "2026-04-10T18:05:17.816743+00:00",
-  "next_evolution_time": "2026-04-10T18:05:32.401337+00:00",
+  "next_evolution_time": "2026-04-10T18:23:40.744407+00:00",
   "predicted_next_evolution_time": "2026-04-10T18:28:59.864502+00:00",
   "evolution_interval_minutes": 10,
   "daytime_interval_minutes": 10,
   "nighttime_interval_minutes": 10,
   "time_period": "daytime",
-  "current_version": "0.131",
-  "current_title": "Pong Evolution",
-  "current_description": "Evolutionary improvements to the classic game",
-  "total_evolutions": 130,
+  "current_version": "0.132",
+  "current_title": "Game Title Here",
+  "current_description": "One sentence description",
+  "total_evolutions": 131,
   "planned_arcs": [
-    "Next evolution plan 1: Implement power-up effects dynamically based on their type.",
-    "Next evolution plan 2: Add a dedicated section in the roadmap for upcoming theme changes and their expected release dates.",
-    "Next evolution plan 3: Introduce a particle effect system to enhance visual appeal during gameplay events."
+    "Next evolution plan 1: Improve AI paddle behavior to provide more consistent gameplay experience.",
+    "Next evolution plan 2: Introduce particle effects with dynamic colors and sizes based on events.",
+    "Next evolution plan 3: Enhance power-up effects for a more visually appealing game."
   ],
-  "teasers": [],
-  "last_focus_area": "gameplay_improvements",
+  "teasers": [
+    {
+      "message": "New theme changes coming soon! Stay tuned.",
+      "eta_days": 5
+    },
+    {
+      "message": "Enhanced particle effects in action.",
+      "eta_days": 3
+    }
+  ],
+  "last_focus_area": "roadmap_review_planning",
   "long_term_steering": "PongV1000 should evolve far beyond classic Pong into a really fun, colorful, addictive, easy-to-play one-player-versus-computer game that could plausibly go viral. The long-term destination should look nothing like early Pong. Treat the current Pong form as a starting point, not the destination. Favor mechanics, pacing, visual identity, and moment-to-moment feel that make the game instantly readable, satisfying, surprising, and shareable. Roadmap planning should actively chart the transformation from Pong into a new arcade experience over many steps. Evolution category percentages are only guardrails to avoid neglecting an area for too long; they are not the creative goal.",
   "evolution_targets": {
     "gameplay_improvements": 20,
@@ -50,9 +59,9 @@
       "controls_accessibility": 10,
       "stability_performance": 6,
       "documentation_status": 5,
-      "roadmap_review_planning": 12
+      "roadmap_review_planning": 13
     },
-    "total": 131,
+    "total": 132,
     "preferred_next": [
       "creative_evolution",
       "visuals_theme",
@@ -67,7 +76,7 @@
   "degraded": false,
   "last_evolution_success": true,
   "last_error": "",
-  "generated_at": "2026-04-10T18:05:41.866036+00:00",
+  "generated_at": "2026-04-10T18:13:40.746756+00:00",
   "cooldown_until": "",
   "last_evolution_duration_seconds": 575,
   "average_evolution_duration_seconds": 1398,
