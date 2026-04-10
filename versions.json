@@ -1,15 +1,6 @@
 {
   "versions": [
     {
-      "version": "v0.123",
-      "label": "Apr 10, 2026",
-      "captured_at": "2026-04-10T04:58:00+00:00",
-      "url": "history/v0.123/index.html",
-      "title": "Pong Evolution",
-      "description": "Your favorite game with a smooth fix and exciting changes to come.",
-      "is_current": false
-    },
-    {
       "version": "v0.124",
       "label": "Apr 10, 2026",
       "captured_at": "2026-04-10T05:57:00+00:00",
@@ -74,11 +65,20 @@
     },
     {
       "version": "v0.131",
-      "label": "Live now",
-      "captured_at": "2026-04-10T18:05:22.221536+00:00",
-      "url": "index.html",
+      "label": "Apr 10, 2026",
+      "captured_at": "2026-04-10T14:13:00+00:00",
+      "url": "history/v0.131/index.html",
       "title": "Pong Evolution",
       "description": "Evolutionary improvements to the classic game",
+      "is_current": false
+    },
+    {
+      "version": "v0.132",
+      "label": "Live now",
+      "captured_at": "2026-04-10T18:13:46.885319+00:00",
+      "url": "index.html",
+      "title": "Game Title Here",
+      "description": "One sentence description",
       "is_current": true
     }
   ]
