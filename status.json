@@ -3,7 +3,7 @@
   "last_evolution_time": "2026-04-10T05:17:55.672212+00:00",
   "last_evolution_started_time": "2026-04-10T05:18:33.949911+00:00",
   "last_evolution_finished_time": "2026-04-10T05:17:55.672212+00:00",
-  "next_evolution_time": "2026-04-10T05:18:24.283697+00:00",
+  "next_evolution_time": "2026-04-10T05:38:51.275373+00:00",
   "predicted_next_evolution_time": "2026-04-10T05:31:18.949911+00:00",
   "evolution_interval_minutes": 10,
   "daytime_interval_minutes": 10,
@@ -67,11 +67,11 @@
   "degraded": false,
   "last_evolution_success": true,
   "last_error": "",
-  "generated_at": "2026-04-10T05:18:33.951482+00:00",
+  "generated_at": "2026-04-10T05:28:51.277181+00:00",
   "cooldown_until": "",
   "last_evolution_duration_seconds": 561,
   "average_evolution_duration_seconds": 765,
   "senior_llm_phone_a_friend_daily_budget": 4,
-  "senior_llm_phone_a_friend_used_today": 3,
-  "senior_llm_phone_a_friend_remaining_today": 1
+  "senior_llm_phone_a_friend_used_today": 4,
+  "senior_llm_phone_a_friend_remaining_today": 0
 }
