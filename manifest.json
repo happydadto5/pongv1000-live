@@ -1,6 +1,6 @@
 {
-  "version": "0.139",
-  "title": "Pong Evolution",
-  "description": "Evolutionary Pong with countdown timer and dynamic effects.",
-  "evolution_count": 138
+  "version": "0.140",
+  "title": "Game Title Here",
+  "description": "One sentence description",
+  "evolution_count": 139
 }
