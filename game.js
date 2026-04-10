@@ -40,6 +40,16 @@
         }
     }
 
+    function handleBallHitPaddle() {
+        // Stop any existing sound effects
+        if (currentSoundEffect) {
+            currentSoundEffect.stop();
+        }
+
+        // Play a single hit sound effect
+        playBlip(800, 200);
+    }
+
     function paddleHeight() {
         return Math.max(80, Math.floor(canvas.height * 0.18));
     }
@@ -207,54 +217,26 @@
 
         if (state.left.x + paddleWidth() > state.ball.x && state.left.x < state.ball.x + currentBallSize && state.left.y <= state.ball.y && state.left.y + currentPaddleHeight >= state.ball.y) {
             state.ball.vx = -state.ball.vx;
-            applyPowerUp('speedBoost');
+            handleBallHitPaddle();
         }
 
-        if (state.right.x <= state.ball.x + currentBallSize && state.right.x + paddleWidth() > state.ball.x && state.right.y <= state.ball.y && state.right.y + currentPaddleHeight >= state.ball.y) {
+        if (state.right.x < state.ball.x + currentBallSize && state.right.x + paddleWidth() > state.ball.x && state.right.y <= state.ball.y && state.right.y + currentPaddleHeight >= state.ball.y) {
             state.ball.vx = -state.ball.vx;
-            applyPowerUp('speedBoost');
+            handleBallHitPaddle();
         }
 
-        if (state.ball.x <= 0 || state.ball.x >= canvas.width) {
-            resetBall(state.ball.x > 0 ? -1 : 1);
-        }
-    }
-
-    function drawNet() {
-        ctx.fillStyle = 'white';
-        for (let i = 5; i < canvas.height; i += 30) {
-            ctx.fillRect(canvas.width / 2 - 1, i, 2, 10);
+        if (state.ball.x <= 0 || state.ball.x >= canvas.width - currentBallSize) {
+            resetRound(state.ball.x <= 0 ? 1 : -1);
         }
     }
 
-    function drawPaddle(paddle, color) {
-        ctx.fillStyle = color;
-        ctx.fillRect(paddle.x, paddle.y, paddleWidth(), paddleHeight());
-    }
-
-    function drawBall() {
-        ctx.beginPath();
-        ctx.arc(state.ball.x, state.ball.y, ballSize(), 0, Math.PI * 2);
-        ctx.fill();
-    }
-
-    function drawScore() {
-        ctx.font = '48px Arial';
-        ctx.fillStyle = 'white';
-        ctx.fillText(state.left.score + ' - ' + state.right.score, canvas.width / 2 - 60, 50);
-    }
-
-    function gameLoop() {
-        update();
+    function render() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        drawNet();
-        drawPaddle(state.left, 'white');
-        drawPaddle(state.right, 'white');
-        drawBall();
-        drawScore();
-        requestAnimationFrame(gameLoop);
+
+        // Draw paddles and ball here
+
+        requestAnimationFrame(render);
     }
 
-    gameLoop();
-
+    requestAnimationFrame(render);
 })();
