@@ -201,7 +201,14 @@
     setInterval(checkForPowerUp, 30000);
 
     function updateAIPaddle() {
-        // Existing code...
+        const paddleSpeed = powerUpActive ? 7 : 5;
+        const ballYCenter = state.ball.y + ballSize() / 2;
+        if (state.right.y < ballYCenter) {
+            state.right.y += paddleSpeed;
+        } else if (state.right.y > ballYCenter) {
+            state.right.y -= paddleSpeed;
+        }
+        clampPaddles();
     }
 
     function update() {
@@ -240,34 +247,32 @@
         ctx.stroke();
     }
 
-    function drawPaddle(paddle) {
+    function drawPaddle(x, y) {
         ctx.fillStyle = 'white';
-        ctx.fillRect(paddle.x, paddle.y, paddleWidth(), paddleHeight());
+        ctx.fillRect(x, y, paddleWidth(), paddleHeight());
     }
 
     function drawBall() {
         ctx.beginPath();
         ctx.arc(state.ball.x, state.ball.y, ballSize(), 0, Math.PI * 2);
+        ctx.fillStyle = 'white';
         ctx.fill();
     }
 
-    function drawScore() {
-        ctx.fillStyle = 'white';
-        ctx.font = '30px Arial';
-        ctx.fillText('Left: ' + state.left.score, 10, 40);
-        ctx.fillText('Right: ' + state.right.score, canvas.width - 80, 40);
+    function render() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawNet();
+        drawPaddle(state.left.x, state.left.y);
+        drawPaddle(state.right.x, state.right.y);
+        drawBall();
     }
 
     function gameLoop() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        drawNet();
-        drawPaddle(state.left);
-        drawPaddle(state.right);
-        drawBall();
-        drawScore();
         update();
+        render();
         requestAnimationFrame(gameLoop);
     }
 
     gameLoop();
+
 })();
