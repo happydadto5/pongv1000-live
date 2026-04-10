@@ -1,6 +1,6 @@
 {
-  "version": "0.130",
+  "version": "0.131",
   "title": "Pong Evolution",
-  "description": "Enhancing gameplay with dynamic power-ups.",
-  "evolution_count": 129
+  "description": "Evolutionary improvements to the classic game",
+  "evolution_count": 130
 }
