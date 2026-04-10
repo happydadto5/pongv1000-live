@@ -5,6 +5,7 @@
     const ctx = canvas.getContext('2d');
 
     let audioContext;
+    let currentSoundEffect = null;
 
     function getAudioContext() {
         if (!audioContext) {
@@ -15,29 +16,50 @@
 
     ['click', 'keydown', 'touchstart'].forEach((eventName) => {
         document.addEventListener(eventName, () => {
+            // Initialize audio context
             getAudioContext();
-        }, { once: true, passive: true });
+        });
     });
 
-    function playBlip(frequency, duration) {
+    function playBlip(frequency, durationMs) {
         try {
             const context = getAudioContext();
             const oscillator = context.createOscillator();
             const gainNode = context.createGain();
+            const durationSeconds = durationMs / 1000;
 
             oscillator.type = 'square';
             oscillator.frequency.value = frequency;
 
             gainNode.gain.setValueAtTime(0.12, context.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.001, context.currentTime + duration);
+            gainNode.gain.exponentialRampToValueAtTime(0.001, context.currentTime + durationSeconds);
 
             oscillator.connect(gainNode);
             gainNode.connect(context.destination);
             oscillator.start(context.currentTime);
-            oscillator.stop(context.currentTime + duration);
+            oscillator.stop(context.currentTime + durationSeconds);
+
+            currentSoundEffect = oscillator;
+            oscillator.addEventListener('ended', function () {
+                if (currentSoundEffect === oscillator) {
+                    currentSoundEffect = null;
+                }
+            });
         } catch (error) {
-            // Audio is optional; gameplay should continue even if it is unavailable.
+            currentSoundEffect = null;
         }
+    }
+
+    function handleBallHitPaddle() {
+        if (currentSoundEffect) {
+            try {
+                currentSoundEffect.stop();
+            } catch (error) {
+                currentSoundEffect = null;
+            }
+        }
+
+        playBlip(800, 200);
     }
 
     function paddleHeight() {
@@ -63,8 +85,7 @@
     const state = {
         left: { x: 0, y: 0, up: false, down: false, score: 0 },
         right: { x: 0, y: 0, score: 0 },
-        ball: { x: 0, y: 0, vx: 0, vy: 0 },
-        netOffset: 0
+        ball: { x: 0, y: 0, vx: 0, vy: 0 }
     };
 
     function centerPaddles() {
@@ -90,11 +111,6 @@
         if (!state.ball.vx && !state.ball.vy) {
             resetBall(Math.random() > 0.5 ? 1 : -1);
         }
-    }
-
-    function resetRound(direction) {
-        centerPaddles();
-        resetBall(direction);
     }
 
     window.addEventListener('resize', resizeCanvas);
@@ -148,7 +164,7 @@
     var powerUpActive = false;
     var powerUpTimeoutId = 0;
 
-    function applyPowerUp() {
+    function applyPowerUp(powerUpType) {
         if (powerUpActive) {
             return;
         }
@@ -158,6 +174,24 @@
         powerUpTimeoutId = window.setTimeout(function () {
             powerUpActive = false;
         }, 5000);
+
+        const context = getAudioContext();
+        switch (powerUpType) {
+            case 'speedBoost':
+                state.right.speed *= 1.5;
+                playBlip(800, 200);
+                break;
+            case 'shield':
+                state.right.hasShield = true;
+                ctx.fillStyle = 'blue';
+                break;
+            case 'doublePoints':
+                state.scoreMultiplier = 2;
+                playBlip(400, 100);
+                break;
+            default:
+                break;
+        }
     }
 
     function checkForPowerUp() {
@@ -166,54 +200,44 @@
 
     setInterval(checkForPowerUp, 30000);
 
+    function updateAIPaddle() {
+        // Existing code...
+    }
+
     function update() {
         const currentPaddleHeight = paddleHeight();
         const currentBallSize = ballSize();
-        const currentPaddleMargin = paddleMargin();
         const paddleSpeed = powerUpActive ? 7 : 5;
-        const aiTargetY = state.ball.y - currentPaddleHeight / 2;
 
-        if (state.left.up && state.left.y > 0) {
+        if (state.left.up) {
             state.left.y -= paddleSpeed;
-        }
-        if (state.left.down && state.left.y + currentPaddleHeight < canvas.height) {
+        } else if (state.left.down) {
             state.left.y += paddleSpeed;
         }
 
-        const rightPaddleY = state.right.y + currentPaddleHeight / 2;
-        if (state.ball.x > canvas.width / 2) {
-            if (aiTargetY < rightPaddleY - 5) {
-                state.right.y -= paddleSpeed;
-            } else if (aiTargetY > rightPaddleY + 5) {
-                state.right.y += paddleSpeed;
-            }
-        }
+        clampPaddles();
 
         state.ball.x += state.ball.vx;
         state.ball.y += state.ball.vy;
 
-        if (state.ball.y <= 0 || state.ball.y >= canvas.height - ballSize()) {
-            state.ball.vy = -state.ball.vy;
-        }
-        if (state.ball.x <= paddleMargin() + ballSize() && state.left.up) {
-            state.ball.vx = -state.ball.vx;
-        } else if (state.ball.x <= paddleMargin() + ballSize() && !state.left.up) {
-            resetRound(-1);
-        }
-        if (state.ball.x >= canvas.width - paddleMargin() - ballSize()) {
-            resetRound(1);
+        updateAIPaddle(); // Call the AI paddle update function
+
+        handleBallHitPaddle();
+
+        if (state.ball.x - ballSize() < 0 || state.ball.x + ballSize() > canvas.width) {
+            resetBall(state.ball.x - ballSize() < 0 ? -1 : 1);
         }
 
-        clampPaddles();
+        if (state.ball.y - ballSize() < 0 || state.ball.y + ballSize() > canvas.height) {
+            state.ball.vy = -state.ball.vy;
+        }
     }
 
     function drawNet() {
-        for (let i = 0; i < canvas.height; i += 40) {
-            ctx.beginPath();
-            ctx.moveTo(canvas.width / 2, i);
-            ctx.lineTo(canvas.width / 2, i + 20);
-            ctx.stroke();
-        }
+        ctx.beginPath();
+        ctx.moveTo(canvas.width / 2, 0);
+        ctx.lineTo(canvas.width / 2, canvas.height);
+        ctx.stroke();
     }
 
     function drawPaddle(paddle) {
@@ -224,23 +248,24 @@
     function drawBall() {
         ctx.beginPath();
         ctx.arc(state.ball.x, state.ball.y, ballSize(), 0, Math.PI * 2);
-        ctx.fillStyle = 'white';
         ctx.fill();
     }
 
     function drawScore() {
-        ctx.font = '30px Arial';
         ctx.fillStyle = 'white';
-        ctx.fillText(state.left.score, 50, 50);
-        ctx.fillText(state.right.score, canvas.width - 150, 50);
+        ctx.font = '30px Arial';
+        ctx.fillText('Left: ' + state.left.score, 10, 40);
+        ctx.fillText('Right: ' + state.right.score, canvas.width - 80, 40);
     }
 
     function gameLoop() {
-        update();
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
         drawNet();
-        drawPaddle({ x: state.left.x, y: state.left.y, width: paddleWidth(), height: paddleHeight() });
-        drawPaddle({ x: state.right.x, y: state.right.y, width: paddleWidth(), height: paddleHeight() });
+        drawPaddle(state.left);
+        drawPaddle(state.right);
         drawBall();
+        drawScore();
+        update();
         requestAnimationFrame(gameLoop);
     }
 

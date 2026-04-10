@@ -237,7 +237,6 @@
         ctx.beginPath();
         ctx.moveTo(canvas.width / 2, 0);
         ctx.lineTo(canvas.width / 2, canvas.height);
-        ctx.strokeStyle = 'white';
         ctx.stroke();
     }
 
@@ -249,27 +248,26 @@
     function drawBall() {
         ctx.beginPath();
         ctx.arc(state.ball.x, state.ball.y, ballSize(), 0, Math.PI * 2);
-        ctx.fillStyle = 'white';
         ctx.fill();
     }
 
     function drawScore() {
-        ctx.font = '30px Arial';
         ctx.fillStyle = 'white';
-        ctx.fillText(`Player: ${state.left.score}`, 10, 50);
-        ctx.fillText(`AI: ${state.right.score}`, canvas.width - 90, 50);
+        ctx.font = '30px Arial';
+        ctx.fillText('Left: ' + state.left.score, 10, 40);
+        ctx.fillText('Right: ' + state.right.score, canvas.width - 80, 40);
     }
 
     function gameLoop() {
-        update();
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
         drawNet();
         drawPaddle(state.left);
         drawPaddle(state.right);
         drawBall();
         drawScore();
+        update();
         requestAnimationFrame(gameLoop);
     }
 
     gameLoop();
-
 })();
