@@ -94,6 +94,10 @@ h1{font-size:1.15rem;letter-spacing:4px;margin-bottom:6px}
     <div class="card-label">Last Result</div>
     <div class="card-value" id="last-result">—</div>
   </div>
+  <div class="card">
+    <div class="card-label">Phone a Friend</div>
+    <div class="card-value" id="senior-llm-budget">—</div>
+  </div>
 </div>
 
 <div class="card" style="margin-bottom:16px">
@@ -169,6 +173,7 @@ function fmtEastern(iso) {
 }
 
 var _nextTime  = null;
+var _predictedNextTime = null;
 var _startTime = null;
 var _lastStarted = null;
 var _lastFinished = null;
@@ -185,9 +190,10 @@ var CATEGORY_LABELS = {
 
 function tick() {
   var now = Date.now();
-  if (_nextTime) {
-    var diff = _nextTime - now;
-    document.getElementById('countdown').textContent = diff > 0 ? fmtDuration(diff) : 'any moment...';
+  var countdownTarget = _predictedNextTime || _nextTime;
+  if (countdownTarget) {
+    var diff = countdownTarget - now;
+    document.getElementById('countdown').textContent = diff > 0 ? fmtDuration(diff) : 'recalculating...';
   }
   if (_startTime) {
     document.getElementById('runtime').textContent = fmtDuration(now - _startTime);
@@ -217,6 +223,14 @@ async function load() {
         : 'Last deploy succeeded';
     document.getElementById('last-result').className =
       'card-value ' + (d.last_evolution_success === false ? 'warn' : '');
+    document.getElementById('senior-llm-budget').textContent =
+      (d.senior_llm_phone_a_friend_remaining_today ?? '—') +
+      ' left today' +
+      (
+        d.senior_llm_phone_a_friend_daily_budget !== undefined
+          ? ' (' + (d.senior_llm_phone_a_friend_used_today || 0) + '/' + d.senior_llm_phone_a_friend_daily_budget + ' used)'
+          : ''
+      );
     document.getElementById('generated-at').textContent =
       d.generated_at !== 'pending'
         ? 'Last updated: ' + fmtEastern(d.generated_at)
@@ -271,6 +285,9 @@ async function load() {
 
     // Timers
     _nextTime  = d.next_evolution_time  && d.next_evolution_time  !== 'pending' ? new Date(d.next_evolution_time).getTime()  : null;
+    _predictedNextTime = d.predicted_next_evolution_time && d.predicted_next_evolution_time !== 'pending'
+      ? new Date(d.predicted_next_evolution_time).getTime()
+      : _nextTime;
     _startTime = d.agent_start_time     && d.agent_start_time     !== 'pending' ? new Date(d.agent_start_time).getTime()     : null;
     _lastStarted  = d.last_evolution_started_time  && d.last_evolution_started_time  !== 'pending' ? new Date(d.last_evolution_started_time).getTime()  : null;
     _lastFinished = d.last_evolution_finished_time && d.last_evolution_finished_time !== 'pending' ? new Date(d.last_evolution_finished_time).getTime() : null;
@@ -278,6 +295,7 @@ async function load() {
 
   } catch(e) {
     document.getElementById('countdown').textContent = 'offline';
+    document.getElementById('senior-llm-budget').textContent = 'offline';
     document.getElementById('generated-at').textContent = 'Cannot reach agent data';
   }
 }
