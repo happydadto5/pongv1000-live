@@ -248,7 +248,7 @@
         ctx.fillRect(state.right.x, state.right.y, paddleWidth(), paddleHeight());
         ctx.beginPath();
         ctx.arc(state.ball.x, state.ball.y, ballSize(), 0, Math.PI * 2);
-        ctx.fillStyle = 'red';
+        ctx.fillStyle = 'black';
         ctx.fill();
     }
 
@@ -258,5 +258,5 @@
         requestAnimationFrame(gameLoop);
     }
 
-    requestAnimationFrame(gameLoop);
+    gameLoop();
 })();

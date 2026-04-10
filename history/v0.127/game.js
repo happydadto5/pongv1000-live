@@ -5,6 +5,7 @@
     const ctx = canvas.getContext('2d');
 
     let audioContext;
+    let currentSoundEffect = null;
 
     function getAudioContext() {
         if (!audioContext) {
@@ -15,29 +16,50 @@
 
     ['click', 'keydown', 'touchstart'].forEach((eventName) => {
         document.addEventListener(eventName, () => {
+            // Initialize audio context
             getAudioContext();
-        }, { once: true, passive: true });
+        });
     });
 
-    function playBlip(frequency, duration) {
+    function playBlip(frequency, durationMs) {
         try {
             const context = getAudioContext();
             const oscillator = context.createOscillator();
             const gainNode = context.createGain();
+            const durationSeconds = durationMs / 1000;
 
             oscillator.type = 'square';
             oscillator.frequency.value = frequency;
 
             gainNode.gain.setValueAtTime(0.12, context.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.001, context.currentTime + duration);
+            gainNode.gain.exponentialRampToValueAtTime(0.001, context.currentTime + durationSeconds);
 
             oscillator.connect(gainNode);
             gainNode.connect(context.destination);
             oscillator.start(context.currentTime);
-            oscillator.stop(context.currentTime + duration);
+            oscillator.stop(context.currentTime + durationSeconds);
+
+            currentSoundEffect = oscillator;
+            oscillator.addEventListener('ended', function () {
+                if (currentSoundEffect === oscillator) {
+                    currentSoundEffect = null;
+                }
+            });
         } catch (error) {
-            // Audio is optional; gameplay should continue even if it is unavailable.
+            currentSoundEffect = null;
         }
+    }
+
+    function handleBallHitPaddle() {
+        if (currentSoundEffect) {
+            try {
+                currentSoundEffect.stop();
+            } catch (error) {
+                currentSoundEffect = null;
+            }
+        }
+
+        playBlip(800, 200);
     }
 
     function paddleHeight() {
@@ -89,11 +111,6 @@
         if (!state.ball.vx && !state.ball.vy) {
             resetBall(Math.random() > 0.5 ? 1 : -1);
         }
-    }
-
-    function resetRound(direction) {
-        centerPaddles();
-        resetBall(direction);
     }
 
     window.addEventListener('resize', resizeCanvas);
@@ -183,12 +200,21 @@
 
     setInterval(checkForPowerUp, 30000);
 
+    function updateAIPaddle() {
+        const paddleSpeed = powerUpActive ? 7 : 5;
+        const ballYCenter = state.ball.y + ballSize() / 2;
+        if (state.right.y < ballYCenter) {
+            state.right.y += paddleSpeed;
+        } else if (state.right.y > ballYCenter) {
+            state.right.y -= paddleSpeed;
+        }
+        clampPaddles();
+    }
+
     function update() {
         const currentPaddleHeight = paddleHeight();
         const currentBallSize = ballSize();
-        const currentPaddleMargin = paddleMargin();
         const paddleSpeed = powerUpActive ? 7 : 5;
-        const aiTargetY = state.right.y + paddleHeight() / 2;
 
         if (state.left.up) {
             state.left.y -= paddleSpeed;
@@ -201,60 +227,36 @@
         state.ball.x += state.ball.vx;
         state.ball.y += state.ball.vy;
 
-        if (state.ball.y <= 0 || state.ball.y >= canvas.height - currentBallSize) {
+        updateAIPaddle(); // Call the AI paddle update function
+
+        handleBallHitPaddle();
+
+        if (state.ball.x - ballSize() < 0 || state.ball.x + ballSize() > canvas.width) {
+            resetBall(state.ball.x - ballSize() < 0 ? -1 : 1);
+        }
+
+        if (state.ball.y - ballSize() < 0 || state.ball.y + ballSize() > canvas.height) {
             state.ball.vy = -state.ball.vy;
         }
-
-        if (state.left.x + paddleWidth() > state.ball.x && state.left.x < state.ball.x + currentBallSize && state.left.y <= state.ball.y && state.left.y + currentPaddleHeight >= state.ball.y) {
-            state.ball.vx = -state.ball.vx;
-            applyPowerUp('speedBoost');
-        }
-
-        if (state.right.x <= state.ball.x + currentBallSize && state.right.x + paddleWidth() > state.ball.x && state.right.y <= state.ball.y && state.right.y + currentPaddleHeight >= state.ball.y) {
-            state.ball.vx = -state.ball.vx;
-            applyPowerUp('speedBoost');
-        }
-
-        if (state.ball.x <= 0 || state.ball.x >= canvas.width) {
-            resetBall(state.ball.x > 0 ? -1 : 1);
-        }
     }
 
-    function drawNet() {
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        // Draw paddles and ball here
         ctx.fillStyle = 'white';
-        for (let i = 5; i < canvas.height; i += 30) {
-            ctx.fillRect(canvas.width / 2 - 1, i, 2, 10);
-        }
-    }
-
-    function drawPaddle(paddle, color) {
-        ctx.fillStyle = color;
-        ctx.fillRect(paddle.x, paddle.y, paddleWidth(), paddleHeight());
-    }
-
-    function drawBall() {
+        ctx.fillRect(state.left.x, state.left.y, paddleWidth(), paddleHeight());
+        ctx.fillRect(state.right.x, state.right.y, paddleWidth(), paddleHeight());
         ctx.beginPath();
         ctx.arc(state.ball.x, state.ball.y, ballSize(), 0, Math.PI * 2);
+        ctx.fillStyle = 'black';
         ctx.fill();
-    }
-
-    function drawScore() {
-        ctx.font = '48px Arial';
-        ctx.fillStyle = 'white';
-        ctx.fillText(state.left.score + ' - ' + state.right.score, canvas.width / 2 - 60, 50);
     }
 
     function gameLoop() {
         update();
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        drawNet();
-        drawPaddle(state.left, 'white');
-        drawPaddle(state.right, 'white');
-        drawBall();
-        drawScore();
+        draw();
         requestAnimationFrame(gameLoop);
     }
 
     gameLoop();
-
 })();
