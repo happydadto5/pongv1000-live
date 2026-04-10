@@ -3,29 +3,29 @@
   "last_evolution_time": "2026-04-10T08:49:46.651922+00:00",
   "last_evolution_started_time": "2026-04-10T08:50:24.965701+00:00",
   "last_evolution_finished_time": "2026-04-10T08:49:46.651922+00:00",
-  "next_evolution_time": "2026-04-10T08:50:15.530533+00:00",
+  "next_evolution_time": "2026-04-10T09:08:32.321627+00:00",
   "predicted_next_evolution_time": "2026-04-10T09:00:31.965701+00:00",
   "evolution_interval_minutes": 10,
   "daytime_interval_minutes": 10,
   "nighttime_interval_minutes": 10,
   "time_period": "nighttime",
-  "current_version": "0.123",
-  "current_title": "Pong Evolution",
-  "current_description": "Your favorite game with a smooth fix and exciting changes to come.",
-  "total_evolutions": 122,
+  "current_version": "0.124",
+  "current_title": "Game Title Here",
+  "current_description": "One sentence description",
+  "total_evolutions": 123,
   "planned_arcs": [
-    "Next evolution plan 1: Improve AI paddle behavior for more consistent gameplay.",
-    "Next evolution plan 2: Add dedicated sections for upcoming theme changes in the roadmap and expected release dates.",
-    "Next evolution plan 3: Refine power-up effects to provide a more dynamic and engaging experience."
+    "Next evolution plan 1: Refine AI paddle behavior for more consistent gameplay experience.",
+    "Next evolution plan 2: Implement dynamic power-up effects based on their type.",
+    "Next evolution plan 3: Add a dedicated section in the roadmap for upcoming theme changes and their expected release dates."
   ],
   "teasers": [
     {
-      "message": "\"Enhanced audio feedback makes your play sessions smoother and more enjoyable!\"",
-      "eta_days": 7
+      "message": "Fixed annoying sound issue",
+      "eta_days": 2
     },
     {
-      "message": "\"Stay tuned as we announce new themes in our roadmap!\"",
-      "eta_days": 14
+      "message": "Working on more AI improvements",
+      "eta_days": 3
     }
   ],
   "last_focus_area": "audio_feedback",
@@ -55,13 +55,13 @@
       "gameplay_improvements": 52,
       "creative_evolution": 16,
       "visuals_theme": 11,
-      "audio_feedback": 13,
+      "audio_feedback": 14,
       "controls_accessibility": 10,
       "stability_performance": 6,
       "documentation_status": 5,
       "roadmap_review_planning": 10
     },
-    "total": 123,
+    "total": 124,
     "preferred_next": [
       "creative_evolution",
       "visuals_theme",
@@ -76,7 +76,7 @@
   "degraded": false,
   "last_evolution_success": true,
   "last_error": "",
-  "generated_at": "2026-04-10T08:50:24.968175+00:00",
+  "generated_at": "2026-04-10T08:58:32.323711+00:00",
   "cooldown_until": "",
   "last_evolution_duration_seconds": 561,
   "average_evolution_duration_seconds": 607,
