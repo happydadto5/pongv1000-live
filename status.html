@@ -91,7 +91,7 @@ h1{font-size:1.15rem;letter-spacing:4px;margin-bottom:6px}
     <div class="card-value" id="focus-area">—</div>
   </div>
   <div class="card">
-    <div class="card-label">Last Result</div>
+    <div class="card-label">Live Deploy</div>
     <div class="card-value" id="last-result">—</div>
   </div>
   <div class="card">
@@ -218,11 +218,10 @@ async function load() {
     document.getElementById('focus-area').textContent =
       CATEGORY_LABELS[d.last_focus_area] || d.last_focus_area || '—';
     document.getElementById('last-result').textContent =
-      d.last_evolution_success === false
-        ? ('Failed: ' + (d.last_error || 'unknown error'))
-        : 'Last deploy succeeded';
-    document.getElementById('last-result').className =
-      'card-value ' + (d.last_evolution_success === false ? 'warn' : '');
+      d.current_version
+        ? ('v' + d.current_version + ' live')
+        : 'Live deploy unknown';
+    document.getElementById('last-result').className = 'card-value';
     document.getElementById('senior-llm-budget').textContent =
       (d.senior_llm_phone_a_friend_remaining_today ?? '—') +
       ' left today' +
