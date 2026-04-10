@@ -1,0 +1,86 @@
+{
+  "agent_start_time": "2026-04-05T17:52:38.912886+00:00",
+  "last_evolution_time": "2026-04-10T11:04:44.073776+00:00",
+  "last_evolution_started_time": "2026-04-10T11:14:56.262175+00:00",
+  "last_evolution_finished_time": "2026-04-10T11:04:44.073776+00:00",
+  "next_evolution_time": "2026-04-10T11:14:46.339731+00:00",
+  "predicted_next_evolution_time": "2026-04-10T11:26:48.262175+00:00",
+  "evolution_interval_minutes": 10,
+  "daytime_interval_minutes": 10,
+  "nighttime_interval_minutes": 10,
+  "time_period": "daytime",
+  "current_version": "0.126",
+  "current_title": "Game Title Here",
+  "current_description": "One sentence description",
+  "total_evolutions": 125,
+  "planned_arcs": [
+    "Next evolution plan 1: Adjust AI paddle behavior to provide more consistent gameplay experience.",
+    "Next evolution plan 2: Add dynamic power-up effects based on their type.",
+    "Next evolution plan 3: Design and implement a dedicated section in the roadmap for upcoming theme changes and their expected release dates."
+  ],
+  "teasers": [
+    {
+      "message": "\"New themes on the horizon! Stay tuned.\"",
+      "eta_days": 5
+    },
+    {
+      "message": "\"Enhanced AI for smoother play.\"",
+      "eta_days": 3
+    }
+  ],
+  "last_focus_area": "roadmap_review_planning",
+  "long_term_steering": "PongV1000 should evolve far beyond classic Pong into a really fun, colorful, addictive, easy-to-play one-player-versus-computer game that could plausibly go viral. The long-term destination should look nothing like early Pong. Treat the current Pong form as a starting point, not the destination. Favor mechanics, pacing, visual identity, and moment-to-moment feel that make the game instantly readable, satisfying, surprising, and shareable. Roadmap planning should actively chart the transformation from Pong into a new arcade experience over many steps. Evolution category percentages are only guardrails to avoid neglecting an area for too long; they are not the creative goal.",
+  "evolution_targets": {
+    "gameplay_improvements": 20,
+    "creative_evolution": 20,
+    "visuals_theme": 15,
+    "audio_feedback": 10,
+    "controls_accessibility": 10,
+    "stability_performance": 10,
+    "documentation_status": 10,
+    "roadmap_review_planning": 5
+  },
+  "balance_summary": {
+    "targets": {
+      "gameplay_improvements": 20,
+      "creative_evolution": 20,
+      "visuals_theme": 15,
+      "audio_feedback": 10,
+      "controls_accessibility": 10,
+      "stability_performance": 10,
+      "documentation_status": 10,
+      "roadmap_review_planning": 5
+    },
+    "counts": {
+      "gameplay_improvements": 52,
+      "creative_evolution": 16,
+      "visuals_theme": 11,
+      "audio_feedback": 15,
+      "controls_accessibility": 10,
+      "stability_performance": 6,
+      "documentation_status": 5,
+      "roadmap_review_planning": 11
+    },
+    "total": 126,
+    "preferred_next": [
+      "creative_evolution",
+      "visuals_theme",
+      "documentation_status"
+    ],
+    "overrepresented": [
+      "gameplay_improvements"
+    ]
+  },
+  "game_url": "index.html",
+  "consecutive_failures": 2,
+  "degraded": false,
+  "last_evolution_success": false,
+  "last_error": "JS validation failed: game.js shrunk 75% (263 \u2192 66 lines) \u2014 regression guard triggered",
+  "generated_at": "2026-04-10T11:14:56.263850+00:00",
+  "cooldown_until": "",
+  "last_evolution_duration_seconds": 221,
+  "average_evolution_duration_seconds": 712,
+  "senior_llm_phone_a_friend_daily_budget": 4,
+  "senior_llm_phone_a_friend_used_today": 4,
+  "senior_llm_phone_a_friend_remaining_today": 0
+}

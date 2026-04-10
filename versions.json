@@ -1,15 +1,6 @@
 {
   "versions": [
     {
-      "version": "v0.118",
-      "label": "Apr 09, 2026",
-      "captured_at": "2026-04-09T18:22:00+00:00",
-      "url": "history/v0.118/index.html",
-      "title": "Pong Evolution",
-      "description": "Enhanced power-ups and a variety of gameplay modes.",
-      "is_current": false
-    },
-    {
       "version": "v0.119",
       "label": "Apr 09, 2026",
       "captured_at": "2026-04-09T19:17:00+00:00",
@@ -74,8 +65,17 @@
     },
     {
       "version": "v0.126",
+      "label": "Apr 10, 2026",
+      "captured_at": "2026-04-10T07:25:00+00:00",
+      "url": "history/v0.126/index.html",
+      "title": "Game Title Here",
+      "description": "One sentence description",
+      "is_current": false
+    },
+    {
+      "version": "v0.127",
       "label": "Live now",
-      "captured_at": "2026-04-10T10:32:48.701647+00:00",
+      "captured_at": "2026-04-10T11:26:17.069527+00:00",
       "url": "index.html",
       "title": "Game Title Here",
       "description": "One sentence description",
