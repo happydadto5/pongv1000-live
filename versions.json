@@ -1,15 +1,6 @@
 {
   "versions": [
     {
-      "version": "v0.117",
-      "label": "Apr 09, 2026",
-      "captured_at": "2026-04-09T17:16:00+00:00",
-      "url": "history/v0.117/index.html",
-      "title": "Pong Plus",
-      "description": "Enhanced gameplay mechanics, power-ups, and new levels.",
-      "is_current": false
-    },
-    {
       "version": "v0.118",
       "label": "Apr 09, 2026",
       "captured_at": "2026-04-09T18:22:00+00:00",
@@ -74,8 +65,17 @@
     },
     {
       "version": "v0.125",
+      "label": "Apr 10, 2026",
+      "captured_at": "2026-04-10T06:31:00+00:00",
+      "url": "history/v0.125/index.html",
+      "title": "Game Title Here",
+      "description": "One sentence description",
+      "is_current": false
+    },
+    {
+      "version": "v0.126",
       "label": "Live now",
-      "captured_at": "2026-04-10T09:58:15.723818+00:00",
+      "captured_at": "2026-04-10T10:32:48.701647+00:00",
       "url": "index.html",
       "title": "Game Title Here",
       "description": "One sentence description",
