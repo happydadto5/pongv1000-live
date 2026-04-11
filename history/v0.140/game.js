@@ -211,6 +211,10 @@
         clampPaddles();
     }
 
+    function applyPowerUpEffect(powerUpType) {
+        // Apply visual and interactive effects based on powerUpType
+    }
+
     function update() {
         const currentPaddleHeight = paddleHeight();
         const currentBallSize = ballSize();
@@ -247,6 +251,7 @@
         ctx.fillRect(state.right.x, state.right.y, paddleWidth(), paddleHeight());
         ctx.beginPath();
         ctx.arc(state.ball.x, state.ball.y, ballSize(), 0, Math.PI * 2);
+        ctx.fillStyle = 'red';
         ctx.fill();
     }
 
@@ -256,5 +261,5 @@
         requestAnimationFrame(gameLoop);
     }
 
-    gameLoop();
+    requestAnimationFrame(gameLoop);
 })();

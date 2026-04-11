@@ -1,0 +1,78 @@
+{
+  "agent_start_time": "2026-04-05T17:52:38.912886+00:00",
+  "last_evolution_time": "2026-04-11T00:17:48.619378+00:00",
+  "last_evolution_started_time": "2026-04-11T00:28:01.865643+00:00",
+  "last_evolution_finished_time": "2026-04-11T00:17:48.619378+00:00",
+  "next_evolution_time": "2026-04-11T00:27:52.261543+00:00",
+  "predicted_next_evolution_time": "2026-04-11T01:02:49.865643+00:00",
+  "evolution_interval_minutes": 10,
+  "daytime_interval_minutes": 10,
+  "nighttime_interval_minutes": 10,
+  "time_period": "daytime",
+  "current_version": "0.140",
+  "current_title": "Game Title Here",
+  "current_description": "One sentence description",
+  "total_evolutions": 139,
+  "planned_arcs": [
+    "<arc id=\"1\">Implement dynamic power-up effects based on their type. | 30 days</arc>",
+    "<arc id=\"2\">Adjust AI paddle behavior to provide more consistent gameplay experience. | 25 days</arc>",
+    "<arc id=\"3\">Add a countdown element to the status page. | 20 days</arc>"
+  ],
+  "teasers": [],
+  "last_focus_area": "visuals_theme",
+  "long_term_steering": "PongV1000 should evolve far beyond classic Pong into a really fun, colorful, addictive, easy-to-play one-player-versus-computer game that could plausibly go viral. The long-term destination should look nothing like early Pong. Treat the current Pong form as a starting point, not the destination. Favor mechanics, pacing, visual identity, and moment-to-moment feel that make the game instantly readable, satisfying, surprising, and shareable. Roadmap planning should actively chart the transformation from Pong into a new arcade experience over many steps. Evolution category percentages are only guardrails to avoid neglecting an area for too long; they are not the creative goal.",
+  "evolution_targets": {
+    "gameplay_improvements": 20,
+    "creative_evolution": 20,
+    "visuals_theme": 15,
+    "audio_feedback": 10,
+    "controls_accessibility": 10,
+    "stability_performance": 10,
+    "documentation_status": 10,
+    "roadmap_review_planning": 5
+  },
+  "balance_summary": {
+    "targets": {
+      "gameplay_improvements": 20,
+      "creative_evolution": 20,
+      "visuals_theme": 15,
+      "audio_feedback": 10,
+      "controls_accessibility": 10,
+      "stability_performance": 10,
+      "documentation_status": 10,
+      "roadmap_review_planning": 5
+    },
+    "counts": {
+      "gameplay_improvements": 55,
+      "creative_evolution": 18,
+      "visuals_theme": 13,
+      "audio_feedback": 17,
+      "controls_accessibility": 10,
+      "stability_performance": 6,
+      "documentation_status": 5,
+      "roadmap_review_planning": 16
+    },
+    "total": 140,
+    "preferred_next": [
+      "creative_evolution",
+      "documentation_status",
+      "visuals_theme"
+    ],
+    "overrepresented": [
+      "gameplay_improvements",
+      "roadmap_review_planning"
+    ]
+  },
+  "game_url": "index.html",
+  "consecutive_failures": 2,
+  "degraded": false,
+  "last_evolution_success": false,
+  "last_error": "Smoke test: Paddles not visibly rendered on canvas",
+  "generated_at": "2026-04-11T00:28:01.867409+00:00",
+  "cooldown_until": "",
+  "last_evolution_duration_seconds": 560,
+  "average_evolution_duration_seconds": 2088,
+  "senior_llm_phone_a_friend_daily_budget": 4,
+  "senior_llm_phone_a_friend_used_today": 4,
+  "senior_llm_phone_a_friend_remaining_today": 0
+}
